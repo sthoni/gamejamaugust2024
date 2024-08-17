@@ -3,6 +3,7 @@ class_name Train extends CharacterBody2D
 var direction:int = 1
 var flag_change_dir_on_brake:bool = false
 var flag_change_dir_on_acc:bool = false
+var flag_tut_played:bool = false
 @export var acc_power := 400.0
 @export var brake_power := 800.0
 @export var WEIGHT_PER_WAGGON := 50.0
@@ -20,14 +21,19 @@ func _physics_process(delta: float) -> void:
 	var new_velocity := velocity.y
 	if Input.is_action_pressed("accelerate"):
 		$Timer_Brake.stop()
+		if flag_tut_played == false:
+			$Locomotive/Tut1.play()
+			flag_tut_played = true			
 		flag_change_dir_on_brake = false
 		if flag_change_dir_on_acc == true:
 			direction = direction * (-1)
 			flag_change_dir_on_acc = false
+			$Locomotive/Tut1.play()
 		var root := pow(velocity.y, 2) + direction * 2 / weight * acc_power * delta
 		if root > 0:
 			new_velocity = - direction * sqrt(root)
 		else:
+			flag_tut_played = false	
 			new_velocity = 0
 			if $Timer_Acc.time_left == 0:
 				$Timer_Acc.start()
@@ -38,6 +44,7 @@ func _physics_process(delta: float) -> void:
 		if flag_change_dir_on_brake == true:
 			direction = direction * (-1)
 			flag_change_dir_on_brake = false
+			$Locomotive/Tut1.play()
 		var root := pow(velocity.y, 2) - direction * 2 / weight * brake_power * delta
 		if root > 0:
 			new_velocity = - direction * sqrt(root)
