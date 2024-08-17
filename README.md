@@ -4,21 +4,43 @@
 
 ### Game Summary Pitch
 
-*Beispiel: Mass Flux is a tile based puzzle game about reducing or generally manipulating the shape of a mass of cell-blocks to navigate to a goal.*
+TITEL ist ein Geschicklichkeits-/Management-Spiel über das kontrollierte Beschleunigen und Abbremsen eines Zuges, welcher durch Upgrades verbessert wird.
 
 ### Inspiration
 
-* Mario
+* Diablo (Items finden)
+* Need for Speed
+* Sportspiel (Korrektes Maß finden, um Tasten zu drücken, Längen abschätzen)
 
 ### Player Experience
 
-*Beispiel: In a single screen dungeon for each of the 15 levels, the player will solve a short but perhaps complex puzzle requiring planning and management. The player must learn and use their knowledge of the interactions between the player cells and various environmental items to understand how to pass through each level.*
+* Die Spieler müssen durch geschicktes Beschleunigen und Abbremsen ihren Zug auf einer stilisierten Strecke möglichst schnell und mit viel Fracht zum nächsten Bahnhof fahren. Dabei müssen sie die Fahreigenschaften ihres Zuges beachten und durch Upgrades diese optimieren und ihre Kapazität erhöhen.
 
 ### Genre
 
-* Jump'n'Run
+* Geschicklichkeits-/Management-Spiel
 
 ## Konzept
+
+**Dungeon oder Jump'n'Run Entwurf**
+* Durch auf Gegner springen wird man größer
+* Man wird automatisch kleiner
+* Ab bestimmter Größe besondere Fähigkeiten
+* Gegnerschaden verursacht Verkleinerung
+* Tod bei letzter Verkleinerung
+* Desto größer man ist, desto größere Gegner kann man töten
+
+**Zug-Idee**
+* Geschicklichkeit gefragt, um Trägheit bestmöglich zu kontrollieren
+* Bahnhöfe werden immer größer
+* Im Verlauf können Upgrades gekauft werden
+* Ankunftszeit beachten -> Quasi perfekte Fahrt für keinerlei Verspätung notwendig
+* Beladen dauert -> Je pünktlicher desto besser
+* Zeit durch Powerups erkaufen?
+
+---
+Bis hierhin Überlegungen notiert
+---
 
 ### Gameplay
 
