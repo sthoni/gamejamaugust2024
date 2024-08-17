@@ -27,6 +27,12 @@ script = ExtResource("1_egyev")
 unique_name_in_owner = true
 shape = SubResource("RectangleShape2D_xyumy")
 
+[node name="Timer_Brake" type="Timer" parent="Train"]
+one_shot = true
+
+[node name="Timer_Acc" type="Timer" parent="Train"]
+one_shot = true
+
 [node name="Station" type="Area2D" parent="."]
 position = Vector2(182, 180)
 script = ExtResource("2_7bgaj")
@@ -67,6 +73,8 @@ script = ExtResource("5_vc02w")
 
 [connection signal="accelaration_changed" from="Train" to="VBoxContainer/Acceleration" method="_on_train_accelaration_changed"]
 [connection signal="velocity_changed" from="Train" to="VBoxContainer/Velocity" method="_on_train_velocity_changed"]
+[connection signal="timeout" from="Train/Timer_Brake" to="Train" method="_on_timer_brake_timeout"]
+[connection signal="timeout" from="Train/Timer_Acc" to="Train" method="_on_timer_acc_timeout"]
 [connection signal="body_entered" from="Station" to="Station" method="_on_body_entered"]
 [connection signal="body_exited" from="Station" to="Station" method="_on_body_exited"]
 [connection signal="station_status_changed" from="Station" to="." method="_on_station_station_status_changed"]
