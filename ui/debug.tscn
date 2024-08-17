@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://dh71w6aefqf38"]
+[gd_scene load_steps=7 format=3 uid="uid://dh71w6aefqf38"]
 
 [ext_resource type="Script" path="res://ui/debug_velocity.gd" id="1_qx4c7"]
 [ext_resource type="Script" path="res://ui/debug_acceleration.gd" id="2_mg21e"]
 [ext_resource type="Script" path="res://ui/debug_station.gd" id="3_5546r"]
 [ext_resource type="Script" path="res://ui/debug_money.gd" id="4_4e7pr"]
+[ext_resource type="Script" path="res://ui/debug_waggons.gd" id="5_7d15n"]
+[ext_resource type="Script" path="res://ui/debug_weight.gd" id="6_aiwum"]
 
 [node name="Debug" type="VBoxContainer"]
 offset_right = 40.0
@@ -26,5 +28,15 @@ script = ExtResource("3_5546r")
 
 [node name="Money" type="Label" parent="."]
 layout_mode = 2
-text = "Money:"
+text = "DEBUG Money"
 script = ExtResource("4_4e7pr")
+
+[node name="Waggons" type="Label" parent="."]
+layout_mode = 2
+text = "DEBUG Waggons"
+script = ExtResource("5_7d15n")
+
+[node name="Weight" type="Label" parent="."]
+layout_mode = 2
+text = "DEBUG Weight"
+script = ExtResource("6_aiwum")

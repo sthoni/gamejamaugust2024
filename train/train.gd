@@ -4,10 +4,12 @@ var direction:int = 1
 var flag_change_dir_on_brake:bool = false
 var flag_change_dir_on_acc:bool = false
 var flag_tut_played:bool = false
+
 @export var acc_power := 400.0
 @export var brake_power := 800.0
 @export var waggon_amount := 1
 @export var items: Array[Item]
+@export var start_velocity := -5.0
 
 @onready var train_shape := $TrainShape
 @onready var weight := 50.0
@@ -17,11 +19,34 @@ var acc := 0.0
 
 func _ready() -> void:
 	Events.item_bought.connect(_on_item_bought)
+	apply_items()
+	waggon_amount = count_waggons()
+	velocity.y = start_velocity
+
+
+func apply_items() -> void:
 	for item in items:
 		item.apply_effects(self)
+	Events.emit_signal("weight_changed", weight)
+
+
+func count_waggons() -> int:
+	var counted_waggons := 0
+	for item in items:
+		if item.item_type == Item.ItemType.WAGGON:
+			counted_waggons += 1
+	Events.emit_signal("waggons_counted", counted_waggons)
+	return counted_waggons
 
 func _physics_process(delta: float) -> void:
 	var new_velocity := velocity.y
+	if velocity.y != 0:
+		if $Locomotive/Driving.playing == false:
+			_check_speed()
+			$Locomotive/Driving.play()
+	else:
+			$Locomotive/Driving.stop()
+
 	if Input.is_action_pressed("accelerate"):
 		$Timer_Brake.stop()
 		if flag_tut_played == false:
@@ -64,7 +89,27 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
-
+func _check_speed():
+	if abs(velocity.y) > 90:
+		$Locomotive/Driving.stream = load('res://assets/music/drivingspeeds/spd-10.wav')
+	elif abs(velocity.y) > 80:
+		$Locomotive/Driving.stream = load('res://assets/music/drivingspeeds/spd-9.wav')
+	elif abs(velocity.y) > 70:
+		$Locomotive/Driving.stream = load('res://assets/music/drivingspeeds/spd-8.wav')
+	elif abs(velocity.y) > 60:
+		$Locomotive/Driving.stream = load('res://assets/music/drivingspeeds/spd-7.wav')
+	elif abs(velocity.y) > 50:
+		$Locomotive/Driving.stream = load('res://assets/music/drivingspeeds/spd-6.wav')
+	elif abs(velocity.y) > 40:
+		$Locomotive/Driving.stream = load('res://assets/music/drivingspeeds/spd-5.wav')
+	elif abs(velocity.y) > 30:
+		$Locomotive/Driving.stream = load('res://assets/music/drivingspeeds/spd-4.wav')
+	elif abs(velocity.y) > 20:
+		$Locomotive/Driving.stream = load('res://assets/music/drivingspeeds/spd-3.wav')
+	elif abs(velocity.y) > 10:
+		$Locomotive/Driving.stream = load('res://assets/music/drivingspeeds/spd-2.wav')
+	elif abs(velocity.y) > 0:
+		$Locomotive/Driving.stream = load('res://assets/music/drivingspeeds/spd-1.wav')
 func _on_timer_brake_timeout():
 	#just set flag, because if you change dir here, you have to wait for 1 timer period to continue driving in same dir after braking down to v = 0
 	flag_change_dir_on_brake = true
@@ -77,3 +122,4 @@ func _on_timer_acc_timeout():
 func _on_item_bought(item: Item):
 	items.push_back(item)
 	item.apply_effects(self)
+	waggon_amount = count_waggons()

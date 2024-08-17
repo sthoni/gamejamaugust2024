@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://ui/item_display.gd" id="1_14cqh"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_ov08v"]
-size = Vector2(128, 128)
+size = Vector2(64, 64)
 
 [node name="ItemDisplay" type="VBoxContainer"]
 script = ExtResource("1_14cqh")

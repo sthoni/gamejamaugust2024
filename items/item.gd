@@ -1,10 +1,10 @@
 class_name Item extends Resource
 
-enum Type {TRAIN, STATION}
+enum ItemType {TRAIN, STATION, WAGGON}
 
 @export_group("Item Attributes")
 @export var id: String
-@export var type: Type
+@export var item_type: ItemType
 @export var price: int
 @export var weight: float
 

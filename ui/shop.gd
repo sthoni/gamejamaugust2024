@@ -7,6 +7,7 @@ extends Control
 func _ready() -> void:
 	%ItemDisplay.set_item(item_one)
 	%ItemDisplay2.set_item(item_two)
+	Events.connect("money_changed", _on_money_changed)
 
 func add_item(node: Node) -> void:
 	%ItemsDisplayGrid.add_child(node)
@@ -22,3 +23,6 @@ func _on_continue_button_pressed() -> void:
 
 func _on_exit_button_pressed() -> void:
 	get_tree().quit()
+
+func _on_money_changed(money) -> void:
+	%MoneyPlayer.text = "Money: %s" % money
