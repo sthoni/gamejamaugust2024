@@ -11,9 +11,6 @@ var flag_change_dir_on_acc:bool = false
 
 var acc := 0.0
 
-signal velocity_changed(velocity: float)
-signal accelaration_changed(acc: float)
-
 func _ready() -> void:
 	print(weight)
 	%TrainShape.scale.y = waggon_amount
@@ -51,8 +48,8 @@ func _physics_process(delta: float) -> void:
 	acc = (new_velocity - velocity.y) / delta
 	velocity.y = new_velocity
 
-	emit_signal("accelaration_changed", acc)
-	emit_signal("velocity_changed", velocity.y)
+	Events.emit_signal("accelaration_changed", acc)
+	Events.emit_signal("velocity_changed", velocity.y)
 
 	move_and_slide()
 

@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://dh71w6aefqf38"]
+
+[ext_resource type="Script" path="res://ui/debug_velocity.gd" id="1_qx4c7"]
+[ext_resource type="Script" path="res://ui/debug_acceleration.gd" id="2_mg21e"]
+[ext_resource type="Script" path="res://ui/debug_station.gd" id="3_5546r"]
+[ext_resource type="Script" path="res://ui/debug_money.gd" id="4_4e7pr"]
+
+[node name="Debug" type="VBoxContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Velocity" type="Label" parent="."]
+layout_mode = 2
+text = "DEBUG Velocity"
+script = ExtResource("1_qx4c7")
+
+[node name="Acceleration" type="Label" parent="."]
+layout_mode = 2
+text = "DEBUG Acceleration"
+script = ExtResource("2_mg21e")
+
+[node name="Station" type="Label" parent="."]
+layout_mode = 2
+text = "DEBUG Station"
+script = ExtResource("3_5546r")
+
+[node name="Money" type="Label" parent="."]
+layout_mode = 2
+text = "Money:"
+script = ExtResource("4_4e7pr")

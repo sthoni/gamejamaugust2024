@@ -12,8 +12,6 @@ enum TrainStatus {
 var train_at_station: Train
 var status: TrainStatus = TrainStatus.NOT_ARRIVED
 
-signal station_status_changed(status: TrainStatus)
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	status_changed()
@@ -32,7 +30,8 @@ func _process(delta: float) -> void:
 
 
 func status_changed() -> void:
-	emit_signal("station_status_changed", status)
+	print("Status")
+	Events.emit_signal("station_status_changed", status)
 
 
 func _on_station_start_body_entered(body: Node2D) -> void:

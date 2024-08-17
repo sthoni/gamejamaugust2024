@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://c3csdinu5agg4"]
+
+[ext_resource type="Script" path="res://station/station.gd" id="1_myu42"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2umad"]
+size = Vector2(20, 120)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dk45f"]
+size = Vector2(20, 10)
+
+[node name="Station" type="Area2D"]
+position = Vector2(182, 180)
+script = ExtResource("1_myu42")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_2umad")
+
+[node name="StationStart" type="Area2D" parent="."]
+position = Vector2(0, 55)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StationStart"]
+shape = SubResource("RectangleShape2D_dk45f")
+
+[node name="StationEnd" type="Area2D" parent="."]
+position = Vector2(0, -55)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StationEnd"]
+shape = SubResource("RectangleShape2D_dk45f")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="body_entered" from="StationStart" to="." method="_on_station_start_body_entered"]
+[connection signal="body_exited" from="StationStart" to="." method="_on_station_start_body_exited"]
+[connection signal="body_entered" from="StationEnd" to="." method="_on_station_end_body_entered"]
+[connection signal="body_exited" from="StationEnd" to="." method="_on_station_end_body_exited"]
