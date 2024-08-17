@@ -23,3 +23,5 @@ func set_props() -> void:
 
 func _on_item_buy_pressed() -> void:
 	Events.emit_signal("item_bought", item_displayed)
+	item_buy.text = "Sold out"
+	item_buy.disabled = true
