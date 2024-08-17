@@ -1,13 +1,5 @@
 # TITEL
 
-## Ideen
-
-* Crash-Game: 
-* Mario-Game: Die Spieler müssen durch ein Level rennen und springen, wobei sie jedoch die Größe ihrer Figur verändern müssen, um Löcher zu überwinden und in Zwischenräume zu gelangen. Die Größe wird durch Springen, Rennen, Gegner und Items verändert.
-* Zug-Game: Die Spieler müssen durch geschicktes Beschleunigen und Abbremsen ihren Zug auf einer stilisierten Strecke möglichst schnell und mit viel Fracht zum nächsten Bahnhof fahren. Dabei müssen sie die Fahreigenschaften ihres Zuges beachten und durch Upgrades diese optimieren und ihre Kapazität erhöhen.
-* Arena-Game:
-* Weltraum-Game:
-
 ## Einleitung
 
 ### Game Summary Pitch
