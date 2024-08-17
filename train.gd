@@ -1,6 +1,8 @@
 class_name Train extends CharacterBody2D
 
 var direction:int = 1
+var flag_change_dir_on_brake:bool = false
+var flag_change_dir_on_acc:bool = false
 @export var acc_power := 400.0
 @export var brake_power := 800.0
 @export var WEIGHT_PER_WAGGON := 50.0
@@ -20,6 +22,10 @@ func _physics_process(delta: float) -> void:
 	var new_velocity := velocity.y
 	if Input.is_action_pressed("accelerate"):
 		$Timer_Brake.stop()
+		flag_change_dir_on_brake = false
+		if flag_change_dir_on_acc == true:
+			direction = direction * (-1)
+			flag_change_dir_on_acc = false
 		var root = pow(velocity.y, 2) + direction * 2 / weight * acc_power * delta
 		if root > 0:
 			new_velocity = - direction * sqrt(root)
@@ -30,6 +36,10 @@ func _physics_process(delta: float) -> void:
 
 	if Input.is_action_pressed("brake"):
 		$Timer_Acc.stop()
+		flag_change_dir_on_acc = false
+		if flag_change_dir_on_brake == true:
+			direction = direction * (-1)
+			flag_change_dir_on_brake = false
 		var root = pow(velocity.y, 2) - direction * 2 / weight * brake_power * delta
 		if root > 0:
 			new_velocity = - direction * sqrt(root)
@@ -48,8 +58,10 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_timer_brake_timeout():
-	direction = direction * (-1) # Replace with function body.
+	#just set flag, because if you change dir here, you have to wait for 1 timer period to continue driving in same dir after braking down to v = 0
+	flag_change_dir_on_brake = true
 
 
 func _on_timer_acc_timeout():
-	direction = direction * (-1) # Replace with function body.
+	#just set flag, because if you change dir here, you have to wait for 1 timer period to continue driving in same dir after braking down to v = 0
+	flag_change_dir_on_acc = true
