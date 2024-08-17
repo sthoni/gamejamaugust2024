@@ -31,6 +31,10 @@ window/size/viewport_width=360
 window/size/viewport_height=640
 window/stretch/mode="viewport"
 
+[gui]
+
+theme/custom="res://theme.tres"
+
 [input]
 
 accelerate={

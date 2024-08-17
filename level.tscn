@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://5m2ar4vwdnpd"]
+[gd_scene load_steps=16 format=3 uid="uid://5m2ar4vwdnpd"]
 
 [ext_resource type="Script" path="res://train.gd" id="1_egyev"]
 [ext_resource type="Script" path="res://level.gd" id="1_pg6m5"]
@@ -6,6 +6,9 @@
 [ext_resource type="Script" path="res://velocity.gd" id="3_mmw4x"]
 [ext_resource type="Script" path="res://acceleration.gd" id="4_qwo30"]
 [ext_resource type="Script" path="res://label_station.gd" id="5_vc02w"]
+[ext_resource type="Script" path="res://money.gd" id="7_rinmn"]
+[ext_resource type="Theme" uid="uid://c5vctt5fcxfn" path="res://theme.tres" id="8_j5rwa"]
+[ext_resource type="Script" path="res://shop.gd" id="9_3iv6e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xyumy"]
 size = Vector2(10, 20)
@@ -15,6 +18,15 @@ size = Vector2(20, 120)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dk45f"]
 size = Vector2(20, 10)
+
+[sub_resource type="Gradient" id="Gradient_bcuwd"]
+colors = PackedColorArray(0.2, 0.196078, 0.4, 1, 0.113725, 0.0392157, 0.376471, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_sjscc"]
+gradient = SubResource("Gradient_bcuwd")
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_ov08v"]
+size = Vector2(100, 100)
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_pg6m5")
@@ -71,6 +83,105 @@ layout_mode = 2
 text = "DEBUG Station"
 script = ExtResource("5_vc02w")
 
+[node name="Money" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Money:"
+script = ExtResource("7_rinmn")
+
+[node name="Shop" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+offset_right = 360.0
+offset_bottom = 640.0
+theme = ExtResource("8_j5rwa")
+script = ExtResource("9_3iv6e")
+
+[node name="TextureRect" type="TextureRect" parent="Shop"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture1D_sjscc")
+
+[node name="CenterContainer" type="CenterContainer" parent="Shop"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Shop/CenterContainer"]
+layout_mode = 2
+theme = ExtResource("8_j5rwa")
+theme_override_constants/separation = 32
+
+[node name="Label" type="Label" parent="Shop/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Train Shop"
+
+[node name="Items" type="HBoxContainer" parent="Shop/CenterContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Item1" type="VBoxContainer" parent="Shop/CenterContainer/VBoxContainer/Items"]
+layout_mode = 2
+
+[node name="Item1Name" type="Label" parent="Shop/CenterContainer/VBoxContainer/Items/Item1"]
+layout_mode = 2
+text = "ITEM NAME"
+
+[node name="Item1Texture" type="TextureRect" parent="Shop/CenterContainer/VBoxContainer/Items/Item1"]
+layout_mode = 2
+texture = SubResource("PlaceholderTexture2D_ov08v")
+
+[node name="Item1Price" type="Label" parent="Shop/CenterContainer/VBoxContainer/Items/Item1"]
+layout_mode = 2
+text = "ITEM PRICE"
+
+[node name="Item1Buy" type="Button" parent="Shop/CenterContainer/VBoxContainer/Items/Item1"]
+layout_mode = 2
+text = "Kaufen"
+
+[node name="Item2" type="VBoxContainer" parent="Shop/CenterContainer/VBoxContainer/Items"]
+layout_mode = 2
+
+[node name="Item1Name" type="Label" parent="Shop/CenterContainer/VBoxContainer/Items/Item2"]
+layout_mode = 2
+text = "ITEM NAME"
+
+[node name="Item1Texture" type="TextureRect" parent="Shop/CenterContainer/VBoxContainer/Items/Item2"]
+layout_mode = 2
+texture = SubResource("PlaceholderTexture2D_ov08v")
+
+[node name="Item1Price" type="Label" parent="Shop/CenterContainer/VBoxContainer/Items/Item2"]
+layout_mode = 2
+text = "ITEM PRICE"
+
+[node name="Item1Buy" type="Button" parent="Shop/CenterContainer/VBoxContainer/Items/Item2"]
+layout_mode = 2
+text = "Kaufen"
+
+[node name="HSeparator" type="HSeparator" parent="Shop/CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Shop/CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ContinueButton" type="Button" parent="Shop/CenterContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Continue"
+
+[node name="ExitButton" type="Button" parent="Shop/CenterContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Exit"
+
+[connection signal="money_changed" from="." to="VBoxContainer/Money" method="_on_level_money_changed"]
 [connection signal="accelaration_changed" from="Train" to="VBoxContainer/Acceleration" method="_on_train_accelaration_changed"]
 [connection signal="velocity_changed" from="Train" to="VBoxContainer/Velocity" method="_on_train_velocity_changed"]
 [connection signal="timeout" from="Train/Timer_Brake" to="Train" method="_on_timer_brake_timeout"]
@@ -83,3 +194,4 @@ script = ExtResource("5_vc02w")
 [connection signal="body_exited" from="Station/StationStart" to="Station" method="_on_station_start_body_exited"]
 [connection signal="body_entered" from="Station/StationEnd" to="Station" method="_on_station_end_body_entered"]
 [connection signal="body_exited" from="Station/StationEnd" to="Station" method="_on_station_end_body_exited"]
+[connection signal="pressed" from="Shop/CenterContainer/VBoxContainer/VBoxContainer/ContinueButton" to="Shop" method="_on_continue_button_pressed"]
