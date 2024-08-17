@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://dpoct08kcld7d"]
+
+[ext_resource type="Script" path="res://ui/item_display.gd" id="1_14cqh"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_ov08v"]
+size = Vector2(128, 128)
+
+[node name="ItemDisplay" type="VBoxContainer"]
+script = ExtResource("1_14cqh")
+
+[node name="ItemTexture" type="TextureRect" parent="."]
+layout_mode = 2
+texture = SubResource("PlaceholderTexture2D_ov08v")
+stretch_mode = 2
+
+[node name="ItemName" type="Label" parent="."]
+layout_mode = 2
+text = "ITEM NAME"
+
+[node name="ItemDescription" type="Label" parent="."]
+layout_mode = 2
+text = "ITEM DESCRIPTION"
+
+[node name="ItemBuy" type="Button" parent="."]
+layout_mode = 2
+text = "Kaufen"
+
+[connection signal="pressed" from="ItemBuy" to="." method="_on_item_buy_pressed"]

@@ -1,18 +1,22 @@
-[gd_scene load_steps=4 format=3 uid="uid://c3byp0uv73juy"]
+[gd_scene load_steps=6 format=3 uid="uid://c3byp0uv73juy"]
 
 [ext_resource type="Script" path="res://train/train.gd" id="1_q7ry4"]
+[ext_resource type="Script" path="res://items/item.gd" id="2_bm1xa"]
 [ext_resource type="Texture2D" uid="uid://cf1y5qabhp48g" path="res://assets/locomotive.png" id="2_htwba"]
+[ext_resource type="Resource" uid="uid://xywvkp4j84jf" path="res://items/freight_waggon.tres" id="3_yt2h0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xyumy"]
 size = Vector2(16, 48)
 
 [node name="Train" type="CharacterBody2D"]
-position = Vector2(180, 568)
 script = ExtResource("1_q7ry4")
+acc_power = 12000.0
+brake_power = 16000.0
+items = Array[ExtResource("2_bm1xa")]([ExtResource("3_yt2h0")])
 
 [node name="TrainShape" type="CollisionShape2D" parent="."]
-unique_name_in_owner = true
-position = Vector2(1, 0)
+position = Vector2(0, 120)
+scale = Vector2(1, 6)
 shape = SubResource("RectangleShape2D_xyumy")
 
 [node name="Timer_Brake" type="Timer" parent="."]
@@ -23,9 +27,8 @@ one_shot = true
 
 [node name="Locomotive" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(1, 0)
 rotation = 1.5708
-scale = Vector2(0.241643, 0.241643)
+scale = Vector2(0.25, 0.25)
 texture = ExtResource("2_htwba")
 
 [connection signal="timeout" from="Timer_Brake" to="." method="_on_timer_brake_timeout"]

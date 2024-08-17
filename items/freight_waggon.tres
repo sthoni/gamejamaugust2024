@@ -3,12 +3,14 @@
 [ext_resource type="Script" path="res://items/freight_waggon.gd" id="1_asytw"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_sm04s"]
-size = Vector2(32, 32)
+size = Vector2(64, 64)
 
 [resource]
 script = ExtResource("1_asytw")
 id = "FreightWaggon"
 type = 0
 price = 50
+weight = 50.0
+name = "Freight Waggon"
 icon = SubResource("PlaceholderTexture2D_sm04s")
 tooltip_text = "A new waggon. Great!"
