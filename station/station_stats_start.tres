@@ -6,4 +6,4 @@
 script = ExtResource("1_8m6bu")
 id = "StartStation"
 y_position = 140
-platform_length = 90
+platform_length = 90.0

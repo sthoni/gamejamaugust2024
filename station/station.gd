@@ -28,16 +28,18 @@ func set_station_stats(value: StationStats) -> void:
 	station_stats = value
 	self.global_position.y = station_stats.y_position
 	if platform:
+		@warning_ignore("unsafe_property_access")
 		platform.shape.size.y = station_stats.platform_length
 		station_start.position.y = station_stats.platform_length / 2
 		station_end.position.y = -station_stats.platform_length / 2
 
 func set_status(value: TrainStatus) -> void:
 	status = value
+	@warning_ignore("return_value_discarded")
 	Events.emit_signal("station_status_changed", status)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if train_at_station && train_at_station.velocity.y == 0:
 		match status:
 			TrainStatus.AT_START:
@@ -52,6 +54,7 @@ func _process(delta: float) -> void:
 
 
 func status_changed() -> void:
+	@warning_ignore("return_value_discarded")
 	Events.emit_signal("station_status_changed", status)
 
 

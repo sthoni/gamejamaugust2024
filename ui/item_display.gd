@@ -8,6 +8,7 @@ class_name ItemDisplay extends VBoxContainer
 var item_displayed: Item
 
 func _ready() -> void:
+	@warning_ignore("return_value_discarded")
 	Events.connect("item_bought", _on_item_bought)
 
 func set_item(item: Item) -> void:
@@ -22,6 +23,7 @@ func set_props() -> void:
 
 
 func _on_item_buy_pressed() -> void:
+	@warning_ignore("return_value_discarded")
 	Events.emit_signal("item_buy_button_pressed", item_displayed)
 
 
