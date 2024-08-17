@@ -1,6 +1,6 @@
-class_name FreightWaggon extends Item
+class_name FreightBigWaggon extends Item
 
-@export var transport_amount := 50.0
+@export var transport_amount := 80.0
 
 func apply_effects(target: Node) -> void:
 	if target is Train:

@@ -4,10 +4,12 @@ var direction:int = 1
 var flag_change_dir_on_brake:bool = false
 var flag_change_dir_on_acc:bool = false
 var flag_tut_played:bool = false
+
 @export var acc_power := 400.0
 @export var brake_power := 800.0
 @export var waggon_amount := 1
 @export var items: Array[Item]
+@export var start_velocity := -5.0
 
 @onready var train_shape := $TrainShape
 @onready var weight := 50.0
@@ -17,8 +19,24 @@ var acc := 0.0
 
 func _ready() -> void:
 	Events.item_bought.connect(_on_item_bought)
+	apply_items()
+	waggon_amount = count_waggons()
+	velocity.y = start_velocity
+
+
+func apply_items() -> void:
 	for item in items:
 		item.apply_effects(self)
+	Events.emit_signal("weight_changed", weight)
+
+
+func count_waggons() -> int:
+	var counted_waggons := 0
+	for item in items:
+		if item.item_type == Item.ItemType.WAGGON:
+			counted_waggons += 1
+	Events.emit_signal("waggons_counted", counted_waggons)
+	return counted_waggons
 
 func _physics_process(delta: float) -> void:
 	var new_velocity := velocity.y
@@ -77,3 +95,4 @@ func _on_timer_acc_timeout():
 func _on_item_bought(item: Item):
 	items.push_back(item)
 	item.apply_effects(self)
+	waggon_amount = count_waggons()

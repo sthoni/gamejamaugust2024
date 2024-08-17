@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="FreightBigWaggon" load_steps=3 format=3 uid="uid://bw8i24xmjvo3o"]
+
+[ext_resource type="Script" path="res://items/freight_big_waggon.gd" id="1_vq3sl"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_iljme"]
+size = Vector2(64, 64)
+
+[resource]
+script = ExtResource("1_vq3sl")
+transport_amount = 80.0
+id = ""
+item_type = 0
+price = 100
+weight = 70.0
+name = "Big Freight Waggon"
+icon = SubResource("PlaceholderTexture2D_iljme")
+tooltip_text = "An extra big waggon. Start some hauling!"

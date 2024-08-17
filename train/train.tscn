@@ -1,10 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://c3byp0uv73juy"]
+[gd_scene load_steps=7 format=3 uid="uid://c3byp0uv73juy"]
 
 [ext_resource type="Script" path="res://train/train.gd" id="1_q7ry4"]
 [ext_resource type="Script" path="res://items/item.gd" id="2_bm1xa"]
 [ext_resource type="Texture2D" uid="uid://cf1y5qabhp48g" path="res://assets/locomotive.png" id="2_htwba"]
 [ext_resource type="AudioStream" uid="uid://rit6qiqmsl3j" path="res://assets/music/tut1.wav" id="3_45srh"]
-[ext_resource type="Resource" uid="uid://xywvkp4j84jf" path="res://items/freight_waggon.tres" id="3_yt2h0"]
+[ext_resource type="Resource" uid="uid://ctonnburlb4xx" path="res://items/freight_waggon.tres" id="3_yt2h0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xyumy"]
 size = Vector2(16, 48)
@@ -16,8 +16,6 @@ brake_power = 16000.0
 items = Array[ExtResource("2_bm1xa")]([ExtResource("3_yt2h0")])
 
 [node name="TrainShape" type="CollisionShape2D" parent="."]
-position = Vector2(0, 120)
-scale = Vector2(1, 6)
 shape = SubResource("RectangleShape2D_xyumy")
 
 [node name="Timer_Brake" type="Timer" parent="."]

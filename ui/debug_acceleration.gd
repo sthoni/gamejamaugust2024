@@ -11,4 +11,4 @@ func _process(delta: float) -> void:
 
 
 func _on_train_accelaration_changed(acc: float) -> void:
-	self.text = "Acceleration: " + str(acc)
+	self.text = "Acceleration: %5.2f" % (acc * -1.0)

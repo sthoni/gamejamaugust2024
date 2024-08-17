@@ -8,7 +8,7 @@ class_name ItemDisplay extends VBoxContainer
 var item_displayed: Item
 
 func _ready() -> void:
-	pass
+	Events.connect("item_bought", _on_item_bought)
 
 func set_item(item: Item) -> void:
 	item_displayed = item
@@ -22,6 +22,10 @@ func set_props() -> void:
 
 
 func _on_item_buy_pressed() -> void:
-	Events.emit_signal("item_bought", item_displayed)
-	item_buy.text = "Sold out"
-	item_buy.disabled = true
+	Events.emit_signal("item_buy_button_pressed", item_displayed)
+
+
+func _on_item_bought(item: Item) -> void:
+	if item == item_displayed:
+		item_buy.text = "Sold out"
+		item_buy.disabled = true
