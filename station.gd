@@ -28,6 +28,8 @@ func _process(delta: float) -> void:
 			TrainStatus.AT_STATION:
 				print("Perfect!")
 				status = TrainStatus.STOPPED
+				status_changed()
+
 
 func status_changed() -> void:
 	emit_signal("station_status_changed", status)
