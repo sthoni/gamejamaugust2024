@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-[gd_scene load_steps=5 format=3 uid="uid://c3byp0uv73juy"]
-=======
 [gd_scene load_steps=6 format=3 uid="uid://c3byp0uv73juy"]
 
 [ext_resource type="Script" path="res://train/train.gd" id="1_q7ry4"]
