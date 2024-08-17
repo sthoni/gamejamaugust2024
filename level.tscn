@@ -1,3 +1,77 @@
-[gd_scene format=3 uid="uid://5m2ar4vwdnpd"]
+[gd_scene load_steps=10 format=3 uid="uid://5m2ar4vwdnpd"]
+
+[ext_resource type="Script" path="res://train.gd" id="1_egyev"]
+[ext_resource type="Script" path="res://level.gd" id="1_pg6m5"]
+[ext_resource type="Script" path="res://station.gd" id="2_7bgaj"]
+[ext_resource type="Script" path="res://velocity.gd" id="3_mmw4x"]
+[ext_resource type="Script" path="res://acceleration.gd" id="4_qwo30"]
+[ext_resource type="Script" path="res://label_station.gd" id="5_vc02w"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xyumy"]
+size = Vector2(10, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2umad"]
+size = Vector2(20, 120)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dk45f"]
+size = Vector2(20, 10)
 
 [node name="Level" type="Node2D"]
+script = ExtResource("1_pg6m5")
+
+[node name="Train" type="CharacterBody2D" parent="."]
+position = Vector2(180, 568)
+script = ExtResource("1_egyev")
+
+[node name="TrainShape" type="CollisionShape2D" parent="Train"]
+unique_name_in_owner = true
+shape = SubResource("RectangleShape2D_xyumy")
+
+[node name="Station" type="Area2D" parent="."]
+position = Vector2(182, 180)
+script = ExtResource("2_7bgaj")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Station"]
+shape = SubResource("RectangleShape2D_2umad")
+
+[node name="StationStart" type="Area2D" parent="Station"]
+position = Vector2(0, 55)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Station/StationStart"]
+shape = SubResource("RectangleShape2D_dk45f")
+
+[node name="StationEnd" type="Area2D" parent="Station"]
+position = Vector2(0, -55)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Station/StationEnd"]
+shape = SubResource("RectangleShape2D_dk45f")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Velocity" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "DEBUG Velocity"
+script = ExtResource("3_mmw4x")
+
+[node name="Acceleration" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "DEBUG Acceleration"
+script = ExtResource("4_qwo30")
+
+[node name="Station" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "DEBUG Station"
+script = ExtResource("5_vc02w")
+
+[connection signal="accelaration_changed" from="Train" to="VBoxContainer/Acceleration" method="_on_train_accelaration_changed"]
+[connection signal="velocity_changed" from="Train" to="VBoxContainer/Velocity" method="_on_train_velocity_changed"]
+[connection signal="body_entered" from="Station" to="Station" method="_on_body_entered"]
+[connection signal="body_exited" from="Station" to="Station" method="_on_body_exited"]
+[connection signal="station_status_changed" from="Station" to="." method="_on_station_station_status_changed"]
+[connection signal="station_status_changed" from="Station" to="VBoxContainer/Station" method="_on_station_station_status_changed"]
+[connection signal="body_entered" from="Station/StationStart" to="Station" method="_on_station_start_body_entered"]
+[connection signal="body_exited" from="Station/StationStart" to="Station" method="_on_station_start_body_exited"]
+[connection signal="body_entered" from="Station/StationEnd" to="Station" method="_on_station_end_body_entered"]
+[connection signal="body_exited" from="Station/StationEnd" to="Station" method="_on_station_end_body_exited"]
