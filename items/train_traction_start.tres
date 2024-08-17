@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="TrainTraction" load_steps=2 format=3 uid="uid://dup4drvtvbvhq"]
+
+[ext_resource type="Script" path="res://items/train_traction.gd" id="1_865cg"]
+
+[resource]
+script = ExtResource("1_865cg")
+brake_power = 2500.0
+transport_amount = 10.0
+id = "TrainTractionStart"
+item_type = 0
+price = 10000000000000
+weight = 10.0
+name = "Train Traction Start"
+tooltip_text = ""

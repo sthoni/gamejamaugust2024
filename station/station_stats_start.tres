@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="StationStats" load_steps=2 format=3 uid="uid://ujjiktacktrw"]
+
+[ext_resource type="Script" path="res://station/station_stats.gd" id="1_8m6bu"]
+
+[resource]
+script = ExtResource("1_8m6bu")
+id = "StartStation"
+y_position = 140
+platform_length = 90

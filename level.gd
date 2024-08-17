@@ -33,6 +33,6 @@ func _on_station_station_status_changed(status: Station.TrainStatus) -> void:
 		%Shop.show()
 
 func _on_item_buy_button_pressed(item: Item) -> void:
-	if item.price < money:
+	if item.price <= money:
 		money -= item.price
 		Events.emit_signal("item_bought", item)

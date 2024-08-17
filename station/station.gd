@@ -1,5 +1,11 @@
 class_name Station extends Area2D
 
+@export var station_stats: StationStats : set = set_station_stats
+
+@onready var platform: CollisionShape2D = $Platform
+@onready var station_start: Area2D = $StationStart
+@onready var station_end: Area2D = $StationEnd
+
 enum TrainStatus {
 	STOPPED,
 	STOPPED_WRONG,
@@ -16,6 +22,15 @@ var status: TrainStatus : set = set_status
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	status = TrainStatus.NOT_ARRIVED
+	set_station_stats(station_stats)
+
+func set_station_stats(value: StationStats) -> void:
+	station_stats = value
+	self.global_position.y = station_stats.y_position
+	if platform:
+		platform.shape.size.y = station_stats.platform_length
+		station_start.position.y = station_stats.platform_length / 2
+		station_end.position.y = -station_stats.platform_length / 2
 
 func set_status(value: TrainStatus) -> void:
 	status = value

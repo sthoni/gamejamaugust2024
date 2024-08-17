@@ -15,13 +15,13 @@ offset_right = 156.0
 offset_bottom = 178.0
 
 [node name="tracks" parent="." instance=ExtResource("2_jnvge")]
-position = Vector2(178, -1)
+position = Vector2(182, 0)
 
 [node name="Train" parent="." instance=ExtResource("2_kmlf3")]
-position = Vector2(186, 644)
+position = Vector2(190, 644)
 
 [node name="Station" parent="." instance=ExtResource("3_7tcqk")]
-position = Vector2(186, 140)
+position = Vector2(190, 140)
 
 [node name="Shop" parent="." instance=ExtResource("9_0opmv")]
 unique_name_in_owner = true

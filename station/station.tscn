@@ -1,33 +1,32 @@
-[gd_scene load_steps=4 format=3 uid="uid://c3csdinu5agg4"]
+[gd_scene load_steps=5 format=3 uid="uid://c3csdinu5agg4"]
 
 [ext_resource type="Script" path="res://station/station.gd" id="1_myu42"]
+[ext_resource type="Resource" uid="uid://ujjiktacktrw" path="res://station/station_stats_start.tres" id="2_6h4f5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2umad"]
 size = Vector2(20, 64)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dk45f"]
-size = Vector2(20, 10)
+size = Vector2(20, 1)
 
 [node name="Station" type="Area2D"]
 position = Vector2(182, 180)
 script = ExtResource("1_myu42")
+station_stats = ExtResource("2_6h4f5")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
-position = Vector2(0, 11.5)
+[node name="Platform" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_2umad")
 
 [node name="StationStart" type="Area2D" parent="."]
-position = Vector2(0, 55)
+position = Vector2(0, 32)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StationStart"]
-position = Vector2(0, -7)
 shape = SubResource("RectangleShape2D_dk45f")
 
 [node name="StationEnd" type="Area2D" parent="."]
-position = Vector2(0, -55)
+position = Vector2(0, -32)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StationEnd"]
-position = Vector2(0, 30)
 shape = SubResource("RectangleShape2D_dk45f")
 
 [connection signal="body_entered" from="StationStart" to="." method="_on_station_start_body_entered"]
