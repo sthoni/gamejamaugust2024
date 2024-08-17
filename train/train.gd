@@ -6,16 +6,19 @@ var flag_change_dir_on_acc:bool = false
 var flag_tut_played:bool = false
 @export var acc_power := 400.0
 @export var brake_power := 800.0
-@export var WEIGHT_PER_WAGGON := 50.0
-@export var waggon_amount := 2
-@onready var weight := waggon_amount * WEIGHT_PER_WAGGON
+@export var waggon_amount := 1
+@export var items: Array[Item]
+
+@onready var train_shape := $TrainShape
+@onready var weight := 50.0
+@onready var transport_amount := 10.0
 
 var acc := 0.0
 
 func _ready() -> void:
-	print(weight)
-	%TrainShape.scale.y = waggon_amount
-	%TrainShape.position.y = waggon_amount * (%TrainShape.shape.size.x / 2)
+	Events.item_bought.connect(_on_item_bought)
+	for item in items:
+		item.apply_effects(self)
 
 func _physics_process(delta: float) -> void:
 	var new_velocity := velocity.y
@@ -70,3 +73,7 @@ func _on_timer_brake_timeout():
 func _on_timer_acc_timeout():
 	#just set flag, because if you change dir here, you have to wait for 1 timer period to continue driving in same dir after braking down to v = 0
 	flag_change_dir_on_acc = true
+
+func _on_item_bought(item: Item):
+	items.push_back(item)
+	item.apply_effects(self)

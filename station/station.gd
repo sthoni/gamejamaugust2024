@@ -61,7 +61,7 @@ func _on_station_end_body_exited(body: Node2D) -> void:
 	if body is Train:
 		if status == TrainStatus.STOPPED:
 			status = TrainStatus.DEPARTED
+			train_at_station = null
 		else:
 			status = TrainStatus.AT_STATION
-		train_at_station = null
 		status_changed()

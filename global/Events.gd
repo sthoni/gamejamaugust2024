@@ -10,3 +10,6 @@ signal station_status_changed(status: Station.TrainStatus)
 
 # Level Events
 signal money_changed(money: int)
+
+# Shop Events
+signal item_bought(item: Item)

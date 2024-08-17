@@ -1,9 +1,11 @@
 [gd_resource type="Theme" format=3 uid="uid://c5vctt5fcxfn"]
 
 [resource]
+GridContainer/constants/h_separation = 32
+GridContainer/constants/v_separation = 32
 HBoxContainer/constants/separation = 32
 MarginContainer/constants/margin_bottom = 64
 MarginContainer/constants/margin_left = 64
 MarginContainer/constants/margin_right = 64
 MarginContainer/constants/margin_top = 64
-VBoxContainer/constants/separation = 16
+VBoxContainer/constants/separation = 8
