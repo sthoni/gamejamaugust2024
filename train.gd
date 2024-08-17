@@ -1,7 +1,8 @@
 class_name Train extends CharacterBody2D
 
-@export var acc_power := 40.0
-@export var brake_power := 80.0
+var direction:int = 1
+@export var acc_power := 400.0
+@export var brake_power := 800.0
 @export var WEIGHT_PER_WAGGON := 50.0
 @export var waggon_amount := 2
 @onready var weight := waggon_amount * WEIGHT_PER_WAGGON
@@ -18,14 +19,24 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	var new_velocity := velocity.y
 	if Input.is_action_pressed("accelerate"):
-		new_velocity = -sqrt(pow(velocity.y, 2) + acc_power * delta)
-
-	if Input.is_action_pressed("brake"):
-		var root = pow(velocity.y, 2) - brake_power * delta
+		$Timer_Brake.stop()
+		var root = pow(velocity.y, 2) + direction * 2 / weight * acc_power * delta
 		if root > 0:
-			new_velocity = -sqrt(root)
+			new_velocity = - direction * sqrt(root)
 		else:
 			new_velocity = 0
+			if $Timer_Acc.time_left == 0:
+				$Timer_Acc.start()
+
+	if Input.is_action_pressed("brake"):
+		$Timer_Acc.stop()
+		var root = pow(velocity.y, 2) - direction * 2 / weight * brake_power * delta
+		if root > 0:
+			new_velocity = - direction * sqrt(root)
+		else:
+			new_velocity = 0
+			if $Timer_Brake.time_left == 0:
+				$Timer_Brake.start()
 	
 	acc = (new_velocity - velocity.y) / delta
 	velocity.y = new_velocity
@@ -34,3 +45,11 @@ func _physics_process(delta: float) -> void:
 	emit_signal("velocity_changed", velocity.y)
 
 	move_and_slide()
+
+
+func _on_timer_brake_timeout():
+	direction = direction * (-1) # Replace with function body.
+
+
+func _on_timer_acc_timeout():
+	direction = direction * (-1) # Replace with function body.
