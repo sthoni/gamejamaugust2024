@@ -14,6 +14,7 @@ script = ExtResource("1_pg6m5")
 position = Vector2(178, -1)
 
 [node name="Train" parent="." instance=ExtResource("2_kmlf3")]
+position = Vector2(185, 569)
 
 [node name="Station" parent="." instance=ExtResource("3_7tcqk")]
 position = Vector2(186, 140)

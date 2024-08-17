@@ -14,6 +14,7 @@ var acc := 0.0
 func _ready() -> void:
 	print(weight)
 	%TrainShape.scale.y = waggon_amount
+	%TrainShape.position.y = waggon_amount * (%TrainShape.shape.size.x / 2)
 
 func _physics_process(delta: float) -> void:
 	var new_velocity := velocity.y

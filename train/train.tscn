@@ -12,13 +12,8 @@ script = ExtResource("1_q7ry4")
 
 [node name="TrainShape" type="CollisionShape2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(6, -2)
+position = Vector2(1, 0)
 shape = SubResource("RectangleShape2D_xyumy")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture_filter = 1
-position = Vector2(1, -42)
-rotation = 1.5708
 
 [node name="Timer_Brake" type="Timer" parent="."]
 one_shot = true
@@ -28,7 +23,7 @@ one_shot = true
 
 [node name="Locomotive" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(6, -1.99999)
+position = Vector2(1, 0)
 rotation = 1.5708
 scale = Vector2(0.241643, 0.241643)
 texture = ExtResource("2_htwba")
