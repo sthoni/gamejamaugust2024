@@ -10,3 +10,6 @@ enum Type {TRAIN, STATION}
 @export_group("Item Visuals")
 @export var icon: Texture
 @export_multiline var tooltip_text: String
+
+func apply_effects(_target: Node) -> void:
+	pass

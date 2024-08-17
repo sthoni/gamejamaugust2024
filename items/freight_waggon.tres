@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="FreightWaggon" load_steps=3 format=3 uid="uid://xywvkp4j84jf"]
+
+[ext_resource type="Script" path="res://items/freight_waggon.gd" id="1_asytw"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_sm04s"]
+size = Vector2(32, 32)
+
+[resource]
+script = ExtResource("1_asytw")
+id = "FreightWaggon"
+type = 0
+price = 50
+icon = SubResource("PlaceholderTexture2D_sm04s")
+tooltip_text = "A new waggon. Great!"
