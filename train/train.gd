@@ -23,7 +23,7 @@ func _physics_process(delta: float) -> void:
 		if flag_change_dir_on_acc == true:
 			direction = direction * (-1)
 			flag_change_dir_on_acc = false
-		var root = pow(velocity.y, 2) + direction * 2 / weight * acc_power * delta
+		var root := pow(velocity.y, 2) + direction * 2 / weight * acc_power * delta
 		if root > 0:
 			new_velocity = - direction * sqrt(root)
 		else:
@@ -37,7 +37,7 @@ func _physics_process(delta: float) -> void:
 		if flag_change_dir_on_brake == true:
 			direction = direction * (-1)
 			flag_change_dir_on_brake = false
-		var root = pow(velocity.y, 2) - direction * 2 / weight * brake_power * delta
+		var root := pow(velocity.y, 2) - direction * 2 / weight * brake_power * delta
 		if root > 0:
 			new_velocity = - direction * sqrt(root)
 		else:

@@ -14,7 +14,6 @@ size = Vector2(100, 100)
 
 [node name="Shop" type="Control"]
 process_mode = 3
-visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 360.0
