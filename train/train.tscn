@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cf1y5qabhp48g" path="res://assets/locomotive.png" id="2_htwba"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xyumy"]
-size = Vector2(4, 17)
+size = Vector2(16, 48)
 
 [node name="Train" type="CharacterBody2D"]
 position = Vector2(180, 568)
@@ -12,12 +12,8 @@ script = ExtResource("1_q7ry4")
 
 [node name="TrainShape" type="CollisionShape2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(0, -0.5)
+position = Vector2(1, 0)
 shape = SubResource("RectangleShape2D_xyumy")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(1, -42)
-rotation = 1.5708
 
 [node name="Timer_Brake" type="Timer" parent="."]
 one_shot = true
@@ -27,9 +23,9 @@ one_shot = true
 
 [node name="Locomotive" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(1.84774e-06, 2.95639e-05)
+position = Vector2(1, 0)
 rotation = 1.5708
-scale = Vector2(0.0993849, 0.0993849)
+scale = Vector2(0.241643, 0.241643)
 texture = ExtResource("2_htwba")
 
 [connection signal="timeout" from="Timer_Brake" to="." method="_on_timer_brake_timeout"]

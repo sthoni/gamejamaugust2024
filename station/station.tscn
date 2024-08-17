@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://station/station.gd" id="1_myu42"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2umad"]
-size = Vector2(20, 120)
+size = Vector2(20, 143)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dk45f"]
 size = Vector2(20, 10)
@@ -13,12 +13,14 @@ position = Vector2(182, 180)
 script = ExtResource("1_myu42")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(0, 11.5)
 shape = SubResource("RectangleShape2D_2umad")
 
 [node name="StationStart" type="Area2D" parent="."]
 position = Vector2(0, 55)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StationStart"]
+position = Vector2(0, 23)
 shape = SubResource("RectangleShape2D_dk45f")
 
 [node name="StationEnd" type="Area2D" parent="."]
