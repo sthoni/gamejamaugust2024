@@ -22,3 +22,4 @@ position = Vector2(186, 140)
 
 [node name="Shop" parent="." instance=ExtResource("9_0opmv")]
 unique_name_in_owner = true
+visible = false

@@ -29,8 +29,6 @@ position = Vector2(0, -55)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StationEnd"]
 shape = SubResource("RectangleShape2D_dk45f")
 
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
-[connection signal="body_exited" from="." to="." method="_on_body_exited"]
 [connection signal="body_entered" from="StationStart" to="." method="_on_station_start_body_entered"]
 [connection signal="body_exited" from="StationStart" to="." method="_on_station_start_body_exited"]
 [connection signal="body_entered" from="StationEnd" to="." method="_on_station_end_body_entered"]
