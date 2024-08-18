@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://5m2ar4vwdnpd"]
+[gd_scene load_steps=9 format=3 uid="uid://5m2ar4vwdnpd"]
 
 [ext_resource type="Script" path="res://level/level.gd" id="1_pg6m5"]
 [ext_resource type="PackedScene" uid="uid://cq0dan380xs2g" path="res://level/tracks.tscn" id="2_jnvge"]
 [ext_resource type="PackedScene" uid="uid://c3byp0uv73juy" path="res://train/train.tscn" id="2_kmlf3"]
 [ext_resource type="Resource" uid="uid://bbum0dx5joke6" path="res://level/level_start.tres" id="2_q5plq"]
 [ext_resource type="PackedScene" uid="uid://c3csdinu5agg4" path="res://station/station.tscn" id="3_7tcqk"]
+[ext_resource type="PackedScene" uid="uid://bvvip673kkkj7" path="res://ui/gauge.tscn" id="3_nmrxu"]
 [ext_resource type="PackedScene" uid="uid://dh71w6aefqf38" path="res://ui/debug.tscn" id="4_s0jqg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v8f26"]
@@ -12,6 +13,8 @@
 [node name="Level" type="Node2D"]
 script = ExtResource("1_pg6m5")
 level_stats = ExtResource("2_q5plq")
+
+[node name="Gauge" parent="." instance=ExtResource("3_nmrxu")]
 
 [node name="Debug" parent="." instance=ExtResource("4_s0jqg")]
 offset_right = 156.0
