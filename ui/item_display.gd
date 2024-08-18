@@ -32,3 +32,9 @@ func _on_item_bought(item: Item) -> void:
 	if item == item_displayed:
 		item_buy.text = "Sold out"
 		item_buy.disabled = true
+
+
+func check_for_enough_money(money: int) -> void:
+	if item_displayed:
+		if money < item_displayed.price:
+			item_buy.disabled = true
