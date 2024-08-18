@@ -4,7 +4,6 @@ class_name Shop extends Control
 @onready var item_display2: ItemDisplay = %ItemDisplay2
 @onready var items_display_grid: GridContainer = %ItemsDisplayGrid
 @onready var money_label: Label = %MoneyPlayer
-@onready var game_stats: GameStats
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -28,3 +27,5 @@ func _on_exit_button_pressed() -> void:
 
 func _on_money_changed(money: int) -> void:
 	money_label.text = "Money: %s" % money
+	item_display1.check_for_enough_money(money)
+	item_display2.check_for_enough_money(money)
