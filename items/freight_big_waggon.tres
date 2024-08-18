@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="FreightBigWaggon" load_steps=3 format=3 uid="uid://bw8i24xmjvo3o"]
+[gd_resource type="Resource" script_class="FreightBigWaggon" load_steps=3 format=3 uid="uid://b2442h7xg6x62"]
 
 [ext_resource type="Script" path="res://items/freight_big_waggon.gd" id="1_vq3sl"]
 
