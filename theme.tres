@@ -1,4 +1,7 @@
-[gd_resource type="Theme" format=3 uid="uid://c5vctt5fcxfn"]
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://c5vctt5fcxfn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nj5fc"]
+bg_color = Color(0, 0, 0, 1)
 
 [resource]
 GridContainer/constants/h_separation = 32
@@ -8,4 +11,5 @@ MarginContainer/constants/margin_bottom = 64
 MarginContainer/constants/margin_left = 64
 MarginContainer/constants/margin_right = 64
 MarginContainer/constants/margin_top = 64
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_nj5fc")
 VBoxContainer/constants/separation = 8
