@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="TrainEngine" load_steps=5 format=3 uid="uid://cqtf51on6yo52"]
+[gd_resource type="Resource" script_class="TrainEngine" load_steps=5 format=3 uid="uid://b2pxxoaiqns70"]
 
 [ext_resource type="Texture2D" uid="uid://8ptfad3gsatv" path="res://assets/thumbnails.png" id="1_i36ww"]
 [ext_resource type="Script" path="res://items/train_engine.gd" id="1_uncdo"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://c3byp0uv73juy"]
+[gd_scene load_steps=9 format=3 uid="uid://c3byp0uv73juy"]
 
 [ext_resource type="Script" path="res://train/train.gd" id="1_q7ry4"]
 [ext_resource type="Resource" uid="uid://fdaqrpalijb6" path="res://train/train_start.tres" id="2_03127"]
@@ -6,6 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://rit6qiqmsl3j" path="res://assets/music/tut1.wav" id="3_45srh"]
 [ext_resource type="AudioBusLayout" uid="uid://dnbahy0neavpn" path="res://default_bus_layout.tres" id="3_l8xh7"]
 [ext_resource type="AudioStream" uid="uid://cqhe2m7jr6k5t" path="res://assets/music/driving.mp3" id="5_654r2"]
+[ext_resource type="AudioStream" uid="uid://dgge62hvafa5g" path="res://assets/music/longtut.wav" id="6_2366v"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xyumy"]
 size = Vector2(16, 48)
@@ -20,6 +21,9 @@ stream = ExtResource("5_654r2")
 
 [node name="Tut1" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_45srh")
+
+[node name="LongTut" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_2366v")
 
 [node name="Locomotive" type="Sprite2D" parent="."]
 texture_filter = 1

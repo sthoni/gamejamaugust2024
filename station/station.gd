@@ -74,6 +74,7 @@ func _on_station_start_body_entered(body: Node2D) -> void:
 	if body is Train:
 		status = TrainStatus.AT_START
 		train_at_station = body
+		Events.emit_signal("train_at_start")
 
 
 func _on_station_start_body_exited(body: Node2D) -> void:
@@ -82,6 +83,7 @@ func _on_station_start_body_exited(body: Node2D) -> void:
 			status = TrainStatus.AT_STATION
 		else:
 			status = TrainStatus.NOT_ARRIVED
+		Events.emit_signal("train_exited")
 
 
 func _on_station_end_body_entered(body: Node2D) -> void:

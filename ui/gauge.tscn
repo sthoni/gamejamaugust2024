@@ -15,8 +15,11 @@ script = ExtResource("1_j0hsb")
 
 [node name="GaugeTexture" type="TextureRect" parent="."]
 texture_filter = 1
-offset_right = 96.0
-offset_bottom = 96.0
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.267
+anchor_bottom = 0.15
+offset_right = -0.12001
 scale = Vector2(2, 2)
 texture = ExtResource("1_lo78o")
 stretch_mode = 2

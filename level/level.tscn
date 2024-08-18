@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://5m2ar4vwdnpd"]
+[gd_scene load_steps=10 format=3 uid="uid://5m2ar4vwdnpd"]
 
 [ext_resource type="Script" path="res://level/level.gd" id="1_pg6m5"]
 [ext_resource type="PackedScene" uid="uid://cq0dan380xs2g" path="res://level/tracks.tscn" id="2_jnvge"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://c3csdinu5agg4" path="res://station/station.tscn" id="3_7tcqk"]
 [ext_resource type="PackedScene" uid="uid://bvvip673kkkj7" path="res://ui/gauge.tscn" id="3_nmrxu"]
 [ext_resource type="PackedScene" uid="uid://dh71w6aefqf38" path="res://ui/debug.tscn" id="4_s0jqg"]
+[ext_resource type="PackedScene" uid="uid://dbir3qksmcgha" path="res://ui/hints.tscn" id="8_b6253"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v8f26"]
 
@@ -34,5 +35,12 @@ position = Vector2(190, -18)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LevelEnd"]
 shape = SubResource("RectangleShape2D_v8f26")
+
+[node name="Hints" parent="." instance=ExtResource("8_b6253")]
+texture_filter = 1
+offset_left = 196.0
+offset_top = 640.0
+offset_right = 196.0
+offset_bottom = 640.0
 
 [connection signal="body_entered" from="LevelEnd" to="." method="_on_level_end_body_entered"]
