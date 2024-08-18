@@ -4,7 +4,6 @@ class_name Level extends Node2D
 
 @onready var train: Train = $Train
 @onready var station: Station = $Station
-@onready var shop: Shop = $Shop
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -19,9 +18,6 @@ func set_level_stats(value: LevelStats):
 		train.train_stats = level_stats.train_stats
 		train.position.y = 650
 		station.station_stats = level_stats.station_stats
-		var shop_items: Array[Item] = level_stats.item_pool.get_two_unique_random_items()
-		shop.item_display1.item_displayed = shop_items[0]
-		shop.item_display2.item_displayed = shop_items[1]
 
 
 func _input(event: InputEvent) -> void:
@@ -32,8 +28,6 @@ func _input(event: InputEvent) -> void:
 func _on_station_station_status_changed(status: Station.TrainStatus) -> void:
 	if status == Station.TrainStatus.STOPPED:
 		Events.emit_signal("station_freight_sold", train.transport_amount)
-		get_tree().paused = true
-		shop.show()
 
 
 func _on_level_end_body_entered(body: Node2D) -> void:

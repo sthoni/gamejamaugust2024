@@ -53,6 +53,12 @@ func _process(_delta: float) -> void:
 				status = TrainStatus.STOPPED_WRONG
 
 
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("shop"):
+		if status == TrainStatus.STOPPED:
+			Events.emit_signal("shop_key_pressed")
+
+
 func status_changed() -> void:
 	@warning_ignore("return_value_discarded")
 	Events.emit_signal("station_status_changed", status)
@@ -84,3 +90,8 @@ func _on_station_end_body_exited(body: Node2D) -> void:
 			train_at_station = null
 		else:
 			status = TrainStatus.AT_STATION
+
+
+func _on_body_entered(body: Node2D) -> void:
+	if body is Train && status == TrainStatus.NOT_ARRIVED:
+		status = TrainStatus.AT_STATION
