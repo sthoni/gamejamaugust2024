@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="TrainEngine" load_steps=2 format=3 uid="uid://cksgb2n3qsrxj"]
+
+[ext_resource type="Script" path="res://items/train_engine.gd" id="1_s566g"]
+
+[resource]
+script = ExtResource("1_s566g")
+acc_power = 2000.0
+id = ""
+item_type = 0
+price = 10000000
+weight = 5.0
+name = ""
+tooltip_text = ""

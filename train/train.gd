@@ -5,30 +5,41 @@ var flag_change_dir_on_brake:bool = false
 var flag_change_dir_on_acc:bool = false
 var flag_tut_played:bool = false
 var waggon = preload("res://train/waggon.tscn")
+@export var train_stats: TrainStats : set = apply_items
 
-@export var acc_power := 400.0
-@export var brake_power := 800.0
-@export var waggon_amount := 1
-@export var items: Array[Item]
-@export var start_velocity := -5.0
-
-@onready var train_shape := $TrainShape
-@onready var weight := 50.0
-@onready var transport_amount := 10.0
-
-var acc := 0.0
+@onready var sprite: Sprite2D = $Locomotive
+@onready var timer_brake: Timer = $Timer_Brake
+@onready var timer_acc: Timer = $Timer_Acc
+@onready var tut: AudioStreamPlayer = $Tut1
+@onready var driving_sound: AudioStreamPlayer2D = $Driving
+@onready var start_velocity: float = 0.0
+@onready var acc_power: float = 0.0
+@onready var brake_power: float = 0.0
+@onready var waggon_amount: float = 0
+@onready var weight: float = 0.0
+@onready var transport_amount: float = 0.0
 
 func _ready() -> void:
+	@warning_ignore("return_value_discarded")
 	Events.item_bought.connect(_on_item_bought)
-	apply_items()
-	velocity.y = start_velocity
-	waggon_amount = count_waggons()
+	velocity.y = train_stats.start_velocity
+	apply_items(train_stats)
 
-func apply_items() -> void:
-	for member in get_tree().get_nodes_in_group("FreightWaggons"):
-		member.free(	)
+
+func apply_items(value: TrainStats) -> void:
+	train_stats = value
+	weight = 0.0
+	acc_power = 0.0
+	brake_power = 0.0
+	waggon_amount = 0
+	if sprite:
+		sprite.texture = value.sprite
+	if get_tree():
+		for member in get_tree().get_nodes_in_group("FreightWaggons"):
+			member.free()
 	var i = 0
-	for item in items:
+	for item: Item in value.items:
+		weight += item.weight
 		item.apply_effects(self)
 		if item.item_type == Item.ItemType.WAGGON:
 			var waggon_instance = waggon.instantiate()
@@ -36,105 +47,105 @@ func apply_items() -> void:
 			add_child(waggon_instance)
 			waggon_instance.add_to_group("FreightWaggons")
 			i += 1
+			waggon_amount += 1
+	@warning_ignore("return_value_discarded")
 	Events.emit_signal("weight_changed", weight)
+	@warning_ignore("return_value_discarded")
+	Events.emit_signal("waggons_counted", waggon_amount)
 
-
-func count_waggons() -> int:
-	var counted_waggons := 0
-	for item in items:
-		if item.item_type == Item.ItemType.WAGGON:
-			counted_waggons += 1
-	Events.emit_signal("waggons_counted", counted_waggons)
-	return counted_waggons
 
 func _physics_process(delta: float) -> void:
-	var new_velocity := velocity.y
+	var new_velocity: float = velocity.y
 	if velocity.y != 0:
-		if $Locomotive/Driving.playing == false:
+		if driving_sound.playing == false:
 			_check_speed()
-			$Locomotive/Driving.play()
+			driving_sound.play()
 	else:
-			$Locomotive/Driving.stop()
+			driving_sound.stop()
 
 	if Input.is_action_pressed("accelerate"):
-		$Timer_Brake.stop()
+		timer_brake.stop()
 		if flag_tut_played == false:
-			$Locomotive/Tut1.play()
+			tut.play()
 			flag_tut_played = true			
 		flag_change_dir_on_brake = false
 		if flag_change_dir_on_acc == true:
 			direction = direction * (-1)
 			flag_change_dir_on_acc = false
-			$Locomotive/Tut1.play()
-		var root := pow(velocity.y, 2) + direction * 2 / weight * acc_power * delta
+			tut.play()
+		var root: float = pow(velocity.y, 2) + direction * 2 / weight * acc_power * delta
 		if root > 0:
 			new_velocity = - direction * sqrt(root)
 		else:
 			flag_tut_played = false	
 			new_velocity = 0
-			if $Timer_Acc.time_left == 0:
-				$Timer_Acc.start()
+			if timer_acc.time_left == 0:
+				timer_acc.start()
 
 	if Input.is_action_pressed("brake"):
-		$Timer_Acc.stop()
+		timer_acc.stop()
 		flag_change_dir_on_acc = false
 		if flag_change_dir_on_brake == true:
 			direction = direction * (-1)
 			flag_change_dir_on_brake = false
-			$Locomotive/Tut1.play()
-		var root := pow(velocity.y, 2) - direction * 2 / weight * brake_power * delta
+			tut.play()
+		var root: float = pow(velocity.y, 2) - direction * 2 / weight * brake_power * delta
 		if root > 0:
 			new_velocity = - direction * sqrt(root)
 		else:
 			new_velocity = 0
-			if $Timer_Brake.time_left == 0:
-				$Timer_Brake.start()
+			if timer_brake.time_left == 0:
+				timer_brake.start()
 	
-	acc = (new_velocity - velocity.y) / delta
+	var acc: float = (new_velocity - velocity.y) / delta
 	velocity.y = new_velocity
-
+	@warning_ignore("return_value_discarded")
 	Events.emit_signal("accelaration_changed", acc)
+	@warning_ignore("return_value_discarded")
 	Events.emit_signal("velocity_changed", velocity.y)
-
+	@warning_ignore("return_value_discarded")
 	move_and_slide()
 
 func _check_speed():
 	if abs(velocity.y) > 90:
-		$Locomotive/Driving.stream = load('res://assets/music/drivingspeeds/spd-10.wav')
+		driving_sound.stream = load('res://assets/music/drivingspeeds/spd-10.wav')
 	elif abs(velocity.y) > 80:
-		$Locomotive/Driving.stream = load('res://assets/music/drivingspeeds/spd-9.wav')
+		driving_sound.stream = load('res://assets/music/drivingspeeds/spd-9.wav')
 	elif abs(velocity.y) > 70:
-		$Locomotive/Driving.stream = load('res://assets/music/drivingspeeds/spd-8.wav')
+		driving_sound.stream = load('res://assets/music/drivingspeeds/spd-8.wav')
 	elif abs(velocity.y) > 60:
-		$Locomotive/Driving.stream = load('res://assets/music/drivingspeeds/spd-7.wav')
+		driving_sound.stream = load('res://assets/music/drivingspeeds/spd-7.wav')
 	elif abs(velocity.y) > 50:
-		$Locomotive/Driving.stream = load('res://assets/music/drivingspeeds/spd-6.wav')
+		driving_sound.stream = load('res://assets/music/drivingspeeds/spd-6.wav')
 	elif abs(velocity.y) > 40:
-		$Locomotive/Driving.stream = load('res://assets/music/drivingspeeds/spd-5.wav')
+		driving_sound.stream = load('res://assets/music/drivingspeeds/spd-5.wav')
 	elif abs(velocity.y) > 30:
-		$Locomotive/Driving.stream = load('res://assets/music/drivingspeeds/spd-4.wav')
+		driving_sound.stream = load('res://assets/music/drivingspeeds/spd-4.wav')
 	elif abs(velocity.y) > 20:
-		$Locomotive/Driving.stream = load('res://assets/music/drivingspeeds/spd-3.wav')
+		driving_sound.stream = load('res://assets/music/drivingspeeds/spd-3.wav')
 	elif abs(velocity.y) > 10:
-		$Locomotive/Driving.stream = load('res://assets/music/drivingspeeds/spd-2.wav')
+		driving_sound.stream = load('res://assets/music/drivingspeeds/spd-2.wav')
 	elif abs(velocity.y) > 0:
-		$Locomotive/Driving.stream = load('res://assets/music/drivingspeeds/spd-1.wav')
+		driving_sound.stream = load('res://assets/music/drivingspeeds/spd-1.wav')
+
+
 func _on_timer_brake_timeout():
 	#just set flag, because if you change dir here, you have to wait for 1 timer period to continue driving in same dir after braking down to v = 0
 	flag_change_dir_on_brake = true
 
 
-func _on_timer_acc_timeout():
+func _on_timer_acc_timeout() -> void:
 	#just set flag, because if you change dir here, you have to wait for 1 timer period to continue driving in same dir after braking down to v = 0
 	flag_change_dir_on_acc = true
 
-func _on_item_bought(item: Item):
-	items.push_back(item)
-	#item.apply_effects(self)
-	apply_items()
-
-	waggon_amount = count_waggons()
-	#for i in range(waggon_amount):
-		#var waggon_instance = waggon.instantiate()
-		#waggon_instance.position.y = 35 + (i * 24)
-		#add_child(waggon_instance)
+func _on_item_bought(bought_item: Item) -> void:
+	if bought_item.item_type == Item.ItemType.TRAIN:
+		var trains_in_items: Array[Item] = train_stats.items.filter(func(item: Item) -> bool: return item.item_type == Item.ItemType.TRAIN)
+		for item_train: Item in trains_in_items:
+			train_stats.items.erase(item_train)
+	if bought_item.item_type == Item.ItemType.ENGINE:
+		var engines_in_items: Array[Item] = train_stats.items.filter(func(item: Item) -> bool: return item.item_type == Item.ItemType.ENGINE)
+		for item_engine: Item in engines_in_items:
+			train_stats.items.erase(item_engine)
+	train_stats.items.push_back(bought_item)
+	apply_items(train_stats)
