@@ -6,6 +6,8 @@ class_name Station extends Area2D
 @onready var station_start: Area2D = $StationStart
 @onready var station_end: Area2D = $StationEnd
 
+var has_money: bool = true
+
 enum TrainStatus {
 	STOPPED,
 	STOPPED_WRONG,
@@ -26,6 +28,7 @@ func _ready() -> void:
 
 func set_station_stats(value: StationStats) -> void:
 	station_stats = value
+	has_money = true
 	self.global_position.y = station_stats.y_position
 	if platform:
 		@warning_ignore("unsafe_property_access")
@@ -48,6 +51,9 @@ func _process(_delta: float) -> void:
 			TrainStatus.AT_STATION:
 				print("Perfect!")
 				status = TrainStatus.STOPPED
+				if has_money:
+					Events.emit_signal("station_freight_sold", train_at_station.transport_amount)
+					has_money = false
 			TrainStatus.AT_END:
 				print("Too far. Ride back!")
 				status = TrainStatus.STOPPED_WRONG
@@ -81,6 +87,8 @@ func _on_station_start_body_exited(body: Node2D) -> void:
 func _on_station_end_body_entered(body: Node2D) -> void:
 	if body is Train:
 		status = TrainStatus.AT_END
+		if body.velocity.y > 0:
+			train_at_station = body
 
 
 func _on_station_end_body_exited(body: Node2D) -> void:

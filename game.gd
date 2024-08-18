@@ -10,6 +10,7 @@ class_name Game extends Node
 
 func _ready() -> void:
 	game_stats.money = game_stats.start_money
+	shop.game_stats = game_stats
 	var shop_items: Array[Item] = level_stats.item_pool.get_two_unique_random_items()
 	shop.item_display1.item_displayed = shop_items[0]
 	shop.item_display2.item_displayed = shop_items[1]

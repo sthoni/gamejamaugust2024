@@ -1,17 +1,13 @@
 class_name Shop extends Control
 
-@export var item_one: Item
-@export var item_two: Item
-
 @onready var item_display1: ItemDisplay = %ItemDisplay
 @onready var item_display2: ItemDisplay = %ItemDisplay2
 @onready var items_display_grid: GridContainer = %ItemsDisplayGrid
 @onready var money_label: Label = %MoneyPlayer
+@onready var game_stats: GameStats
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	item_display1.set_item(item_one)
-	item_display2.set_item(item_two)
 	@warning_ignore("return_value_discarded")
 	Events.connect("money_changed", _on_money_changed)
 
