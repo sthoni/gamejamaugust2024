@@ -10,8 +10,8 @@ enum ItemType {TRAIN, STATION, WAGGON, ENGINE}
 
 @export_group("Item Visuals")
 @export var name: String
-@export var icon: Texture
-@export var sprite: Texture
+@export var icon: AtlasTexture
+@export var sprite: AtlasTexture
 @export_multiline var tooltip_text: String
 
 func apply_effects(_target: Node) -> void:

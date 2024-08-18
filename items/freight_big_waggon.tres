@@ -1,8 +1,13 @@
-[gd_resource type="Resource" script_class="FreightWaggon" load_steps=3 format=3 uid="uid://b2442h7xg6x62"]
+[gd_resource type="Resource" script_class="FreightWaggon" load_steps=5 format=3 uid="uid://cvraaeeux1xtr"]
 
 [ext_resource type="Script" path="res://items/freight_waggon.gd" id="1_mhy0g"]
+[ext_resource type="Texture2D" uid="uid://8ptfad3gsatv" path="res://assets/thumbnails.png" id="1_u4ppd"]
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_v6r88"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_4g34t"]
+atlas = ExtResource("1_u4ppd")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8bqnk"]
 
 [resource]
 script = ExtResource("1_mhy0g")
@@ -12,5 +17,6 @@ item_type = 2
 price = 80
 weight = 100.0
 name = "Freight Waggon Fac 124"
-icon = SubResource("PlaceholderTexture2D_v6r88")
-tooltip_text = "Open bulk goods wagons with metered gravity unloading."
+icon = SubResource("AtlasTexture_4g34t")
+sprite = SubResource("AtlasTexture_8bqnk")
+tooltip_text = "Open bulk goods wagons with gravity unloading - big."

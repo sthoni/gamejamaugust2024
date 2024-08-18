@@ -1,9 +1,15 @@
-[gd_resource type="Resource" script_class="FreightWaggon" load_steps=3 format=3 uid="uid://ctonnburlb4xx"]
+[gd_resource type="Resource" script_class="FreightWaggon" load_steps=5 format=3 uid="uid://ctonnburlb4xx"]
 
 [ext_resource type="Script" path="res://items/freight_waggon.gd" id="1_asytw"]
+[ext_resource type="Texture2D" uid="uid://8ptfad3gsatv" path="res://assets/thumbnails.png" id="1_q38g6"]
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_sm04s"]
-size = Vector2(64, 64)
+[sub_resource type="AtlasTexture" id="AtlasTexture_bnkw5"]
+atlas = ExtResource("1_q38g6")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6w86a"]
+atlas = ExtResource("1_q38g6")
+region = Rect2(0, 0, 48, 48)
 
 [resource]
 script = ExtResource("1_asytw")
@@ -13,5 +19,6 @@ item_type = 2
 price = 50
 weight = 50.0
 name = "Freight Waggon"
-icon = SubResource("PlaceholderTexture2D_sm04s")
+icon = SubResource("AtlasTexture_bnkw5")
+sprite = SubResource("AtlasTexture_6w86a")
 tooltip_text = "A new waggon. Great!"
