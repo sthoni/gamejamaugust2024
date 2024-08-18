@@ -4,7 +4,7 @@
 [ext_resource type="Resource" uid="uid://ctonnburlb4xx" path="res://items/freight_waggon.tres" id="2_4ekkb"]
 [ext_resource type="Script" path="res://train/train_stats.gd" id="2_mbabv"]
 [ext_resource type="Resource" uid="uid://bjq7g1hkdllah" path="res://items/train_engine_start.tres" id="3_mw0lx"]
-[ext_resource type="Resource" path="res://items/train_traction_start.tres" id="4_ram8m"]
+[ext_resource type="Resource" uid="uid://dup4drvtvbvhq" path="res://items/train_traction_start.tres" id="4_ram8m"]
 [ext_resource type="Texture2D" uid="uid://cf1y5qabhp48g" path="res://assets/locomotive.png" id="6_t8rq5"]
 
 [resource]

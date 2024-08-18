@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://c3csdinu5agg4"]
 
 [ext_resource type="Script" path="res://station/station.gd" id="1_myu42"]
-[ext_resource type="Resource" path="res://station/station_stats_start.tres" id="2_6h4f5"]
+[ext_resource type="Resource" uid="uid://ujjiktacktrw" path="res://station/station_stats_start.tres" id="2_6h4f5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2umad"]
 size = Vector2(20, 64)
