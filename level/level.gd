@@ -4,6 +4,7 @@ class_name Level extends Node2D
 
 @onready var train: Train = $Train
 @onready var station: Station = $Station
+@onready var tiles: TileMapLayer = $TileMapLayer
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -17,6 +18,7 @@ func set_level_stats(value: LevelStats):
 		train.train_stats = level_stats.train_stats
 		train.position.y = 670
 		station.station_stats = level_stats.station_stats
+		tiles.tile_set = level_stats.background_texture
 
 
 func _input(event: InputEvent) -> void:

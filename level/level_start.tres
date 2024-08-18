@@ -2,7 +2,7 @@
 
 [ext_resource type="Resource" uid="uid://bg1b2bhwkhxun" path="res://items/item_pool_start.tres" id="1_m451t"]
 [ext_resource type="Script" path="res://level/level_stats.gd" id="1_mv6bu"]
-[ext_resource type="Texture2D" uid="uid://cbk57gh3s14y0" path="res://assets/background/bg_forest_simple.png" id="1_xthda"]
+[ext_resource type="TileSet" uid="uid://p01qxb884kyj" path="res://level/forest_tileset.tres" id="1_r0iwg"]
 [ext_resource type="Resource" uid="uid://ujjiktacktrw" path="res://station/station_stats_start.tres" id="3_b4kye"]
 [ext_resource type="Resource" uid="uid://fdaqrpalijb6" path="res://train/train_start.tres" id="4_q3ugd"]
 
@@ -11,4 +11,4 @@ script = ExtResource("1_mv6bu")
 station_stats = ExtResource("3_b4kye")
 train_stats = ExtResource("4_q3ugd")
 item_pool = ExtResource("1_m451t")
-background_texture = ExtResource("1_xthda")
+background_texture = ExtResource("1_r0iwg")

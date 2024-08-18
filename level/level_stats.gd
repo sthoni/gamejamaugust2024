@@ -6,7 +6,7 @@ class_name LevelStats extends Resource
 @export var item_pool: ItemPool
 
 @export_group("Level Visuals")
-@export var background_texture: Texture
+@export var background_texture: TileSet
 
 # Braucht man das überhaupt?
 func create_instance(difficulty: int = 1) -> LevelStats:
