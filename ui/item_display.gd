@@ -5,7 +5,7 @@ class_name ItemDisplay extends VBoxContainer
 @onready var item_description: Label = $ItemDescription
 @onready var item_buy: Button = $ItemBuy
 
-var item_displayed: Item
+var item_displayed: Item : set = set_item
 
 func _ready() -> void:
 	@warning_ignore("return_value_discarded")
@@ -20,6 +20,7 @@ func set_props() -> void:
 	item_texture.texture = item_displayed.icon
 	item_description.text = item_displayed.tooltip_text
 	item_buy.text = "Buy (%s $)" % str(item_displayed.price)
+	item_buy.disabled = false
 
 
 func _on_item_buy_pressed() -> void:

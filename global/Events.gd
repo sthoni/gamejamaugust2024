@@ -26,6 +26,8 @@ signal station_freight_sold(count: int)
 
 # Shop Events
 @warning_ignore("unused_signal")
+signal shop_key_pressed()
+@warning_ignore("unused_signal")
 signal item_bought(item: Item)
 @warning_ignore("unused_signal")
 signal item_buy_button_pressed(item: Item)

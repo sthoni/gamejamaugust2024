@@ -3,10 +3,14 @@ class_name Game extends Node
 @export var game_stats: GameStats : set = set_game_stats
 
 @onready var level: Level = $Level
+@onready var shop: Shop = $Shop
 @onready var level_stats: LevelStats = preload("res://level/level_start.tres")
 
 func _ready() -> void:
 	game_stats.money = game_stats.start_money
+	var shop_items: Array[Item] = level_stats.item_pool.get_two_unique_random_items()
+	shop.item_display1.item_displayed = shop_items[0]
+	shop.item_display2.item_displayed = shop_items[1]
 	level.level_stats = level_stats.create_instance()
 	@warning_ignore("return_value_discarded")
 	Events.item_buy_button_pressed.connect(_on_item_buy_button_pressed)
@@ -14,6 +18,8 @@ func _ready() -> void:
 	Events.station_freight_sold.connect(_on_station_freight_sold)
 	@warning_ignore("return_value_discarded")
 	Events.level_end_reached.connect(_on_level_end_reached)
+	@warning_ignore("return_value_discarded")
+	Events.shop_key_pressed.connect(_on_shop_key_pressed)
 
 
 func set_game_stats(value: GameStats):
@@ -34,3 +40,11 @@ func _on_station_freight_sold(count: int) -> void:
 func _on_level_end_reached() -> void:
 	game_stats.current_level += 1
 	level.level_stats = level_stats.create_instance(game_stats.current_level)
+	var shop_items: Array[Item] = level_stats.item_pool.get_two_unique_random_items()
+	shop.item_display1.item_displayed = shop_items[0]
+	shop.item_display2.item_displayed = shop_items[1]
+
+
+func _on_shop_key_pressed() -> void:
+	shop.show()
+	get_tree().paused = true
