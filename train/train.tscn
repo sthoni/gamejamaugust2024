@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://c3byp0uv73juy"]
+[gd_scene load_steps=8 format=3 uid="uid://c3byp0uv73juy"]
 
 [ext_resource type="Script" path="res://train/train.gd" id="1_q7ry4"]
-[ext_resource type="Resource" uid="uid://fdaqrpalijb6" path="res://train/train_start.tres" id="2_03127"]
+[ext_resource type="Resource" uid="uid://cbclmysj22271" path="res://train/train_start.tres" id="2_03127"]
 [ext_resource type="Texture2D" uid="uid://cf1y5qabhp48g" path="res://assets/locomotive.png" id="2_htwba"]
 [ext_resource type="AudioStream" uid="uid://rit6qiqmsl3j" path="res://assets/music/tut1.wav" id="3_45srh"]
+[ext_resource type="AudioBusLayout" uid="uid://kbaesdwr1g8b" path="res://default_bus_layout.tres" id="3_l8xh7"]
 [ext_resource type="AudioStream" uid="uid://cqhe2m7jr6k5t" path="res://assets/music/driving.mp3" id="5_654r2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xyumy"]
@@ -12,9 +13,11 @@ size = Vector2(16, 48)
 [node name="Train" type="CharacterBody2D"]
 script = ExtResource("1_q7ry4")
 train_stats = ExtResource("2_03127")
+audiobus = ExtResource("3_l8xh7")
 
 [node name="Driving" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_654r2")
+bus = &"DrivingSounds"
 
 [node name="Tut1" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_45srh")

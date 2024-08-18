@@ -1,4 +1,20 @@
-[gd_resource type="AudioBusLayout" format=3 uid="uid://kbaesdwr1g8b"]
+[gd_resource type="AudioBusLayout" load_steps=3 format=3 uid="uid://kbaesdwr1g8b"]
+
+[sub_resource type="AudioEffectPitchShift" id="AudioEffectPitchShift_iy12d"]
+resource_name = "PitchShift"
+
+[sub_resource type="AudioEffectPitchShift" id="AudioEffectPitchShift_nmb0c"]
+resource_name = "PitchShift"
 
 [resource]
-bus/0/send = &"New Bus"
+bus/0/volume_db = 0.000600815
+bus/0/effect/0/effect = SubResource("AudioEffectPitchShift_iy12d")
+bus/0/effect/0/enabled = false
+bus/1/name = &"DrivingSounds"
+bus/1/solo = false
+bus/1/mute = false
+bus/1/bypass_fx = false
+bus/1/volume_db = 0.0
+bus/1/send = &"Master"
+bus/1/effect/0/effect = SubResource("AudioEffectPitchShift_nmb0c")
+bus/1/effect/0/enabled = true

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="TrainEngine" load_steps=2 format=3 uid="uid://cksgb2n3qsrxj"]
+[gd_resource type="Resource" script_class="TrainEngine" load_steps=2 format=3 uid="uid://bjq7g1hkdllah"]
 
 [ext_resource type="Script" path="res://items/train_engine.gd" id="1_s566g"]
 

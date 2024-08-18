@@ -6,6 +6,7 @@ var flag_change_dir_on_acc:bool = false
 var flag_tut_played:bool = false
 var waggon = preload("res://train/waggon.tscn")
 @export var train_stats: TrainStats : set = apply_items
+@export var audiobus: AudioBusLayout
 
 @onready var sprite: Sprite2D = $Locomotive
 @onready var timer_brake: Timer = $Timer_Brake
@@ -24,7 +25,6 @@ func _ready() -> void:
 	Events.item_bought.connect(_on_item_bought)
 	velocity.y = train_stats.start_velocity
 	apply_items(train_stats)
-
 
 func apply_items(value: TrainStats) -> void:
 	train_stats = value
@@ -52,7 +52,6 @@ func apply_items(value: TrainStats) -> void:
 	Events.emit_signal("weight_changed", weight)
 	@warning_ignore("return_value_discarded")
 	Events.emit_signal("waggons_counted", waggon_amount)
-
 
 func _physics_process(delta: float) -> void:
 	var new_velocity: float = velocity.y
@@ -107,7 +106,13 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func _check_speed():
-	if abs(velocity.y) > 90:
+	var f = AudioServer.get_bus_index("DrivingSounds")
+	var eff = AudioServer.get_bus_effect(f, 0)
+	if abs(velocity.y) > 100:
+		driving_sound.stream = load('res://assets/music/drivingspeeds/spd-10.wav')
+		eff.pitch_scale = abs(velocity.y)/100
+		pass
+	elif abs(velocity.y) > 90:
 		driving_sound.stream = load('res://assets/music/drivingspeeds/spd-10.wav')
 	elif abs(velocity.y) > 80:
 		driving_sound.stream = load('res://assets/music/drivingspeeds/spd-9.wav')
@@ -127,12 +132,11 @@ func _check_speed():
 		driving_sound.stream = load('res://assets/music/drivingspeeds/spd-2.wav')
 	elif abs(velocity.y) > 0:
 		driving_sound.stream = load('res://assets/music/drivingspeeds/spd-1.wav')
-
+	eff.pitch_scale = 1
 
 func _on_timer_brake_timeout():
 	#just set flag, because if you change dir here, you have to wait for 1 timer period to continue driving in same dir after braking down to v = 0
 	flag_change_dir_on_brake = true
-
 
 func _on_timer_acc_timeout() -> void:
 	#just set flag, because if you change dir here, you have to wait for 1 timer period to continue driving in same dir after braking down to v = 0
