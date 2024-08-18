@@ -25,7 +25,7 @@ position = Vector2(182, 0)
 position = Vector2(190, 644)
 
 [node name="Station" parent="." instance=ExtResource("3_7tcqk")]
-position = Vector2(190, 140)
+position = Vector2(190, 200)
 
 [node name="Shop" parent="." instance=ExtResource("9_0opmv")]
 visible = false

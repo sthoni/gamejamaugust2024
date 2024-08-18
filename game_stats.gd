@@ -5,7 +5,7 @@ class_name GameStats extends Resource
 @export var start_money: int
 
 var money: int : set = set_money
-var current_level: int
+var current_level: int = 1
 
 func set_money(value: int):
 	money = value

@@ -7,7 +7,7 @@ class_name Game extends Node
 
 func _ready() -> void:
 	game_stats.money = game_stats.start_money
-	level.level_stats = create_level_stats()
+	level.level_stats = level_stats.create_instance()
 	@warning_ignore("return_value_discarded")
 	Events.item_buy_button_pressed.connect(_on_item_buy_button_pressed)
 	@warning_ignore("return_value_discarded")
@@ -31,10 +31,6 @@ func _on_station_freight_sold(count: int) -> void:
 	game_stats.money += count
 
 
-func create_level_stats() -> LevelStats:
-	var new_level_stats: LevelStats = level_stats.create_instance()
-	return new_level_stats
-
-
 func _on_level_end_reached() -> void:
-	level.level_stats = level_stats.create_instance()
+	game_stats.current_level += 1
+	level.level_stats = level_stats.create_instance(game_stats.current_level)
