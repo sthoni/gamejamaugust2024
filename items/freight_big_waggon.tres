@@ -1,17 +1,16 @@
-[gd_resource type="Resource" script_class="FreightBigWaggon" load_steps=3 format=3 uid="uid://b2442h7xg6x62"]
+[gd_resource type="Resource" script_class="FreightWaggon" load_steps=3 format=3 uid="uid://cvraaeeux1xtr"]
 
-[ext_resource type="Script" path="res://items/freight_big_waggon.gd" id="1_vq3sl"]
+[ext_resource type="Script" path="res://items/freight_waggon.gd" id="1_mhy0g"]
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_iljme"]
-size = Vector2(64, 64)
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_v6r88"]
 
 [resource]
-script = ExtResource("1_vq3sl")
-transport_amount = 80.0
-id = ""
-item_type = 0
-price = 100
-weight = 70.0
-name = "Big Freight Waggon"
-icon = SubResource("PlaceholderTexture2D_iljme")
-tooltip_text = "An extra big waggon. Start some hauling!"
+script = ExtResource("1_mhy0g")
+transport_amount = 100.0
+id = "FreightBigWaggon"
+item_type = 2
+price = 80
+weight = 100.0
+name = "Freight Waggon Fac 124"
+icon = SubResource("PlaceholderTexture2D_v6r88")
+tooltip_text = "Open bulk goods wagons with metered gravity unloading."
