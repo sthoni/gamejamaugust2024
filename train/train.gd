@@ -4,6 +4,7 @@ var direction:int = 1
 var flag_change_dir_on_brake:bool = false
 var flag_change_dir_on_acc:bool = false
 var flag_tut_played:bool = false
+var waggon = preload("res://train/waggon.tscn")
 
 @export var acc_power := 400.0
 @export var brake_power := 800.0
@@ -20,13 +21,21 @@ var acc := 0.0
 func _ready() -> void:
 	Events.item_bought.connect(_on_item_bought)
 	apply_items()
-	waggon_amount = count_waggons()
 	velocity.y = start_velocity
-
+	waggon_amount = count_waggons()
 
 func apply_items() -> void:
+	for member in get_tree().get_nodes_in_group("FreightWaggons"):
+		member.free(	)
+	var i = 0
 	for item in items:
 		item.apply_effects(self)
+		if item.item_type == Item.ItemType.WAGGON:
+			var waggon_instance = waggon.instantiate()
+			waggon_instance.position.y = 35 + (i * 24)
+			add_child(waggon_instance)
+			waggon_instance.add_to_group("FreightWaggons")
+			i += 1
 	Events.emit_signal("weight_changed", weight)
 
 
@@ -121,5 +130,11 @@ func _on_timer_acc_timeout():
 
 func _on_item_bought(item: Item):
 	items.push_back(item)
-	item.apply_effects(self)
+	#item.apply_effects(self)
+	apply_items()
+
 	waggon_amount = count_waggons()
+	#for i in range(waggon_amount):
+		#var waggon_instance = waggon.instantiate()
+		#waggon_instance.position.y = 35 + (i * 24)
+		#add_child(waggon_instance)

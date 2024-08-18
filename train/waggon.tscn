@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://d18bk0pit2ris"]
+
+[ext_resource type="Texture2D" uid="uid://dbhlxujooxekf" path="res://assets/waggon.png" id="1_t33mp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7ot8k"]
+size = Vector2(16, 24)
+
+[node name="waggon" type="Area2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_7ot8k")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+rotation = 1.5708
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_t33mp")
+hframes = 2
+frame = 1
