@@ -1,4 +1,4 @@
-extends Control
+class_name Shop extends Control
 
 @export var item_one: Item
 @export var item_two: Item

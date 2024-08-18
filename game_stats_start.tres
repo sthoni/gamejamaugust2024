@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="GameStats" load_steps=3 format=3 uid="uid://c8w436a63djfq"]
+
+[ext_resource type="Script" path="res://game_stats.gd" id="1_58pdo"]
+[ext_resource type="Resource" uid="uid://fdaqrpalijb6" path="res://train/train_start.tres" id="2_8p06v"]
+
+[resource]
+script = ExtResource("1_58pdo")
+train_stats = ExtResource("2_8p06v")
+start_money = 5

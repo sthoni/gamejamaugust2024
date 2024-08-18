@@ -1,37 +1,41 @@
 class_name Level extends Node2D
 
-@onready var money: int: set = set_money
+@export var level_stats: LevelStats : set = set_level_stats
+
 @onready var train: Train = $Train
+@onready var station: Station = $Station
+@onready var shop: Shop = $Shop
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	money = 0
-	@warning_ignore("return_value_discarded")
-	Events.emit_signal("money_changed", money)
+	set_level_stats(level_stats)
 	@warning_ignore("return_value_discarded")
 	Events.station_status_changed.connect(_on_station_station_status_changed)
-	@warning_ignore("return_value_discarded")
-	Events.item_buy_button_pressed.connect(_on_item_buy_button_pressed)
 
-
-func set_money(value: int) -> void:
-	money = value
-	@warning_ignore("return_value_discarded")
-	Events.emit_signal("money_changed", money)
+# ACHTUNG: Die Position des Trains im Level wird hier auch gesetzt
+func set_level_stats(value: LevelStats):
+	level_stats = value
+	if train:
+		train.train_stats = level_stats.train_stats
+		train.position.y = 650
+		station.station_stats = level_stats.station_stats
+		var shop_items: Array[Item] = level_stats.item_pool.get_two_unique_random_items()
+		shop.item_display1.item_displayed = shop_items[0]
+		shop.item_display2.item_displayed = shop_items[1]
 
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("DEBUG_train_teleport"):
 		train.position.y = 200
 
+
 func _on_station_station_status_changed(status: Station.TrainStatus) -> void:
 	if status == Station.TrainStatus.STOPPED:
-		money += train.transport_amount
+		Events.emit_signal("station_freight_sold", train.transport_amount)
 		get_tree().paused = true
-		%Shop.show()
+		shop.show()
 
-func _on_item_buy_button_pressed(item: Item) -> void:
-	if item.price <= money:
-		money -= item.price
-		@warning_ignore("return_value_discarded")
-		Events.emit_signal("item_bought", item)
+
+func _on_level_end_body_entered(body: Node2D) -> void:
+	if body is Train:
+		Events.emit_signal("level_end_reached")

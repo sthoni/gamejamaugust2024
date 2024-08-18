@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=3 uid="uid://djq6kvq6des23"]
+
+[ext_resource type="Script" path="res://game.gd" id="1_4fbc6"]
+[ext_resource type="PackedScene" uid="uid://5m2ar4vwdnpd" path="res://level/level.tscn" id="2_lsa33"]
+[ext_resource type="Resource" uid="uid://c8w436a63djfq" path="res://game_stats_start.tres" id="2_objxm"]
+
+[node name="Game" type="Node"]
+script = ExtResource("1_4fbc6")
+game_stats = ExtResource("2_objxm")
+
+[node name="Level" parent="." instance=ExtResource("2_lsa33")]

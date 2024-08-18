@@ -32,6 +32,7 @@ func apply_items(value: TrainStats) -> void:
 	acc_power = 0.0
 	brake_power = 0.0
 	waggon_amount = 0
+	transport_amount = 0.0
 	if sprite:
 		sprite.texture = value.sprite
 	if get_tree():
