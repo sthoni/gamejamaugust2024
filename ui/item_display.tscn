@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://dpoct08kcld7d"]
+[gd_scene load_steps=3 format=3 uid="uid://5myyejivkpjo"]
 
 [ext_resource type="Script" path="res://ui/item_display.gd" id="1_14cqh"]
 
@@ -20,6 +20,7 @@ text = "ITEM NAME"
 [node name="ItemDescription" type="Label" parent="."]
 layout_mode = 2
 text = "ITEM DESCRIPTION"
+autowrap_mode = 2
 
 [node name="ItemBuy" type="Button" parent="."]
 layout_mode = 2

@@ -1,10 +1,10 @@
 [gd_scene load_steps=8 format=3 uid="uid://botpyjbja42c"]
 
-[ext_resource type="Theme" uid="uid://c5vctt5fcxfn" path="res://theme.tres" id="1_1gval"]
+[ext_resource type="Theme" path="res://theme.tres" id="1_1gval"]
 [ext_resource type="Script" path="res://ui/shop.gd" id="2_rwf4v"]
-[ext_resource type="PackedScene" uid="uid://dpoct08kcld7d" path="res://ui/item_display.tscn" id="3_qk112"]
+[ext_resource type="PackedScene" uid="uid://5myyejivkpjo" path="res://ui/item_display.tscn" id="3_qk112"]
 [ext_resource type="Resource" uid="uid://ctonnburlb4xx" path="res://items/freight_waggon.tres" id="3_tfcai"]
-[ext_resource type="Resource" uid="uid://bw8i24xmjvo3o" path="res://items/freight_big_waggon.tres" id="4_aklft"]
+[ext_resource type="Resource" uid="uid://cvraaeeux1xtr" path="res://items/freight_big_waggon.tres" id="4_aklft"]
 
 [sub_resource type="Gradient" id="Gradient_bcuwd"]
 colors = PackedColorArray(0.2, 0.196078, 0.4, 1, 0.113725, 0.0392157, 0.376471, 1)
