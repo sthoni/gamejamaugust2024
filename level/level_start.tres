@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="LevelStats" load_steps=5 format=3 uid="uid://bbum0dx5joke6"]
+
+[ext_resource type="Resource" uid="uid://bg1b2bhwkhxun" path="res://items/item_pool_start.tres" id="1_m451t"]
+[ext_resource type="Script" path="res://level/level_stats.gd" id="1_mv6bu"]
+[ext_resource type="Resource" uid="uid://ujjiktacktrw" path="res://station/station_stats_start.tres" id="3_b4kye"]
+[ext_resource type="Resource" uid="uid://fdaqrpalijb6" path="res://train/train_start.tres" id="4_q3ugd"]
+
+[resource]
+script = ExtResource("1_mv6bu")
+station_stats = ExtResource("3_b4kye")
+train_stats = ExtResource("4_q3ugd")
+item_pool = ExtResource("1_m451t")

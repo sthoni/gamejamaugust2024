@@ -1,5 +1,8 @@
 extends Node
 
+# Game Events
+@warning_ignore("unused_signal")
+signal money_changed(count: int)
 
 # Train Events
 @warning_ignore("unused_signal")
@@ -11,13 +14,15 @@ signal waggons_counted(waggons: int)
 @warning_ignore("unused_signal")
 signal weight_changed(weight: float)
 
+# Level Events
+@warning_ignore("unused_signal")
+signal level_end_reached()
+
 # Station Events
 @warning_ignore("unused_signal")
 signal station_status_changed(status: Station.TrainStatus)
-
-# Level Events
 @warning_ignore("unused_signal")
-signal money_changed(money: int)
+signal station_freight_sold(count: int)
 
 # Shop Events
 @warning_ignore("unused_signal")
