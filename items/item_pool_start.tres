@@ -1,12 +1,14 @@
-[gd_resource type="Resource" script_class="ItemPool" load_steps=6 format=3 uid="uid://bg1b2bhwkhxun"]
+[gd_resource type="Resource" script_class="ItemPool" load_steps=8 format=3 uid="uid://bg1b2bhwkhxun"]
 
 [ext_resource type="Script" path="res://items/item.gd" id="1_mdowx"]
 [ext_resource type="Resource" uid="uid://cvraaeeux1xtr" path="res://items/freight_big_waggon.tres" id="2_alc1u"]
 [ext_resource type="Script" path="res://items/item_pool.gd" id="2_t1gks"]
 [ext_resource type="Resource" uid="uid://ctonnburlb4xx" path="res://items/freight_waggon.tres" id="3_3n0w6"]
 [ext_resource type="Resource" uid="uid://bem00wf1m8qyd" path="res://items/freight_huge_waggon.tres" id="4_mhflp"]
+[ext_resource type="Resource" uid="uid://d0owl03dnqqwx" path="res://items/train_engine_big2cyl.tres" id="5_4j52b"]
+[ext_resource type="Resource" uid="uid://b2pxxoaiqns70" path="res://items/train_engine_4cyl.tres" id="6_cqwvr"]
 
 [resource]
 script = ExtResource("2_t1gks")
 id = "ItemPoolStart"
-items = Array[ExtResource("1_mdowx")]([ExtResource("2_alc1u"), ExtResource("3_3n0w6"), ExtResource("4_mhflp")])
+items = Array[ExtResource("1_mdowx")]([ExtResource("2_alc1u"), ExtResource("3_3n0w6"), ExtResource("4_mhflp"), ExtResource("5_4j52b"), ExtResource("6_cqwvr")])

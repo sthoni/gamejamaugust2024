@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="TrainEngine" load_steps=5 format=3 uid="uid://b2pxxoaiqns70"]
+
+[ext_resource type="Texture2D" uid="uid://8ptfad3gsatv" path="res://assets/thumbnails.png" id="1_i36ww"]
+[ext_resource type="Script" path="res://items/train_engine.gd" id="1_uncdo"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_axjl3"]
+atlas = ExtResource("1_i36ww")
+region = Rect2(192, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v3e7t"]
+
+[resource]
+script = ExtResource("1_uncdo")
+acc_power = 8000.0
+id = ""
+item_type = 0
+price = 1000
+weight = 5.0
+name = ""
+icon = SubResource("AtlasTexture_axjl3")
+sprite = SubResource("AtlasTexture_v3e7t")
+tooltip_text = "Massive power from 4 pots."
