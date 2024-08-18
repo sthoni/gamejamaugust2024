@@ -16,7 +16,7 @@ func set_level_stats(value: LevelStats):
 	level_stats = value
 	if train:
 		train.train_stats = level_stats.train_stats
-		train.position.y = 650
+		train.position.y = 670
 		station.station_stats = level_stats.station_stats
 
 
