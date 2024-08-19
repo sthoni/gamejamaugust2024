@@ -9,6 +9,7 @@ class_name Game extends Node
 @onready var level_stats: LevelStats = preload("res://level/level_start.tres")
 
 func _ready() -> void:
+	randomize()
 	game_stats.money = game_stats.start_money
 	var shop_items: Array[Item] = level_stats.item_pool.get_two_unique_random_items()
 	shop.item_display1.item_displayed = shop_items[0]
@@ -44,10 +45,10 @@ func _on_level_end_reached() -> void:
 	panel_container.position = Vector2(0.0, 640.0)
 	var tween = get_tree().create_tween()
 	tween.tween_property(panel_container, "position", Vector2(0.0,0.0), 1)
-	label_level.text = "Station %s" % game_stats.current_level
-	tween.tween_property(label_level, "visible_characters", 11, 1)
+	label_level.text = "You are arriving at Station %s" % game_stats.current_level
+	label_level.visible_characters = 0
+	tween.tween_property(label_level, "visible_characters", 30, 3)
 	tween.tween_callback(create_new_level)
-	tween.tween_property(label_level, "visible_characters", 0, 0.5)
 	tween.tween_property(panel_container, "position", Vector2(0.0,-640.0), 1)
 
 

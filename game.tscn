@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://djq6kvq6des23"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_4fbc6"]
-[ext_resource type="PackedScene" path="res://level/level.tscn" id="2_lsa33"]
+[ext_resource type="PackedScene" uid="uid://5m2ar4vwdnpd" path="res://level/level.tscn" id="2_lsa33"]
 [ext_resource type="Resource" uid="uid://c8w436a63djfq" path="res://game_stats_start.tres" id="2_objxm"]
 [ext_resource type="PackedScene" uid="uid://botpyjbja42c" path="res://ui/shop.tscn" id="4_tp65r"]
 
@@ -29,14 +29,13 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_cr26j")
 
-[node name="CenterContainer" type="CenterContainer" parent="PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
 
-[node name="LabelLevel" type="Label" parent="PanelContainer/CenterContainer"]
+[node name="LabelLevel" type="Label" parent="PanelContainer/MarginContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 0
 text = "LEVEL"
 visible_characters = 0
 visible_ratio = 0.0

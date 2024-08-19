@@ -6,7 +6,7 @@
 [ext_resource type="Resource" uid="uid://bbum0dx5joke6" path="res://level/level_start.tres" id="2_q5plq"]
 [ext_resource type="PackedScene" uid="uid://c3csdinu5agg4" path="res://station/station.tscn" id="3_7tcqk"]
 [ext_resource type="TileSet" uid="uid://b82jd4xyxr0fa" path="res://level/forest_noise_tileset.tres" id="3_oa0xv"]
-[ext_resource type="PackedScene" uid="uid://dwxxo0jdrdxpv" path="res://ui/gauge.tscn" id="3_xbuhv"]
+[ext_resource type="PackedScene" uid="uid://bvvip673kkkj7" path="res://ui/gauge.tscn" id="3_xbuhv"]
 [ext_resource type="PackedScene" uid="uid://dh71w6aefqf38" path="res://ui/debug.tscn" id="4_s0jqg"]
 [ext_resource type="PackedScene" uid="uid://dbir3qksmcgha" path="res://ui/hints.tscn" id="8_b6253"]
 [ext_resource type="Texture2D" uid="uid://bwi6m2sr55uqy" path="res://assets/ui/UI_Papernote_FrameStandard01.png" id="10_ahs53"]
@@ -41,10 +41,6 @@ position = Vector2(304, 200)
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
-offset_left = 17.0
-offset_top = 49.0
-offset_right = 17.0
-offset_bottom = 49.0
 grow_horizontal = 1
 grow_vertical = 1
 scale = Vector2(2, 2)
@@ -58,16 +54,16 @@ shape = SubResource("RectangleShape2D_v8f26")
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 17.0
-offset_top = 347.0
-offset_right = 57.0
-offset_bottom = 387.0
+offset_left = -350.0
+offset_top = 294.0
+offset_right = -310.0
+offset_bottom = 334.0
 
 [node name="NinePatchRect" type="NinePatchRect" parent="Control"]
 layout_mode = 0
 offset_top = -55.0
-offset_right = 45.0
-offset_bottom = 12.0
+offset_right = 54.0
+offset_bottom = 25.0
 scale = Vector2(5, 5)
 texture = ExtResource("10_ahs53")
 
@@ -76,12 +72,12 @@ layout_mode = 1
 anchors_preset = -1
 anchor_right = 3.664
 anchor_bottom = 1.0
-offset_left = 33.0
-offset_top = -6.00003
-offset_right = 59.44
-offset_bottom = 113.0
+offset_left = 40.0
+offset_top = 12.0
+offset_right = 106.44
+offset_bottom = 212.0
 text = "Use the Arrow-Keys to  accelerate and brake.
-Stop at the station."
+Stop at the station to buy new waggons und earn more money next time!"
 autowrap_mode = 2
 
 [node name="Hints" parent="Control" instance=ExtResource("8_b6253")]
@@ -91,10 +87,10 @@ layout_mode = 0
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
-offset_left = 154.0
-offset_top = 218.0
-offset_right = 259.0
-offset_bottom = 229.0
+offset_left = 160.0
+offset_top = 274.0
+offset_right = 265.0
+offset_bottom = 285.0
 grow_horizontal = 1
 grow_vertical = 1
 

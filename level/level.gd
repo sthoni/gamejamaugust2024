@@ -6,11 +6,14 @@ class_name Level extends Node2D
 @onready var station: Station = $Station
 @onready var hints: Control = %Hints
 @onready var tiles: TileMapLayer = $TileMapLayer
+@onready var manual: Control = $Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	hints.visible = false
 	set_level_stats(level_stats)
+	var tween = get_tree().create_tween()
+	tween.tween_property(manual, "position", Vector2(-28.0,294.0), 2)
 	@warning_ignore("return_value_discarded")
 	Events.station_status_changed.connect(_on_station_status_changed)
 
