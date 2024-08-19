@@ -21,7 +21,6 @@ func _on_continue_button_pressed() -> void:
 	self.hide()
 	get_tree().paused = false
 
-
 func _on_exit_button_pressed() -> void:
 	get_tree().quit()
 

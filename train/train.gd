@@ -166,5 +166,9 @@ func _on_item_bought(bought_item: Item) -> void:
 		var engines_in_items: Array[Item] = train_stats.items.filter(func(item: Item) -> bool: return item.item_type == Item.ItemType.ENGINE)
 		for item_engine: Item in engines_in_items:
 			train_stats.items.erase(item_engine)
+	if bought_item.item_type == Item.ItemType.BRAKES:
+		var brakes_in_items: Array[Item] = train_stats.items.filter(func(item: Item) -> bool: return item.item_type == Item.ItemType.BRAKES)
+		for item_engine: Item in brakes_in_items:
+			train_stats.items.erase(item_engine)
 	train_stats.items.push_back(bought_item)
 	apply_items(train_stats)
