@@ -1,9 +1,9 @@
-class_name ItemDisplay extends VBoxContainer
+class_name ItemDisplay extends PanelContainer
 
-@onready var item_name: Label = $ItemName
-@onready var item_texture: TextureRect = $ItemTexture
-@onready var item_description: Label = $ItemDescription
-@onready var item_buy: Button = $ItemBuy
+@onready var item_name: Label = %ItemName
+@onready var item_texture: TextureRect = %ItemTexture
+@onready var item_description: Label = %ItemDescription
+@onready var item_buy: Button = %ItemBuy
 
 var item_displayed: Item : set = set_item
 

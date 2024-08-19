@@ -1,14 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://botpyjbja42c"]
+[gd_scene load_steps=5 format=3 uid="uid://botpyjbja42c"]
 
 [ext_resource type="Theme" uid="uid://c5vctt5fcxfn" path="res://theme.tres" id="1_1gval"]
 [ext_resource type="Script" path="res://ui/shop.gd" id="2_rwf4v"]
 [ext_resource type="PackedScene" uid="uid://dpoct08kcld7d" path="res://ui/item_display.tscn" id="3_qk112"]
-
-[sub_resource type="Gradient" id="Gradient_bcuwd"]
-colors = PackedColorArray(0.2, 0.196078, 0.4, 1, 0.113725, 0.0392157, 0.376471, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_sjscc"]
-gradient = SubResource("Gradient_bcuwd")
+[ext_resource type="Texture2D" uid="uid://cxtlg2st4qewp" path="res://assets/ui/UI_Wood_Frame_Standard_02.png" id="3_vlsgw"]
 
 [node name="Shop" type="Control"]
 process_mode = 3
@@ -19,16 +14,20 @@ offset_bottom = 640.0
 theme = ExtResource("1_1gval")
 script = ExtResource("2_rwf4v")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("GradientTexture1D_sjscc")
+texture = ExtResource("3_vlsgw")
+patch_margin_left = 19
+patch_margin_top = 23
+patch_margin_right = 19
+patch_margin_bottom = 23
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="NinePatchRect"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -36,47 +35,44 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect/MarginContainer"]
 layout_mode = 2
 theme = ExtResource("1_1gval")
-theme_override_constants/separation = 32
 
-[node name="Label" type="Label" parent="CenterContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="NinePatchRect/MarginContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/font_size = 64
 text = "Train Shop"
+vertical_alignment = 2
 
-[node name="ItemsDisplayGrid" type="GridContainer" parent="CenterContainer/VBoxContainer"]
+[node name="ItemsDisplayGrid" type="GridContainer" parent="NinePatchRect/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="ItemDisplay" parent="CenterContainer/VBoxContainer/ItemsDisplayGrid" instance=ExtResource("3_qk112")]
+[node name="ItemDisplay" parent="NinePatchRect/MarginContainer/VBoxContainer/ItemsDisplayGrid" instance=ExtResource("3_qk112")]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="ItemDisplay2" parent="CenterContainer/VBoxContainer/ItemsDisplayGrid" instance=ExtResource("3_qk112")]
+[node name="ItemDisplay2" parent="NinePatchRect/MarginContainer/VBoxContainer/ItemsDisplayGrid" instance=ExtResource("3_qk112")]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="MoneyPlayer" type="Label" parent="CenterContainer/VBoxContainer"]
+[node name="MoneyPlayer" type="Label" parent="NinePatchRect/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="ContinueButton" type="Button" parent="CenterContainer/VBoxContainer/VBoxContainer"]
+[node name="ContinueButton" type="Button" parent="NinePatchRect/MarginContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Continue"
 
-[node name="ExitButton" type="Button" parent="CenterContainer/VBoxContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Exit"
-
-[connection signal="pressed" from="CenterContainer/VBoxContainer/VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
-[connection signal="pressed" from="CenterContainer/VBoxContainer/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="NinePatchRect/MarginContainer/VBoxContainer/VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]

@@ -44,8 +44,8 @@ func _on_level_end_reached() -> void:
 	panel_container.position = Vector2(0.0, 640.0)
 	var tween = get_tree().create_tween()
 	tween.tween_property(panel_container, "position", Vector2(0.0,0.0), 1)
-	label_level.text = "Level %s" % game_stats.current_level
-	tween.tween_property(label_level, "visible_characters", 8, 1)
+	label_level.text = "Station %s" % game_stats.current_level
+	tween.tween_property(label_level, "visible_characters", 11, 1)
 	tween.tween_callback(create_new_level)
 	tween.tween_property(label_level, "visible_characters", 0, 0.5)
 	tween.tween_property(panel_container, "position", Vector2(0.0,-640.0), 1)

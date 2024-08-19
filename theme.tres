@@ -1,15 +1,22 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://c5vctt5fcxfn"]
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://c5vctt5fcxfn"]
+
+[ext_resource type="FontFile" uid="uid://ctudgwsmkjvvy" path="res://assets/ui/Toriko.ttf" id="1_0raqw"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nj5fc"]
-bg_color = Color(0, 0, 0, 1)
+bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [resource]
+default_font = ExtResource("1_0raqw")
+default_font_size = 32
+Button/colors/font_color = Color(1, 1, 1, 1)
+Button/constants/outline_size = 8
 GridContainer/constants/h_separation = 32
 GridContainer/constants/v_separation = 32
-HBoxContainer/constants/separation = 32
-MarginContainer/constants/margin_bottom = 64
-MarginContainer/constants/margin_left = 64
-MarginContainer/constants/margin_right = 64
-MarginContainer/constants/margin_top = 64
+HBoxContainer/constants/separation = 16
+Label/constants/outline_size = 8
+MarginContainer/constants/margin_bottom = 48
+MarginContainer/constants/margin_left = 32
+MarginContainer/constants/margin_right = 32
+MarginContainer/constants/margin_top = 48
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_nj5fc")
 VBoxContainer/constants/separation = 8

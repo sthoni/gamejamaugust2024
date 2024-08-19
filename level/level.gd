@@ -4,7 +4,7 @@ class_name Level extends Node2D
 
 @onready var train: Train = $Train
 @onready var station: Station = $Station
-@onready var hints: Control = $Hints
+@onready var hints: Control = %Hints
 @onready var tiles: TileMapLayer = $TileMapLayer
 
 # Called when the node enters the scene tree for the first time.

@@ -1,29 +1,59 @@
-[gd_scene load_steps=3 format=3 uid="uid://dpoct08kcld7d"]
+[gd_scene load_steps=4 format=3 uid="uid://dpoct08kcld7d"]
 
 [ext_resource type="Script" path="res://ui/item_display.gd" id="1_14cqh"]
+[ext_resource type="Texture2D" uid="uid://bsfro883h0j32" path="res://assets/ui/UI_Papernote_Textfield01.png" id="2_tpycs"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_ov08v"]
 size = Vector2(64, 64)
 
-[node name="ItemDisplay" type="VBoxContainer"]
+[node name="ItemDisplay" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
 script = ExtResource("1_14cqh")
 
-[node name="ItemTexture" type="TextureRect" parent="."]
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 2
+texture = ExtResource("2_tpycs")
+patch_margin_left = 6
+patch_margin_top = 7
+patch_margin_right = 7
+patch_margin_bottom = 7
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="ItemTexture" type="TextureRect" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 texture = SubResource("PlaceholderTexture2D_ov08v")
 stretch_mode = 2
 
-[node name="ItemName" type="Label" parent="."]
+[node name="ItemName" type="Label" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "ITEM NAME"
 
-[node name="ItemDescription" type="Label" parent="."]
+[node name="ItemDescription" type="Label" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "ITEM DESCRIPTION"
 autowrap_mode = 2
+justification_flags = 161
 
-[node name="ItemBuy" type="Button" parent="."]
+[node name="ItemBuy" type="Button" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Kaufen"
 
-[connection signal="pressed" from="ItemBuy" to="." method="_on_item_buy_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ItemBuy" to="." method="_on_item_buy_pressed"]
