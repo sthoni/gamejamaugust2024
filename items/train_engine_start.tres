@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_s566g")
-acc_power = 2000.0
+acc_power = 10000.0
 id = ""
 item_type = 0
 price = 10000000

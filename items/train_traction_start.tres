@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_865cg")
-brake_power = 2500.0
+brake_power = 10000.0
 transport_amount = 10.0
 id = "TrainTractionStart"
 item_type = 0

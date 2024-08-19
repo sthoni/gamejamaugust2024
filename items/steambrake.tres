@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="TrainTraction" load_steps=4 format=3 uid="uid://bn6iqhla4y5t4"]
+
+[ext_resource type="Texture2D" uid="uid://8ptfad3gsatv" path="res://assets/thumbnails.png" id="1_qjw0p"]
+[ext_resource type="Script" path="res://items/train_traction.gd" id="1_wm7q6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xd8vs"]
+atlas = ExtResource("1_qjw0p")
+region = Rect2(240, 0, 48, 48)
+
+[resource]
+script = ExtResource("1_wm7q6")
+brake_power = 5000.0
+transport_amount = 10.0
+id = "SteamBrake"
+item_type = 4
+price = 500
+weight = 5.0
+name = "Steam Brake"
+icon = SubResource("AtlasTexture_xd8vs")
+tooltip_text = ""

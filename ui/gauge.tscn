@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://dwxxo0jdrdxpv"]
+[gd_scene load_steps=4 format=3 uid="uid://bvvip673kkkj7"]
 
 [ext_resource type="Script" path="res://ui/gauge.gd" id="1_j0hsb"]
 [ext_resource type="Texture2D" uid="uid://coewucjahkl2r" path="res://assets/gauge.png" id="1_lo78o"]
