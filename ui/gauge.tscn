@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bvvip673kkkj7"]
+[gd_scene load_steps=5 format=3 uid="uid://bvvip673kkkj7"]
 
 [ext_resource type="Script" path="res://ui/gauge.gd" id="1_j0hsb"]
 [ext_resource type="Texture2D" uid="uid://coewucjahkl2r" path="res://assets/gauge.png" id="1_lo78o"]
 [ext_resource type="Texture2D" uid="uid://by0mt58yfg3q3" path="res://assets/gaugeneedle.png" id="2_buy24"]
+[ext_resource type="Texture2D" uid="uid://bhn36jceufuai" path="res://assets/ui/UI_Flat_FrameSlot01a.png" id="2_s46sp"]
 
 [node name="Gauge" type="Control"]
 layout_mode = 3
@@ -13,11 +14,23 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_j0hsb")
 
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 0
+offset_right = 103.0
+offset_bottom = 102.0
+texture = ExtResource("2_s46sp")
+patch_margin_left = 2
+patch_margin_top = 2
+patch_margin_right = 2
+patch_margin_bottom = 4
+
 [node name="GaugeTexture" type="TextureRect" parent="."]
 texture_filter = 1
 layout_mode = 0
-offset_right = 96.0
-offset_bottom = 96.0
+offset_left = 4.0
+offset_top = 3.0
+offset_right = 100.0
+offset_bottom = 99.0
 scale = Vector2(2, 2)
 texture = ExtResource("1_lo78o")
 stretch_mode = 2
