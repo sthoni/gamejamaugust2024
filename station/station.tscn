@@ -1,13 +1,26 @@
-[gd_scene load_steps=5 format=3 uid="uid://c3csdinu5agg4"]
+[gd_scene load_steps=9 format=3 uid="uid://c3csdinu5agg4"]
 
 [ext_resource type="Script" path="res://station/station.gd" id="1_myu42"]
 [ext_resource type="Resource" uid="uid://ujjiktacktrw" path="res://station/station_stats_start.tres" id="2_6h4f5"]
+[ext_resource type="Texture2D" uid="uid://bgrc3qvroyq71" path="res://assets/tracks.png" id="3_303ai"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2umad"]
 size = Vector2(20, 64)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dk45f"]
 size = Vector2(20, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vx6vs"]
+atlas = ExtResource("3_303ai")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jvvqq"]
+atlas = ExtResource("3_303ai")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vddu5"]
+atlas = ExtResource("3_303ai")
+region = Rect2(112, 0, 16, 16)
 
 [node name="Station" type="Area2D"]
 position = Vector2(182, 180)
@@ -28,6 +41,59 @@ position = Vector2(0, -32)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StationEnd"]
 shape = SubResource("RectangleShape2D_dk45f")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(0, -24)
+texture = SubResource("AtlasTexture_vx6vs")
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+position = Vector2(16, -24)
+texture = SubResource("AtlasTexture_jvvqq")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Sprite2D3"]
+position = Vector2(0, 16)
+texture = SubResource("AtlasTexture_jvvqq")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Sprite2D3/Sprite2D2"]
+position = Vector2(0, 16)
+texture = SubResource("AtlasTexture_jvvqq")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Sprite2D3/Sprite2D2/Sprite2D2"]
+position = Vector2(0, 16)
+texture = SubResource("AtlasTexture_jvvqq")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Sprite2D3"]
+position = Vector2(-32, 48)
+rotation = 3.14159
+texture = SubResource("AtlasTexture_jvvqq")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Sprite2D3/Sprite2D3"]
+position = Vector2(0, 16)
+texture = SubResource("AtlasTexture_jvvqq")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Sprite2D3/Sprite2D3/Sprite2D2"]
+position = Vector2(0, 16)
+texture = SubResource("AtlasTexture_jvvqq")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Sprite2D3/Sprite2D3/Sprite2D2/Sprite2D2"]
+position = Vector2(0, 16)
+texture = SubResource("AtlasTexture_jvvqq")
+
+[node name="Sprite2D4" type="Sprite2D" parent="."]
+position = Vector2(0, -8)
+texture = SubResource("AtlasTexture_vx6vs")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Sprite2D4"]
+position = Vector2(0, 16)
+texture = SubResource("AtlasTexture_vx6vs")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Sprite2D4/Sprite2D2"]
+position = Vector2(0, 16)
+texture = SubResource("AtlasTexture_vx6vs")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-16, -24)
+texture = SubResource("AtlasTexture_vddu5")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_entered" from="StationStart" to="." method="_on_station_start_body_entered"]

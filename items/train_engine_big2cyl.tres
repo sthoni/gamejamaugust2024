@@ -9,7 +9,7 @@ region = Rect2(144, 0, 48, 48)
 
 [resource]
 script = ExtResource("1_tli5l")
-acc_power = 4000.0
+acc_power = 20000.0
 id = ""
 item_type = 3
 price = 500

@@ -11,7 +11,7 @@ region = Rect2(192, 0, 48, 48)
 
 [resource]
 script = ExtResource("1_uncdo")
-acc_power = 8000.0
+acc_power = 40000.0
 id = ""
 item_type = 3
 price = 1000
