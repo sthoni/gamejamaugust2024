@@ -18,6 +18,12 @@ enum TrainStatus {
 	DEPARTED
 }
 
+enum StationType {
+	LOADING,				#eaxmple: Coal Mine
+	UNLOADING,			#example: Coal-fired power plant
+	SHOP	
+}
+
 var train_at_station: Train = null
 var status: TrainStatus : set = set_status
 
