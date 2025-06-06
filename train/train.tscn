@@ -18,12 +18,15 @@ audiobus = ExtResource("3_l8xh7")
 
 [node name="Driving" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_654r2")
+volume_db = -20.0
 
 [node name="Tut1" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_45srh")
+volume_db = -20.0
 
 [node name="LongTut" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_2366v")
+volume_db = -40.0
 
 [node name="Locomotive" type="Sprite2D" parent="."]
 texture_filter = 1

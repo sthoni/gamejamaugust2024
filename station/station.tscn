@@ -23,7 +23,6 @@ atlas = ExtResource("3_303ai")
 region = Rect2(112, 0, 16, 16)
 
 [node name="Station" type="Area2D"]
-position = Vector2(182, 180)
 script = ExtResource("1_myu42")
 station_stats = ExtResource("2_6h4f5")
 
