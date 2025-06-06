@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://c3byp0uv73juy"]
+[gd_scene load_steps=13 format=3 uid="uid://c3byp0uv73juy"]
 
 [ext_resource type="Script" uid="uid://18ex7wnaa4s1" path="res://train/train.gd" id="1_q7ry4"]
 [ext_resource type="Resource" uid="uid://fdaqrpalijb6" path="res://train/train_start.tres" id="2_03127"]
@@ -7,9 +7,30 @@
 [ext_resource type="AudioBusLayout" uid="uid://dnbahy0neavpn" path="res://default_bus_layout.tres" id="3_l8xh7"]
 [ext_resource type="AudioStream" uid="uid://cqhe2m7jr6k5t" path="res://assets/music/driving.mp3" id="5_654r2"]
 [ext_resource type="AudioStream" uid="uid://dgge62hvafa5g" path="res://assets/music/longtut.wav" id="6_2366v"]
+[ext_resource type="Texture2D" uid="uid://faei72dnlpg" path="res://assets/images/smoke_01.png" id="8_hf3vt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xyumy"]
 size = Vector2(16, 48)
+
+[sub_resource type="Curve" id="Curve_hf3vt"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.301471, 0.707865), 0.0, 0.0, 0, 0, Vector2(0.735294, 0.0786518), 0.0, 0.0, 0, 0, Vector2(0.963235, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_46i6o"]
+curve = SubResource("Curve_hf3vt")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2sxs7"]
+particle_flag_disable_z = true
+angle_min = -180.0
+angle_max = 180.0
+direction = Vector3(0, 1, 0)
+spread = 30.0
+initial_velocity_min = 10.0
+initial_velocity_max = 30.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.2
+scale_max = 0.2
+scale_curve = SubResource("CurveTexture_46i6o")
 
 [node name="Train" type="CharacterBody2D"]
 script = ExtResource("1_q7ry4")
@@ -42,6 +63,14 @@ one_shot = true
 
 [node name="Timer_Acc" type="Timer" parent="."]
 one_shot = true
+
+[node name="SteamParticles" type="GPUParticles2D" parent="."]
+z_index = 10
+position = Vector2(0, -29)
+amount = 20
+texture = ExtResource("8_hf3vt")
+lifetime = 2.0
+process_material = SubResource("ParticleProcessMaterial_2sxs7")
 
 [connection signal="timeout" from="Timer_Brake" to="." method="_on_timer_brake_timeout"]
 [connection signal="timeout" from="Timer_Acc" to="." method="_on_timer_acc_timeout"]

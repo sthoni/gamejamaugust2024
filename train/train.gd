@@ -15,6 +15,7 @@ var waggon = preload("res://train/waggon.tscn")
 @onready var tut: AudioStreamPlayer = $Tut1
 @onready var longtut: AudioStreamPlayer = $LongTut
 @onready var driving_sound: AudioStreamPlayer2D = $Driving
+@onready var steam_particles: GPUParticles2D = $SteamParticles
 @onready var start_velocity: float = 0.0
 @onready var acc_power: float = 0.0
 @onready var brake_power: float = 0.0
@@ -63,6 +64,7 @@ func _physics_process(delta: float) -> void:
 	if velocity.y != 0:
 		if driving_sound.playing == false:
 			_check_speed()
+			steam_particles.amount_ratio = abs(velocity.y / 100)
 			driving_sound.play()
 	else:
 			driving_sound.stop()
