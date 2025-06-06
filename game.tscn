@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://djq6kvq6des23"]
+[gd_scene load_steps=7 format=3 uid="uid://djq6kvq6des23"]
 
 [ext_resource type="Script" uid="uid://dkf51wunavfc7" path="res://game.gd" id="1_4fbc6"]
 [ext_resource type="PackedScene" uid="uid://5m2ar4vwdnpd" path="res://level/level.tscn" id="2_lsa33"]
 [ext_resource type="Resource" uid="uid://c8w436a63djfq" path="res://game_stats_start.tres" id="2_objxm"]
 [ext_resource type="PackedScene" uid="uid://botpyjbja42c" path="res://ui/shop.tscn" id="4_tp65r"]
+[ext_resource type="AudioStream" uid="uid://cul1ktvspbvh8" path="res://assets/music/201159__kiddpark__cash-register.mp3" id="5_7jktm"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cr26j"]
 bg_color = Color(0, 0, 0, 1)
@@ -39,3 +40,7 @@ size_flags_horizontal = 0
 text = "LEVEL"
 visible_characters = 0
 visible_ratio = 0.0
+
+[node name="MoneyPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_7jktm")
+volume_db = -20.0

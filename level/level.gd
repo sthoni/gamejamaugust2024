@@ -13,7 +13,7 @@ class_name Level extends Node2D
 func _ready() -> void:
 	hints.visible = false
 	set_level_stats(level_stats)
-	var tween = get_tree().create_tween()
+	var tween = create_tween()
 	tween.tween_property(manual, "position", Vector2(-28.0,294.0), 2)
 	@warning_ignore("return_value_discarded")
 	Events.station_status_changed.connect(_on_station_status_changed)
