@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dpoct08kcld7d"]
 
-[ext_resource type="Script" path="res://ui/item_display.gd" id="1_14cqh"]
+[ext_resource type="Script" uid="uid://bv6frsn5rfxcj" path="res://ui/item_display.gd" id="1_14cqh"]
 [ext_resource type="Texture2D" uid="uid://bsfro883h0j32" path="res://assets/ui/UI_Papernote_Textfield01.png" id="2_tpycs"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_ov08v"]

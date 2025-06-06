@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="FreightWaggon" load_steps=5 format=3 uid="uid://ctonnburlb4xx"]
 
-[ext_resource type="Script" path="res://items/freight_waggon.gd" id="1_asytw"]
+[ext_resource type="Script" uid="uid://b3w2te3pdgss6" path="res://items/freight_waggon.gd" id="1_asytw"]
 [ext_resource type="Texture2D" uid="uid://8ptfad3gsatv" path="res://assets/thumbnails.png" id="1_q38g6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bnkw5"]

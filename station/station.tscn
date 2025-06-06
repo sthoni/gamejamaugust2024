@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://c3csdinu5agg4"]
 
-[ext_resource type="Script" path="res://station/station.gd" id="1_myu42"]
+[ext_resource type="Script" uid="uid://c3fw232uu8fcv" path="res://station/station.gd" id="1_myu42"]
 [ext_resource type="Resource" uid="uid://ujjiktacktrw" path="res://station/station_stats_start.tres" id="2_6h4f5"]
 [ext_resource type="Texture2D" uid="uid://bgrc3qvroyq71" path="res://assets/tracks.png" id="3_303ai"]
 

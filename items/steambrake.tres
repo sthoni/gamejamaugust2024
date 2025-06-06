@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="TrainTraction" load_steps=4 format=3 uid="uid://bn6iqhla4y5t4"]
 
 [ext_resource type="Texture2D" uid="uid://8ptfad3gsatv" path="res://assets/thumbnails.png" id="1_qjw0p"]
-[ext_resource type="Script" path="res://items/train_traction.gd" id="1_wm7q6"]
+[ext_resource type="Script" uid="uid://beddhbcupnwi6" path="res://items/train_traction.gd" id="1_wm7q6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xd8vs"]
 atlas = ExtResource("1_qjw0p")

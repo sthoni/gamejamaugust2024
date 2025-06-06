@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="TrainTraction" load_steps=2 format=3 uid="uid://dup4drvtvbvhq"]
 
-[ext_resource type="Script" path="res://items/train_traction.gd" id="1_865cg"]
+[ext_resource type="Script" uid="uid://beddhbcupnwi6" path="res://items/train_traction.gd" id="1_865cg"]
 
 [resource]
 script = ExtResource("1_865cg")

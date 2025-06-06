@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="FreightWaggon" load_steps=5 format=3 uid="uid://cfrmlvms1ypmx"]
 
 [ext_resource type="Texture2D" uid="uid://8ptfad3gsatv" path="res://assets/thumbnails.png" id="1_ay837"]
-[ext_resource type="Script" path="res://items/freight_waggon.gd" id="2_des30"]
+[ext_resource type="Script" uid="uid://b3w2te3pdgss6" path="res://items/freight_waggon.gd" id="2_des30"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4g34t"]
 atlas = ExtResource("1_ay837")
