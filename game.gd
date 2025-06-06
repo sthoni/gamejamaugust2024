@@ -7,6 +7,7 @@ class_name Game extends Node
 @onready var label_level: Label = %LabelLevel
 @onready var panel_container: PanelContainer = $PanelContainer
 @onready var level_stats: LevelStats = preload("res://level/level_start.tres")
+@onready var money_player: AudioStreamPlayer = $MoneyPlayer
 
 func _ready() -> void:
 	randomize()
@@ -31,14 +32,18 @@ func set_game_stats(value: GameStats):
 
 func _on_item_buy_button_pressed(item: Item) -> void:
 	if item.price <= game_stats.money:
-		game_stats.money -= item.price
+		var tween := create_tween()
+		var end_money: int = game_stats.money - item.price
+		tween.tween_property(game_stats, "money", end_money, item.price / 50) 
 		@warning_ignore("return_value_discarded")
 		Events.emit_signal("item_bought", item)
 
 
 func _on_station_freight_sold(count: int) -> void:
-	game_stats.money += count
-
+	money_player.play()
+	var tween := create_tween()
+	var end_money: int = game_stats.money + count
+	tween.tween_property(game_stats, "money", end_money, count / 50) 
 
 func _on_level_end_reached() -> void:
 	game_stats.current_level += 1
