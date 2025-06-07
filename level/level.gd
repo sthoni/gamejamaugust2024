@@ -3,7 +3,6 @@ class_name Level extends Node2D
 @export var level_stats: LevelStats : set = set_level_stats
 @export var game_stats: GameStats
 @onready var train: Train = $Train
-@onready var station: Station = $Station # Assuming there's still one main station node for now
 @onready var tiles: TileMapLayer = $TileMapLayer
 @onready var mission_manager: MissionManager = $MissionManager # Assuming the node is named MissionManager
 
@@ -17,8 +16,9 @@ func _ready() -> void:
 		# Connect station signals to mission manager
 		for child in get_children():
 			if child is Station:
-				child.train_correctly_stopped.connect(mission_manager._on_station_correctly_stopped)
-				child.station_missed.connect(mission_manager._on_station_missed)
+				var station: Station = child
+				station.train_correctly_stopped.connect(mission_manager._on_station_correctly_stopped)
+				station.station_missed.connect(mission_manager._on_station_missed)
 		mission_manager.start_mission() # Start the mission when the level is ready
 
 # ACHTUNG: Die Position des Trains im Level wird hier auch gesetzt
@@ -27,9 +27,6 @@ func set_level_stats(value: LevelStats) -> void:
 	if train:
 		train.train_stats = level_stats.train_stats
 		train.position.y = 670
-		# Assuming there's still one main station node for now
-		if station:
-			station.station_stats = level_stats.station_stats
 		#tiles.tile_set = level_stats.background_texture
 	if mission_manager:
 		mission_manager.mission = level_stats.mission

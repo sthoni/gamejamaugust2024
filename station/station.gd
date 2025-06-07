@@ -39,7 +39,7 @@ func _ready() -> void:
 func set_station_stats(value: StationStats) -> void:
 	station_stats = value
 	has_money = true
-	self.global_position.y = station_stats.y_position
+	self.global_position.y = station_stats.distance
 	if platform:
 		@warning_ignore("unsafe_property_access")
 		platform.shape.size.y = station_stats.platform_length

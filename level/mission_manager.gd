@@ -81,7 +81,7 @@ func _on_mission_timer_timeout() -> void:
 			mission_failed.emit()
 
 
-func calculate_and_apply_penalty(station: MissionStation, actual_time: float) -> void:
+func calculate_and_apply_penalty(station: StationStats, actual_time: float) -> void:
 	var time_difference := actual_time - station.target_time
 	if time_difference > 0:
 		var penalty := int(time_difference * station.penalty_per_second_late)
@@ -90,7 +90,7 @@ func calculate_and_apply_penalty(station: MissionStation, actual_time: float) ->
 	else:
 		print("Arrived on time or early. No time penalty.")
 
-func apply_miss_penalty(station: MissionStation) -> void:
+func apply_miss_penalty(station: StationStats) -> void:
 	print("Applying miss penalty: ", station.miss_penalty)
 	apply_penalty.emit(station.miss_penalty)
 
