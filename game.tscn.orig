@@ -1,4 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://djq6kvq6des23"]
+<<<<<<< HEAD
+[gd_scene load_steps=9 format=3 uid="uid://djq6kvq6des23"]
+=======
+[gd_scene load_steps=12 format=3 uid="uid://djq6kvq6des23"]
+>>>>>>> 12-größere-scrollbare-map-sprich-kamera-implementieren
 
 [ext_resource type="Script" uid="uid://dkf51wunavfc7" path="res://game.gd" id="1_4fbc6"]
 [ext_resource type="PackedScene" uid="uid://5m2ar4vwdnpd" path="res://level/level.tscn" id="2_lsa33"]
@@ -6,13 +10,16 @@
 [ext_resource type="PackedScene" uid="uid://botpyjbja42c" path="res://ui/shop.tscn" id="4_tp65r"]
 [ext_resource type="AudioStream" uid="uid://cul1ktvspbvh8" path="res://assets/music/201159__kiddpark__cash-register.mp3" id="5_7jktm"]
 [ext_resource type="Theme" uid="uid://c5vctt5fcxfn" path="res://theme.tres" id="5_ryrav"]
-[ext_resource type="PackedScene" uid="uid://bvvip673kkkj7" path="res://ui/gauge.tscn" id="6_vef74"]
+<<<<<<< HEAD
 [ext_resource type="PackedScene" uid="uid://bq8lf8yc6y7ti" path="res://ui/menu.tscn" id="7_eow3j"]
+=======
+[ext_resource type="PackedScene" uid="uid://bvvip673kkkj7" path="res://ui/gauge.tscn" id="6_vef74"]
 [ext_resource type="Texture2D" uid="uid://bwi6m2sr55uqy" path="res://assets/ui/UI_Papernote_FrameStandard01.png" id="7_hve3p"]
 [ext_resource type="PackedScene" uid="uid://dbir3qksmcgha" path="res://ui/hints.tscn" id="8_mfdv2"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_vef74"]
 viewport_path = NodePath("SubViewport")
+>>>>>>> 12-größere-scrollbare-map-sprich-kamera-implementieren
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cr26j"]
 bg_color = Color(0, 0, 0, 1)
@@ -110,7 +117,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="SubViewport" type="SubViewport" parent="."]
-disable_3d = true
+handle_input_locally = false
 size = Vector2i(360, 360)
 render_target_update_mode = 4
 
@@ -159,4 +166,3 @@ stream = ExtResource("5_7jktm")
 volume_db = -20.0
 
 [node name="Menu" parent="." instance=ExtResource("7_eow3j")]
-visible = false

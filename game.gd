@@ -82,6 +82,13 @@ func _input(event: InputEvent) -> void:
 		menu.show()
 		get_tree().paused = true
 		
+	# Input-Router-Funktion, zur Event-Weiterleitung in SubViewport:
+	var world = $SubViewport/Level
+	for child in world.get_children():
+		if child.has_method("_input"):
+			child._input(event)
+
+		
 
 
 func _on_shop_key_pressed() -> void:
