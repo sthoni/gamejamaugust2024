@@ -7,5 +7,5 @@ func _ready() -> void:
 	Events.money_changed.connect(_on_level_money_changed)
 
 
-func _on_level_money_changed(money: int) -> void:
+func _on_level_money_changed(money_old: int, money: int) -> void:
 	self.text = "Money: " + str(money)

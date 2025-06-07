@@ -37,17 +37,12 @@ func _set_game_stats(value: GameStats) -> void:
 
 func _on_item_buy_button_pressed(item: Item) -> void:
 	if item.price <= game_stats.money:
-		var tween := create_tween()
-		var end_money: int = game_stats.money - item.price
-		tween.tween_property(game_stats, "money", end_money, item.price / 50.0) 
+		game_stats.money -= item.price
 		Events.emit_signal("item_bought", item)
 
-
+	
 func _on_station_freight_sold(count: int) -> void:
-	var tween := create_tween()
-	var end_money: int = game_stats.money + count
-	tween.tween_property(game_stats, "money", end_money, count / 50.0)
-	tween.finished.connect(func() -> void: money_player.play())
+	game_stats.money += count
 	
 
 func _on_level_end_reached() -> void:
@@ -84,9 +79,6 @@ func _input(event: InputEvent) -> void:
 	for child in world.get_children():
 		if child.has_method("_input"):
 			child._input(event)
-
-		
-
 
 func _on_shop_key_pressed() -> void:
 	shop.show()

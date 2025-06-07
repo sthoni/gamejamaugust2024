@@ -2,7 +2,7 @@ extends Node
 
 # Game Events
 @warning_ignore("unused_signal")
-signal money_changed(count: int)
+signal money_changed(old_money: int, new_money: int)
 
 # Train Events
 @warning_ignore("unused_signal")
