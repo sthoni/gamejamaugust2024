@@ -2,9 +2,12 @@ class_name Level extends Node2D
 
 @export var level_stats: LevelStats : set = set_level_stats
 @export var game_stats: GameStats
-@onready var train: Train = $Train
 @onready var tiles: TileMapLayer = $TileMapLayer
 @onready var mission_manager: MissionManager = $MissionManager # Assuming the node is named MissionManager
+
+@onready var train: Train = %Train
+@onready var station: Station = $Station
+@onready var path_to_follow: PathFollow2D = $Path2D/PathFollow2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -26,7 +29,9 @@ func set_level_stats(value: LevelStats) -> void:
 	level_stats = value
 	if train:
 		train.train_stats = level_stats.train_stats
-		train.position.y = 670
+		path_to_follow.progress = 0.0
+		#train.position.y = 670
+		station.station_stats = level_stats.station_stats
 		#tiles.tile_set = level_stats.background_texture
 	if mission_manager:
 		mission_manager.mission = level_stats.mission

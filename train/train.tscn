@@ -65,6 +65,7 @@ one_shot = true
 one_shot = true
 
 [node name="SteamParticles" type="GPUParticles2D" parent="."]
+visible = false
 z_index = 10
 position = Vector2(0, -29)
 amount = 20
@@ -76,7 +77,6 @@ process_material = SubResource("ParticleProcessMaterial_2sxs7")
 drag_vertical_enabled = true
 
 [node name="DebugInfo" type="Control" parent="."]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_left = -181.0
