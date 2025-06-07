@@ -1,5 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://5m2ar4vwdnpd"]
-[gd_scene load_steps=11 format=4 uid="uid://5m2ar4vwdnpd"]
+[gd_scene load_steps=14 format=4 uid="uid://5m2ar4vwdnpd"]
 
 [ext_resource type="Script" uid="uid://umg07x7rcb87" path="res://level/level.gd" id="1_pg6m5"]
 [ext_resource type="PackedScene" uid="uid://cq0dan380xs2g" path="res://level/tracks.tscn" id="2_jnvge"]
@@ -9,8 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://c3csdinu5agg4" path="res://station/station.tscn" id="3_7tcqk"]
 [ext_resource type="TileSet" uid="uid://b82jd4xyxr0fa" path="res://level/forest_noise_tileset.tres" id="3_oa0xv"]
 [ext_resource type="PackedScene" uid="uid://dh71w6aefqf38" path="res://ui/debug.tscn" id="4_s0jqg"]
-[ext_resource type="Script" uid="uid://bxsm7hr36wedi" path="res://level/mission_manager.gd" id="9_6gtgk"]
 [ext_resource type="Script" uid="uid://cohop5a2itmps" path="res://level/path_follow_2d.gd" id="7_0v1st"]
+[ext_resource type="Resource" uid="uid://bhmhsn47fi8wp" path="res://station/station_stats_start_2.tres" id="8_m3nah"]
+[ext_resource type="Script" uid="uid://bxsm7hr36wedi" path="res://level/mission_manager.gd" id="9_6gtgk"]
 
 [sub_resource type="Curve2D" id="Curve2D_ivpvi"]
 _data = {
@@ -32,6 +32,7 @@ tile_map_data = PackedByteArray("AAAAAAAAAAACAAEAAAAAAAEAAAACAAEAAAABAAIAAAABAAE
 tile_set = ExtResource("3_oa0xv")
 
 [node name="Debug" parent="." instance=ExtResource("4_s0jqg")]
+visible = false
 offset_left = 224.0
 offset_top = 106.0
 offset_right = 424.0
@@ -51,6 +52,10 @@ position = Vector2(176, -1280)
 
 [node name="Station" parent="." instance=ExtResource("3_7tcqk")]
 position = Vector2(184, 198)
+
+[node name="Station2" parent="." instance=ExtResource("3_7tcqk")]
+position = Vector2(134, -480)
+station_stats = ExtResource("8_m3nah")
 
 [node name="Path2D" type="Path2D" parent="."]
 position = Vector2(184, 313)
@@ -74,7 +79,7 @@ color = Color(1, 1, 1, 0.223529)
 [node name="LevelEnd" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LevelEnd"]
-position = Vector2(180.75, 51)
+position = Vector2(133, -709)
 shape = SubResource("RectangleShape2D_ivpvi")
 
 [node name="MissionManager" type="Node" parent="."]

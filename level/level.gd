@@ -6,7 +6,6 @@ class_name Level extends Node2D
 @onready var mission_manager: MissionManager = $MissionManager # Assuming the node is named MissionManager
 
 @onready var train: Train = %Train
-@onready var station: Station = $Station
 @onready var path_to_follow: PathFollow2D = $Path2D/PathFollow2D
 
 # Called when the node enters the scene tree for the first time.
@@ -19,9 +18,10 @@ func _ready() -> void:
 		# Connect station signals to mission manager
 		for child in get_children():
 			if child is Station:
-				var station: Station = child
-				station.train_correctly_stopped.connect(mission_manager._on_station_correctly_stopped)
-				station.station_missed.connect(mission_manager._on_station_missed)
+				var station_child: Station = child
+				mission_manager.mission.append(station_child.station_stats)
+				station_child.train_correctly_stopped.connect(mission_manager._on_station_correctly_stopped)
+				station_child.station_missed.connect(mission_manager._on_station_missed)
 		mission_manager.start_mission() # Start the mission when the level is ready
 
 # ACHTUNG: Die Position des Trains im Level wird hier auch gesetzt
@@ -30,11 +30,6 @@ func set_level_stats(value: LevelStats) -> void:
 	if train:
 		train.train_stats = level_stats.train_stats
 		path_to_follow.progress = 0.0
-		#train.position.y = 670
-		station.station_stats = level_stats.station_stats
-		#tiles.tile_set = level_stats.background_texture
-	if mission_manager:
-		mission_manager.mission = level_stats.mission
 
 
 func _input(event: InputEvent) -> void:

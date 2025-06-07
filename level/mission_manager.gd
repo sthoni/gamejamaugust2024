@@ -1,7 +1,7 @@
 class_name MissionManager extends Node
 
-@export var mission: Mission
 
+var mission: Array[StationStats]
 var current_station_index: int = 0
 var elapsed_time: float = 0.0
 var is_mission_active: bool = false
@@ -17,12 +17,12 @@ func _ready() -> void:
 	mission_timer.timeout.connect(_on_mission_timer_timeout)
 
 func start_mission() -> void:
-	if mission and mission.stations.size() > 0:
+	if mission and mission.size() > 0:
 		current_station_index = 0
 		elapsed_time = 0.0
 		is_mission_active = true
 		mission_timer.start() # Start a timer for the first leg
-		print("Mission started. Go to station: ", mission.stations[current_station_index].station_name)
+		print("Mission started. Go to station: ", mission[current_station_index].name)
 	else:
 		print("Error: No mission assigned or no stations in mission.")
 		is_mission_active = false
@@ -36,33 +36,33 @@ func _on_station_correctly_stopped(station_name: String) -> void:
 	if not is_mission_active:
 		return
 
-	var expected_station := mission.stations[current_station_index]
+	var expected_station := mission[current_station_index]
 
-	if station_name == expected_station.station_name:
+	if station_name == expected_station.name:
 		print("Arrived at correct station: ", station_name)
 		mission_timer.stop()
 		calculate_and_apply_penalty(expected_station, elapsed_time)
 
 		current_station_index += 1
-		if current_station_index < mission.stations.size():
+		if current_station_index < mission.size():
 			elapsed_time = 0.0
 			mission_timer.start() # Start timer for the next leg
-			print("Next station: ", mission.stations[current_station_index].station_name)
+			print("Next station: ", mission[current_station_index].name)
 		else:
 			print("Mission Completed!")
 			is_mission_active = false
 			mission_completed.emit()
 	else:
-		print("Arrived at incorrect station: ", station_name)
+		print("Arrived at incorrect station: ", name)
 		# TODO: Handle arriving at the wrong station (e.g., penalty, mission failed)
 
 func _on_station_missed(station_name: String) -> void:
 	if not is_mission_active:
 		return
 
-	var expected_station := mission.stations[current_station_index]
+	var expected_station := mission[current_station_index]
 
-	if station_name == expected_station.station_name:
+	if station_name == expected_station.name:
 		print("Missed expected station: ", station_name)
 		mission_timer.stop()
 		apply_miss_penalty(expected_station)
@@ -73,9 +73,9 @@ func _on_station_missed(station_name: String) -> void:
 
 func _on_mission_timer_timeout() -> void:
 	if is_mission_active:
-		var current_station := mission.stations[current_station_index]
+		var current_station := mission[current_station_index]
 		if elapsed_time > current_station.time_limit:
-			print("Time limit exceeded for station: ", current_station.station_name)
+			print("Time limit exceeded for station: ", current_station.name)
 			apply_miss_penalty(current_station) # Or a different penalty for time limit
 			is_mission_active = false
 			mission_failed.emit()
