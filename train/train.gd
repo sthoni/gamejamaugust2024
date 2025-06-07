@@ -170,22 +170,19 @@ func _on_train_at_start() -> void:
 func _on_train_exited() -> void:
 	flag_train_long_tut_played = false
 
+func _remove_items_by_type(item_type: int) -> void:
+	var items_to_remove: Array[Item] = train_stats.items.filter(func(item: Item) -> bool: return item.item_type == item_type)
+	for item_to_remove: Item in items_to_remove:
+		train_stats.items.erase(item_to_remove)
+
 func _on_item_bought(bought_item: Item) -> void:
 	if  bought_item.item_type == Item.ItemType.UPGRADE:
 		bought_item.apply_effects(self)
 		apply_items(train_stats)
 		return
-	elif bought_item.item_type == Item.ItemType.TRAIN:
-		var trains_in_items: Array[Item] = train_stats.items.filter(func(item: Item) -> bool: return item.item_type == Item.ItemType.TRAIN)
-		for item_train: Item in trains_in_items:
-			train_stats.items.erase(item_train)
-	elif bought_item.item_type == Item.ItemType.ENGINE:
-		var engines_in_items: Array[Item] = train_stats.items.filter(func(item: Item) -> bool: return item.item_type == Item.ItemType.ENGINE)
-		for item_engine: Item in engines_in_items:
-			train_stats.items.erase(item_engine)
-	elif bought_item.item_type == Item.ItemType.BRAKES:
-		var brakes_in_items: Array[Item] = train_stats.items.filter(func(item: Item) -> bool: return item.item_type == Item.ItemType.BRAKES)
-		for item_engine: Item in brakes_in_items:
-			train_stats.items.erase(item_engine)
+
+	# Remove existing items of the same type before adding the new one
+	_remove_items_by_type(bought_item.item_type)
+
 	train_stats.items.push_back(bought_item)
 	apply_items(train_stats)
