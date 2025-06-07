@@ -1,5 +1,9 @@
 class_name Station extends Area2D
 
+signal train_correctly_stopped(station_name: String)
+signal station_missed(station_name: String)
+
+@export var station_name: String
 @export var station_stats: StationStats : set = set_station_stats
 
 @onready var platform: CollisionShape2D = $Platform
@@ -60,6 +64,7 @@ func _process(_delta: float) -> void:
 				if has_money:
 					Events.emit_signal("station_freight_sold", train_at_station.transport_amount)
 					has_money = false
+				train_correctly_stopped.emit(station_name)
 			TrainStatus.AT_END:
 				print("Too far. Ride back!")
 				status = TrainStatus.STOPPED_WRONG
@@ -114,3 +119,11 @@ func _on_station_end_body_exited(body: Node2D) -> void:
 func _on_body_entered(body: Node2D) -> void:
 	if body is Train && status == TrainStatus.NOT_ARRIVED:
 		status = TrainStatus.AT_STATION
+
+func _on_body_exited(body: Node2D) -> void:
+	if body is Train:
+		var train_body: Train = body
+		# Check if the train exited the main station area without stopping correctly
+		if (status == TrainStatus.NOT_ARRIVED or status == TrainStatus.AT_STATION) and abs(train_body.velocity.y) > 10: # Threshold velocity
+			print("Train missed station: ", station_name)
+			station_missed.emit(station_name)

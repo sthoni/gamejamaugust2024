@@ -10,3 +10,7 @@ var current_level: int = 1
 func set_money(value: int) -> void:
 	money = value
 	Events.emit_signal("money_changed", money)
+
+func apply_money_penalty(amount: int) -> void:
+	money -= amount
+	Events.emit_signal("money_changed", money)

@@ -3,12 +3,23 @@ class_name Level extends Node2D
 @export var level_stats: LevelStats : set = set_level_stats
 
 @onready var train: Train = $Train
-@onready var station: Station = $Station
+@onready var station: Station = $Station # Assuming there's still one main station node for now
 @onready var tiles: TileMapLayer = $TileMapLayer
+@onready var mission_manager: MissionManager = $MissionManager # Assuming the node is named MissionManager
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	set_level_stats(level_stats)
+	if mission_manager:
+		mission_manager.mission_completed.connect(_on_mission_completed)
+		mission_manager.mission_failed.connect(_on_mission_failed)
+		mission_manager.apply_penalty.connect(GameStats.apply_money_penalty) # Connect penalty signal
+		# Connect station signals to mission manager
+		for child in get_children():
+			if child is Station:
+				child.train_correctly_stopped.connect(mission_manager._on_station_correctly_stopped)
+				child.station_missed.connect(mission_manager._on_station_missed)
+		mission_manager.start_mission() # Start the mission when the level is ready
 
 # ACHTUNG: Die Position des Trains im Level wird hier auch gesetzt
 func set_level_stats(value: LevelStats) -> void:
@@ -16,8 +27,12 @@ func set_level_stats(value: LevelStats) -> void:
 	if train:
 		train.train_stats = level_stats.train_stats
 		train.position.y = 670
-		station.station_stats = level_stats.station_stats
+		# Assuming there's still one main station node for now
+		if station:
+			station.station_stats = level_stats.station_stats
 		#tiles.tile_set = level_stats.background_texture
+	if mission_manager:
+		mission_manager.mission = level_stats.mission
 
 
 func _input(event: InputEvent) -> void:
@@ -27,3 +42,11 @@ func _input(event: InputEvent) -> void:
 func _on_level_end_body_entered(body: Node2D) -> void:
 	if body is Train:
 		Events.emit_signal("level_end_reached")
+
+func _on_mission_completed() -> void:
+	print("Level received mission completed signal.")
+	# TODO: Implement level completion logic (e.g., show results screen, load next level)
+
+func _on_mission_failed() -> void:
+	print("Level received mission failed signal.")
+	# TODO: Implement level failed logic (e.g., show game over screen, restart level)
