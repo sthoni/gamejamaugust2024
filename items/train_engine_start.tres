@@ -5,9 +5,10 @@
 [resource]
 script = ExtResource("1_s566g")
 acc_power = 20000.0
+level = 3
 id = ""
-item_type = 0
+item_type = 3
 price = 10000000
 weight = 5.0
-name = ""
+name = "Start Engine"
 tooltip_text = ""

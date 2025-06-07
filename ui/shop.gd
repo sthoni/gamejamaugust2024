@@ -7,7 +7,6 @@ class_name Shop extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	@warning_ignore("return_value_discarded")
 	Events.connect("money_changed", _on_money_changed)
 
 func add_item(node: Node) -> void:

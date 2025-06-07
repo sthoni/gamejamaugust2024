@@ -6,8 +6,9 @@
 script = ExtResource("1_865cg")
 brake_power = 30000.0
 transport_amount = 10.0
+level = 1
 id = "TrainTractionStart"
-item_type = 0
+item_type = 4
 price = 10000000000000
 weight = 10.0
 name = "Train Traction Start"
