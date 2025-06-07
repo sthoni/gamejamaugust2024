@@ -1,0 +1,74 @@
+[gd_scene load_steps=5 format=3 uid="uid://bq8lf8yc6y7ti"]
+
+[ext_resource type="Script" uid="uid://dqkq0dxinpb1t" path="res://ui/menu.gd" id="1_4c782"]
+[ext_resource type="Theme" uid="uid://c5vctt5fcxfn" path="res://theme.tres" id="1_bwjgb"]
+[ext_resource type="Texture2D" uid="uid://c0408thg321bf" path="res://assets/ui/UI_Paper.png" id="2_udkah"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4c782"]
+atlas = ExtResource("2_udkah")
+region = Rect2(32, 32, 96, 96)
+
+[node name="Menu" type="Control"]
+process_mode = 2
+z_index = 100
+layout_mode = 3
+anchors_preset = 0
+offset_right = 360.0
+offset_bottom = 640.0
+script = ExtResource("1_4c782")
+
+[node name="PanelContainer" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_bwjgb")
+texture = SubResource("AtlasTexture_4c782")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+offset_right = 360.0
+offset_bottom = 640.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 128
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_constants/separation = 32
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/font_size = 48
+text = "Ride, shop, scale!"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_bwjgb")
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 8
+text = "Use the Arrow-Keys to  accelerate and brake.
+
+Stop at the station to buy new waggons und earn more money next time!"
+fit_content = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="StartButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Start Game"
+
+[node name="QuitButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Quit Game"

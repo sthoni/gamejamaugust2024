@@ -7,6 +7,7 @@
 
 [node name="Shop" type="Control"]
 process_mode = 3
+z_index = 100
 layout_mode = 3
 anchors_preset = 0
 offset_right = 360.0

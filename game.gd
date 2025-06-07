@@ -4,6 +4,7 @@ class_name Game extends Node
 
 @onready var level: Level = $Level
 @onready var shop: Shop = $Shop
+@onready var menu: Menu = $Menu
 @onready var label_level: Label = %LabelLevel
 @onready var button: Button = %Button
 @onready var panel_container: PanelContainer = $PanelContainer
@@ -26,6 +27,8 @@ func _ready() -> void:
 	Events.level_end_reached.connect(_on_level_end_reached)
 	Events.shop_key_pressed.connect(_on_shop_key_pressed)
 	button.pressed.connect(create_new_level)
+
+	get_tree().paused = true
 
 
 func _set_game_stats(value: GameStats) -> void:
@@ -73,6 +76,10 @@ func _input(event: InputEvent) -> void:
 	if level_ended:
 		if event.is_action_pressed("shop"):
 			create_new_level()
+	if event.is_action_pressed("exit_to_menu"):
+		menu.show()
+		get_tree().paused = true
+		
 
 
 func _on_shop_key_pressed() -> void:

@@ -1,6 +1,60 @@
-[gd_resource type="Theme" load_steps=3 format=3 uid="uid://c5vctt5fcxfn"]
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://c5vctt5fcxfn"]
 
 [ext_resource type="FontFile" uid="uid://ctudgwsmkjvvy" path="res://assets/ui/Toriko.ttf" id="1_0raqw"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_110ce"]
+content_margin_top = 12.0
+bg_color = Color(0.156517, 0.0852372, 0.0182362, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e1x85"]
+content_margin_top = 12.0
+bg_color = Color(0.845203, 0.568582, 0.304, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cjfk0"]
+content_margin_top = 12.0
+bg_color = Color(0.525465, 0.33153, 0.137499, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vj6dk"]
+content_margin_top = 12.0
+bg_color = Color(0.950371, 0.741255, 0.557075, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nj5fc"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -9,7 +63,11 @@ bg_color = Color(0.6, 0.6, 0.6, 0)
 default_font = ExtResource("1_0raqw")
 default_font_size = 32
 Button/colors/font_color = Color(1, 1, 1, 1)
-Button/constants/outline_size = 8
+Button/constants/outline_size = 16
+Button/styles/disabled = SubResource("StyleBoxFlat_110ce")
+Button/styles/hover = SubResource("StyleBoxFlat_e1x85")
+Button/styles/normal = SubResource("StyleBoxFlat_cjfk0")
+Button/styles/pressed = SubResource("StyleBoxFlat_vj6dk")
 GridContainer/constants/h_separation = 32
 GridContainer/constants/v_separation = 32
 HBoxContainer/constants/separation = 16
