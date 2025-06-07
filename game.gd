@@ -2,7 +2,7 @@ class_name Game extends Node
 
 @export var game_stats: GameStats : set = _set_game_stats
 
-@onready var level: Level = $Level
+@onready var level: Level = %Level
 @onready var shop: Shop = $Shop
 @onready var menu: Menu = $Menu
 @onready var label_level: Label = %LabelLevel
@@ -78,6 +78,13 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("exit_to_menu"):
 		menu.show()
 		get_tree().paused = true
+		
+	# Input-Router-Funktion, zur Event-Weiterleitung in SubViewport:
+	var world = $SubViewport/Level
+	for child in world.get_children():
+		if child.has_method("_input"):
+			child._input(event)
+
 		
 
 

@@ -2,7 +2,7 @@
 
 [ext_resource type="TileSet" uid="uid://b82jd4xyxr0fa" path="res://level/forest_noise_tileset.tres" id="1_eyxuv"]
 [ext_resource type="Resource" uid="uid://bg1b2bhwkhxun" path="res://items/item_pool_start.tres" id="1_m451t"]
-[ext_resource type="Script" uid="uid://cpf54jp870jd1" path="res://level/level_stats.gd" id="1_mv6bu"]
+[ext_resource type="Script" uid="uid://b27uvpvr0vyd" path="res://level/level_stats.gd" id="1_mv6bu"]
 [ext_resource type="Resource" uid="uid://ujjiktacktrw" path="res://station/station_stats_start.tres" id="3_b4kye"]
 [ext_resource type="Resource" uid="uid://fdaqrpalijb6" path="res://train/train_start.tres" id="4_q3ugd"]
 

@@ -26,6 +26,7 @@ var waggon = preload("res://train/waggon.tscn")
 @onready var transport_amount: float = 0.0
 
 func _ready() -> void:
+	$Camera2D.make_current()
 	Events.train_at_start.connect(_on_train_at_start)
 	Events.train_exited.connect(_on_train_exited)
 	@warning_ignore("return_value_discarded")

@@ -72,6 +72,9 @@ texture = ExtResource("8_hf3vt")
 lifetime = 2.0
 process_material = SubResource("ParticleProcessMaterial_2sxs7")
 
+[node name="Camera2D" type="Camera2D" parent="."]
+drag_vertical_enabled = true
+
 [node name="DebugInfo" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
