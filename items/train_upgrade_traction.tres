@@ -1,15 +1,15 @@
 [gd_resource type="Resource" script_class="UpgradeItem" load_steps=2 format=3 uid="uid://c26xiongto7ih"]
 
-[ext_resource type="Script" uid="uid://bu5mn6mnapves" path="res://items/upgrade_item.gd" id="1_p1rax"]
+[ext_resource type="Script" path="res://items/upgrade_item.gd" id="1_p1rax"]
 
 [resource]
 script = ExtResource("1_p1rax")
 upgrade_power = 1
-upgrade_type = 4
+upgrade_type = 3
 id = ""
 item_type = 5
 price = 50
 weight = 0.0
-name = "Brakes Upgrade"
-tooltip_text = "Level up your brakes!"
+name = "Engine Upgrade"
+tooltip_text = "Level up your engine!"
 metadata/_custom_type_script = "uid://bu5mn6mnapves"
