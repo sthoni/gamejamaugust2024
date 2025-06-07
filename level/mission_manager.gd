@@ -93,6 +93,3 @@ func calculate_and_apply_penalty(station: StationStats, actual_time: float) -> v
 func apply_miss_penalty(station: StationStats) -> void:
 	print("Applying miss penalty: ", station.miss_penalty)
 	apply_penalty.emit(station.miss_penalty)
-
-# TODO: Connect signals from Station nodes to this manager
-# TODO: Connect signals from this manager to GameStats and Level
