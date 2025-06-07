@@ -72,5 +72,8 @@ texture = ExtResource("8_hf3vt")
 lifetime = 2.0
 process_material = SubResource("ParticleProcessMaterial_2sxs7")
 
+[node name="Camera2D" type="Camera2D" parent="."]
+drag_vertical_enabled = true
+
 [connection signal="timeout" from="Timer_Brake" to="." method="_on_timer_brake_timeout"]
 [connection signal="timeout" from="Timer_Acc" to="." method="_on_timer_acc_timeout"]

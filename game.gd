@@ -2,7 +2,7 @@ class_name Game extends Node
 
 @export var game_stats: GameStats : set = _set_game_stats
 
-@onready var level: Level = $Level
+@onready var level: Level = %Level
 @onready var shop: Shop = $Shop
 @onready var menu: Menu = $Menu
 @onready var label_level: Label = %LabelLevel
@@ -27,6 +27,8 @@ func _ready() -> void:
 	Events.level_end_reached.connect(_on_level_end_reached)
 	Events.shop_key_pressed.connect(_on_shop_key_pressed)
 	button.pressed.connect(create_new_level)
+	#$SubViewport/Level/Train.position = Vector2(180, 180)
+
 
 	get_tree().paused = true
 

@@ -4,10 +4,10 @@ class_name Level extends Node2D
 
 @onready var train: Train = $Train
 @onready var station: Station = $Station
-@onready var hints: Control = %Hints
 @onready var tiles: TileMapLayer = $TileMapLayer
-@onready var manual: Control = $Control
-@onready var money_label: Label = $Control/MoneyLabel
+@onready var manual: Control = $CanvasLayer2/Control
+@onready var hints: Control = %Hints
+@onready var money_label: Label = %MoneyLabel
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
