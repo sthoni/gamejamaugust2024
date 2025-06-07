@@ -13,14 +13,13 @@ class_name Level extends Node2D
 func _ready() -> void:
 	hints.visible = false
 	set_level_stats(level_stats)
-	var tween = create_tween()
+	var tween := create_tween()
 	tween.tween_property(manual, "position", Vector2(-28.0,294.0), 2)
-	@warning_ignore("return_value_discarded")
 	Events.station_status_changed.connect(_on_station_status_changed)
 	Events.money_changed.connect(_on_money_changed)
 
 # ACHTUNG: Die Position des Trains im Level wird hier auch gesetzt
-func set_level_stats(value: LevelStats):
+func set_level_stats(value: LevelStats) -> void:
 	level_stats = value
 	if train:
 		train.train_stats = level_stats.train_stats

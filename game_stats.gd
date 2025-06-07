@@ -7,6 +7,6 @@ class_name GameStats extends Resource
 var money: int : set = set_money
 var current_level: int = 1
 
-func set_money(value: int):
+func set_money(value: int) -> void:
 	money = value
 	Events.emit_signal("money_changed", money)

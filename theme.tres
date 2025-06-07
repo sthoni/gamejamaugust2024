@@ -19,4 +19,4 @@ MarginContainer/constants/margin_left = 32
 MarginContainer/constants/margin_right = 32
 MarginContainer/constants/margin_top = 48
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_nj5fc")
-VBoxContainer/constants/separation = 8
+VBoxContainer/constants/separation = 16

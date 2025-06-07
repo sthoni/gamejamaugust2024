@@ -23,7 +23,9 @@ signal level_end_reached()
 signal station_status_changed(status: Station.TrainStatus)
 @warning_ignore("unused_signal")
 signal station_freight_sold(count: int)
+@warning_ignore("unused_signal")
 signal train_at_start()
+@warning_ignore("unused_signal")
 signal train_exited()
 
 # Shop Events
