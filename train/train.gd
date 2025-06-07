@@ -46,7 +46,7 @@ func apply_items(value: TrainStats) -> void:
 		items_label.text = ""
 	if sprite:
 		sprite.texture = value.sprite
-	if get_tree():
+	if self.is_inside_tree():
 		for member in get_tree().get_nodes_in_group("FreightWaggons"):
 			member.free()
 	var i := 0
