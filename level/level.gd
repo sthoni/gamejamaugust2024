@@ -42,8 +42,8 @@ func _on_level_end_body_entered(body: Node2D) -> void:
 
 func _on_mission_completed() -> void:
 	print("Level received mission completed signal.")
-	# TODO: Implement level completion logic (e.g., show results screen, load next level)
+	game_stats.money += 500
 
 func _on_mission_failed() -> void:
 	print("Level received mission failed signal.")
-	# TODO: Implement level failed logic (e.g., show game over screen, restart level)
+	game_stats.money -= 300
