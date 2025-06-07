@@ -18,7 +18,6 @@ config/icon="res://icon.svg"
 [autoload]
 
 Events="*res://global/Events.gd"
-GameStats="*res://game_stats.gd"
 
 [debug]
 

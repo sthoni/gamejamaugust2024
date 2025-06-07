@@ -1,4 +1,4 @@
-extends Resource
+class_name GameStats extends Resource
 
 @export_group("Game Attributes")
 @export var train_stats: TrainStats

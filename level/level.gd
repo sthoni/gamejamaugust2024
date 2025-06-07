@@ -1,7 +1,7 @@
 class_name Level extends Node2D
 
 @export var level_stats: LevelStats : set = set_level_stats
-
+@export var game_stats: GameStats
 @onready var train: Train = $Train
 @onready var station: Station = $Station # Assuming there's still one main station node for now
 @onready var tiles: TileMapLayer = $TileMapLayer
@@ -13,7 +13,7 @@ func _ready() -> void:
 	if mission_manager:
 		mission_manager.mission_completed.connect(_on_mission_completed)
 		mission_manager.mission_failed.connect(_on_mission_failed)
-		mission_manager.apply_penalty.connect(GameStats.apply_money_penalty) # Connect penalty signal
+		mission_manager.apply_penalty.connect(game_stats.apply_money_penalty) # Connect penalty signal
 		# Connect station signals to mission manager
 		for child in get_children():
 			if child is Station:
