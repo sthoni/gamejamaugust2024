@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://djq6kvq6des23"]
+[gd_scene load_steps=11 format=3 uid="uid://djq6kvq6des23"]
 
 [ext_resource type="Script" uid="uid://dkf51wunavfc7" path="res://game.gd" id="1_4fbc6"]
 [ext_resource type="PackedScene" uid="uid://5m2ar4vwdnpd" path="res://level/level.tscn" id="2_lsa33"]
@@ -8,8 +8,6 @@
 [ext_resource type="Theme" uid="uid://c5vctt5fcxfn" path="res://theme.tres" id="5_ryrav"]
 [ext_resource type="PackedScene" uid="uid://bvvip673kkkj7" path="res://ui/gauge.tscn" id="6_vef74"]
 [ext_resource type="PackedScene" uid="uid://bq8lf8yc6y7ti" path="res://ui/menu.tscn" id="7_eow3j"]
-[ext_resource type="Texture2D" uid="uid://bwi6m2sr55uqy" path="res://assets/ui/UI_Papernote_FrameStandard01.png" id="7_hve3p"]
-[ext_resource type="PackedScene" uid="uid://dbir3qksmcgha" path="res://ui/hints.tscn" id="8_mfdv2"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_vef74"]
 viewport_path = NodePath("SubViewport")
@@ -30,72 +28,8 @@ offset_bottom = 40.0
 custom_minimum_size = Vector2(280, 360)
 layout_mode = 2
 
-[node name="CanvasLayer2" type="CanvasLayer" parent="HBoxContainer/VBoxContainer"]
-
-[node name="Gauge" parent="HBoxContainer/VBoxContainer/CanvasLayer2" instance=ExtResource("6_vef74")]
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-grow_horizontal = 1
-grow_vertical = 1
-scale = Vector2(2, 2)
-
-[node name="Control" type="Control" parent="HBoxContainer/VBoxContainer/CanvasLayer2"]
-layout_mode = 3
-anchors_preset = 0
-offset_left = -350.0
-offset_top = 294.0
-offset_right = -310.0
-offset_bottom = 334.0
-
-[node name="NinePatchRect" type="NinePatchRect" parent="HBoxContainer/VBoxContainer/CanvasLayer2/Control"]
-layout_mode = 0
-offset_left = 337.0
-offset_top = -43.0
-offset_right = 391.0
-offset_bottom = 37.0
-scale = Vector2(5, 5)
-texture = ExtResource("7_hve3p")
-
-[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/CanvasLayer2/Control"]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 3.664
-anchor_bottom = 1.0
-offset_left = 40.0
-offset_top = 12.0
-offset_right = 106.44
-offset_bottom = 212.0
-text = "Use the Arrow-Keys to  accelerate and brake.
-Stop at the station to buy new waggons und earn more money next time!"
-autowrap_mode = 2
-
-[node name="MoneyLabel" type="Label" parent="HBoxContainer/VBoxContainer/CanvasLayer2/Control"]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_left = 162.0
-offset_top = -34.0
-offset_right = 202.0
-offset_bottom = -10.0
-grow_horizontal = 2
-text = "3000 $"
-horizontal_alignment = 2
-autowrap_mode = 2
-
-[node name="Hints" parent="HBoxContainer/VBoxContainer/CanvasLayer2/Control" instance=ExtResource("8_mfdv2")]
-unique_name_in_owner = true
-texture_filter = 1
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 160.0
-offset_top = 274.0
-offset_right = 265.0
-offset_bottom = 285.0
-grow_horizontal = 1
-grow_vertical = 1
+[node name="Gauge" parent="HBoxContainer/VBoxContainer" instance=ExtResource("6_vef74")]
+layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="HBoxContainer"]
 custom_minimum_size = Vector2(360, 360)
@@ -159,4 +93,3 @@ stream = ExtResource("5_7jktm")
 volume_db = -20.0
 
 [node name="Menu" parent="." instance=ExtResource("7_eow3j")]
-visible = false

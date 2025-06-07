@@ -66,7 +66,6 @@ func _process(_delta: float) -> void:
 
 
 func _input(event: InputEvent) -> void:
-	print("function _input in scene station entered ...")
 	if event.is_action_pressed("shop"):
 		if status == TrainStatus.STOPPED:
 			Events.emit_signal("shop_key_pressed")

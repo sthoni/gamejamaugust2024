@@ -13,8 +13,8 @@ process_mode = 2
 z_index = 100
 layout_mode = 3
 anchors_preset = 0
-offset_right = 360.0
-offset_bottom = 640.0
+offset_right = 640.0
+offset_bottom = 360.0
 script = ExtResource("1_4c782")
 
 [node name="PanelContainer" type="NinePatchRect" parent="."]
@@ -28,18 +28,18 @@ theme = ExtResource("1_bwjgb")
 texture = SubResource("AtlasTexture_4c782")
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
-layout_mode = 2
-offset_right = 360.0
-offset_bottom = 640.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_top = 128
+theme_override_constants/margin_left = 96
+theme_override_constants/margin_right = 96
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
 layout_mode = 2
-size_flags_horizontal = 4
 size_flags_vertical = 0
-theme_override_constants/separation = 32
 
 [node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
