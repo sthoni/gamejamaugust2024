@@ -1,6 +1,6 @@
 class_name Game extends Node
 
-@export var game_stats: GameStats : set = set_game_stats
+@export var game_stats: GameStats : set = _set_game_stats
 
 @onready var level: Level = $Level
 @onready var shop: Shop = $Shop
@@ -26,7 +26,7 @@ func _ready() -> void:
 	Events.shop_key_pressed.connect(_on_shop_key_pressed)
 
 
-func set_game_stats(value: GameStats):
+func _set_game_stats(value: GameStats) -> void:
 	game_stats = value
 
 
@@ -34,21 +34,22 @@ func _on_item_buy_button_pressed(item: Item) -> void:
 	if item.price <= game_stats.money:
 		var tween := create_tween()
 		var end_money: int = game_stats.money - item.price
-		tween.tween_property(game_stats, "money", end_money, item.price / 50) 
+		tween.tween_property(game_stats, "money", end_money, item.price / 50.0) 
 		@warning_ignore("return_value_discarded")
 		Events.emit_signal("item_bought", item)
 
 
 func _on_station_freight_sold(count: int) -> void:
-	money_player.play()
 	var tween := create_tween()
 	var end_money: int = game_stats.money + count
-	tween.tween_property(game_stats, "money", end_money, count / 50) 
+	tween.tween_property(game_stats, "money", end_money, count / 50.0)
+	tween.finished.connect(func() -> void: money_player.play())
+	
 
 func _on_level_end_reached() -> void:
 	game_stats.current_level += 1
 	panel_container.position = Vector2(0.0, 640.0)
-	var tween = get_tree().create_tween()
+	var tween := create_tween()
 	tween.tween_property(panel_container, "position", Vector2(0.0,0.0), 1)
 	label_level.text = "You are arriving at Station %s" % game_stats.current_level
 	label_level.visible_characters = 0
