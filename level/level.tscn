@@ -9,8 +9,8 @@
 [ext_resource type="TileSet" uid="uid://b82jd4xyxr0fa" path="res://level/forest_noise_tileset.tres" id="3_oa0xv"]
 [ext_resource type="PackedScene" uid="uid://dh71w6aefqf38" path="res://ui/debug.tscn" id="4_s0jqg"]
 [ext_resource type="Script" uid="uid://cohop5a2itmps" path="res://level/path_follow_2d.gd" id="7_0v1st"]
-[ext_resource type="Resource" uid="uid://bhmhsn47fi8wp" path="res://station/station_stats_start_2.tres" id="8_m3nah"]
-[ext_resource type="Script" uid="uid://bxsm7hr36wedi" path="res://level/mission_manager.gd" id="9_6gtgk"]
+[ext_resource type="Resource" uid="uid://bbd4jch0jo6gm" path="res://station/station_stats_start_2.tres" id="8_m3nah"]
+[ext_resource type="Script" path="res://level/mission_manager.gd" id="9_6gtgk"]
 
 [sub_resource type="Curve2D" id="Curve2D_ivpvi"]
 _data = {
@@ -54,7 +54,7 @@ position = Vector2(176, -1280)
 position = Vector2(184, 198)
 
 [node name="Station2" parent="." instance=ExtResource("3_7tcqk")]
-position = Vector2(134, -480)
+position = Vector2(184, 8)
 station_stats = ExtResource("8_m3nah")
 
 [node name="Path2D" type="Path2D" parent="."]

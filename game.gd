@@ -43,6 +43,7 @@ func _on_item_buy_button_pressed(item: Item) -> void:
 	
 func _on_station_freight_sold(count: int) -> void:
 	game_stats.money += count
+	money_player.play()
 	
 
 func _on_level_end_reached() -> void:

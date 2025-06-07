@@ -9,4 +9,6 @@
 script = ExtResource("1_mv6bu")
 train_stats = ExtResource("4_q3ugd")
 item_pool = ExtResource("2_gjr0e")
+mission_reward = 500
+mission_penalty = 300
 background_texture = ExtResource("1_eyxuv")

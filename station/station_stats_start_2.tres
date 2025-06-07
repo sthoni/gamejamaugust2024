@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="StationStats" load_steps=2 format=3 uid="uid://bhmhsn47fi8wp"]
+[gd_resource type="Resource" script_class="StationStats" load_steps=2 format=3 uid="uid://bbd4jch0jo6gm"]
 
 [ext_resource type="Script" uid="uid://hatdf840mcsg" path="res://station/station_stats.gd" id="1_0lfi7"]
 

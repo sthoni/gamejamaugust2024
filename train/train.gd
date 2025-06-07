@@ -185,7 +185,8 @@ func _on_item_bought(bought_item: Item) -> void:
 		return
 
 	# Remove existing items of the same type before adding the new one
-	_remove_items_by_type(bought_item.item_type)
+	if bought_item.item_type != Item.ItemType.WAGGON:
+		_remove_items_by_type(bought_item.item_type)
 
 	train_stats.items.push_back(bought_item)
 	apply_items(train_stats)
