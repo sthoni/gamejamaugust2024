@@ -26,6 +26,8 @@ var waggon = preload("res://train/waggon.tscn")
 @onready var transport_amount: float = 0.0
 @onready var path_to_follow = get_parent()
 
+var paths: Array[PathFollow2D]
+
 func _ready() -> void:
 	$Camera2D.make_current()
 	Events.train_at_start.connect(_on_train_at_start)
@@ -48,15 +50,19 @@ func apply_items(value: TrainStats) -> void:
 		sprite.texture = value.sprite
 	if self.is_inside_tree():
 		for member in get_tree().get_nodes_in_group("FreightWaggons"):
-			member.free()
+			member.get_parent().free()
 	var i := 0
 	for item: Item in value.items:
 		weight += item.weight
 		item.apply_effects(self)
-		if item.item_type == Item.ItemType.WAGGON:
+		if item.item_type == Item.ItemType.WAGGON and path_to_follow:
 			var waggon_instance := waggon.instantiate()
-			waggon_instance.position.y = 35 + (i * 24)
-			add_child(waggon_instance)
+			waggon_instance.rotation = deg_to_rad(90)
+			var new_path_to_follow = PathFollow2D.new()
+			paths.append(new_path_to_follow)
+			get_parent().get_parent().add_child.call_deferred(new_path_to_follow)
+			new_path_to_follow.add_child(waggon_instance)
+			path_to_follow.add_child.call_deferred(waggon_instance)
 			waggon_instance.add_to_group("FreightWaggons")
 			i += 1
 			waggon_amount += 1
@@ -126,6 +132,8 @@ func _physics_process(delta: float) -> void:
 	@warning_ignore("return_value_discarded")
 	if path_to_follow is PathFollow2D:
 		path_to_follow.progress += new_velocity * delta
+		for i in range(paths.size()):
+			paths[i].progress = path_to_follow.progress - (35 + 24 * i)
 	#move_and_slide()
 
 func _check_speed():
