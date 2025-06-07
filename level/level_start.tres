@@ -1,13 +1,13 @@
 [gd_resource type="Resource" script_class="LevelStats" load_steps=11 format=3 uid="uid://bbum0dx5joke6"]
 
 [ext_resource type="TileSet" uid="uid://b82jd4xyxr0fa" path="res://level/forest_noise_tileset.tres" id="1_eyxuv"]
-[ext_resource type="Script" uid="uid://cpf54jp870jd1" path="res://level/level_stats.gd" id="1_mv6bu"]
+[ext_resource type="Script" uid="uid://b27uvpvr0vyd" path="res://level/level_stats.gd" id="1_mv6bu"]
 [ext_resource type="Script" uid="uid://cgja65gcqrs22" path="res://items/item.gd" id="2_xobnf"]
 [ext_resource type="Resource" uid="uid://ujjiktacktrw" path="res://station/station_stats_start.tres" id="3_b4kye"]
-[ext_resource type="Script" path="res://items/upgrade_item.gd" id="3_ep5uk"]
+[ext_resource type="Script" uid="uid://bu5mn6mnapves" path="res://items/upgrade_item.gd" id="3_ep5uk"]
 [ext_resource type="Resource" uid="uid://bn6iqhla4y5t4" path="res://items/steambrake.tres" id="4_g1yue"]
 [ext_resource type="Resource" uid="uid://fdaqrpalijb6" path="res://train/train_start.tres" id="4_q3ugd"]
-[ext_resource type="Script" uid="uid://dy1gn7387857f" path="res://items/item_pool.gd" id="5_h60mb"]
+[ext_resource type="Script" uid="uid://dmvsj6t0mfvhy" path="res://items/item_pool.gd" id="5_h60mb"]
 
 [sub_resource type="Resource" id="Resource_2e06y"]
 script = ExtResource("3_ep5uk")
