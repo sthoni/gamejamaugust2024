@@ -16,6 +16,8 @@ var waggon = preload("res://train/waggon.tscn")
 @onready var longtut: AudioStreamPlayer = $LongTut
 @onready var driving_sound: AudioStreamPlayer2D = $Driving
 @onready var steam_particles: GPUParticles2D = $SteamParticles
+@onready var items_label: Label = %ItemsLabel
+
 @onready var start_velocity: float = 0.0
 @onready var acc_power: float = 0.0
 @onready var brake_power: float = 0.0
@@ -38,22 +40,30 @@ func apply_items(value: TrainStats) -> void:
 	brake_power = 0.0
 	waggon_amount = 0
 	transport_amount = 0.0
+	if items_label:
+		items_label.text = ""
 	if sprite:
 		sprite.texture = value.sprite
 	if get_tree():
 		for member in get_tree().get_nodes_in_group("FreightWaggons"):
 			member.free()
-	var i = 0
+	var i := 0
 	for item: Item in value.items:
 		weight += item.weight
 		item.apply_effects(self)
 		if item.item_type == Item.ItemType.WAGGON:
-			var waggon_instance = waggon.instantiate()
+			var waggon_instance := waggon.instantiate()
 			waggon_instance.position.y = 35 + (i * 24)
 			add_child(waggon_instance)
 			waggon_instance.add_to_group("FreightWaggons")
 			i += 1
 			waggon_amount += 1
+		if items_label:
+			items_label.text += item.name
+			if item.get("level") != null:
+				items_label.text += " ("+ str(item.level) + ")\n"
+			else:
+				items_label.text += "\n"
 	@warning_ignore("return_value_discarded")
 	Events.emit_signal("weight_changed", weight)
 	@warning_ignore("return_value_discarded")
@@ -160,15 +170,19 @@ func _on_train_exited() -> void:
 	flag_train_long_tut_played = false
 
 func _on_item_bought(bought_item: Item) -> void:
-	if bought_item.item_type == Item.ItemType.TRAIN:
+	if  bought_item.item_type == Item.ItemType.UPGRADE:
+		bought_item.apply_effects(self)
+		apply_items(train_stats)
+		return
+	elif bought_item.item_type == Item.ItemType.TRAIN:
 		var trains_in_items: Array[Item] = train_stats.items.filter(func(item: Item) -> bool: return item.item_type == Item.ItemType.TRAIN)
 		for item_train: Item in trains_in_items:
 			train_stats.items.erase(item_train)
-	if bought_item.item_type == Item.ItemType.ENGINE:
+	elif bought_item.item_type == Item.ItemType.ENGINE:
 		var engines_in_items: Array[Item] = train_stats.items.filter(func(item: Item) -> bool: return item.item_type == Item.ItemType.ENGINE)
 		for item_engine: Item in engines_in_items:
 			train_stats.items.erase(item_engine)
-	if bought_item.item_type == Item.ItemType.BRAKES:
+	elif bought_item.item_type == Item.ItemType.BRAKES:
 		var brakes_in_items: Array[Item] = train_stats.items.filter(func(item: Item) -> bool: return item.item_type == Item.ItemType.BRAKES)
 		for item_engine: Item in brakes_in_items:
 			train_stats.items.erase(item_engine)

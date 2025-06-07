@@ -72,5 +72,20 @@ texture = ExtResource("8_hf3vt")
 lifetime = 2.0
 process_material = SubResource("ParticleProcessMaterial_2sxs7")
 
+[node name="DebugInfo" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -181.0
+offset_top = -48.0
+offset_right = -141.0
+offset_bottom = -8.0
+
+[node name="ItemsLabel" type="Label" parent="DebugInfo"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 130.0
+offset_bottom = 24.0
+text = "TRAIN-ITEMS"
+
 [connection signal="timeout" from="Timer_Brake" to="." method="_on_timer_brake_timeout"]
 [connection signal="timeout" from="Timer_Acc" to="." method="_on_timer_acc_timeout"]

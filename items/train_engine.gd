@@ -1,6 +1,15 @@
 class_name TrainEngine extends Item
 
 @export var acc_power: float = 20000.0
+@export var level: int = 1 : set = change_level
 
 func apply_effects(target: Train) -> void:
-	target.acc_power += acc_power
+	target.acc_power = acc_power + ((level - 1) / 4.0) * acc_power
+
+func change_level(value: int) -> void:
+	if value < 0:
+		level = 0
+	elif value > 5:
+		level = 5
+	else:
+		level = value
