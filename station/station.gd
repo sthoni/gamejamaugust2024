@@ -49,7 +49,7 @@ func set_status(value: TrainStatus) -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	if train_at_station && train_at_station.velocity.y == 0:
+	if train_at_station is Train && (train_at_station as Train).velocity.y == 0:
 		match status:
 			TrainStatus.AT_START:
 				print("Too soon.")
@@ -66,7 +66,6 @@ func _process(_delta: float) -> void:
 
 
 func _input(event: InputEvent) -> void:
-	print("function _input in scene station entered ...")
 	if event.is_action_pressed("shop"):
 		if status == TrainStatus.STOPPED:
 			Events.emit_signal("shop_key_pressed")
@@ -86,7 +85,8 @@ func _on_station_start_body_entered(body: Node2D) -> void:
 
 func _on_station_start_body_exited(body: Node2D) -> void:
 	if body is Train:
-		if body.velocity.y < 0:
+		var train_body: Train = body
+		if train_body.velocity.y < 0:
 			status = TrainStatus.AT_STATION
 		else:
 			status = TrainStatus.NOT_ARRIVED
@@ -95,14 +95,16 @@ func _on_station_start_body_exited(body: Node2D) -> void:
 
 func _on_station_end_body_entered(body: Node2D) -> void:
 	if body is Train:
+		var train_body: Train = body
 		status = TrainStatus.AT_END
-		if body.velocity.y > 0:
-			train_at_station = body
+		if train_body.velocity.y > 0:
+			train_at_station = train_body
 
 
 func _on_station_end_body_exited(body: Node2D) -> void:
 	if body is Train:
-		if body.velocity.y < 0:
+		var train_body: Train = body
+		if train_body.velocity.y < 0:
 			status = TrainStatus.DEPARTED
 			train_at_station = null
 		else:

@@ -26,9 +26,7 @@ func _ready() -> void:
 	Events.station_freight_sold.connect(_on_station_freight_sold)
 	Events.level_end_reached.connect(_on_level_end_reached)
 	Events.shop_key_pressed.connect(_on_shop_key_pressed)
-	button.pressed.connect(create_new_level)
-	#$SubViewport/Level/Train.position = Vector2(180, 180)
-
+	button.pressed.connect(_create_new_level)
 
 	get_tree().paused = true
 
@@ -42,7 +40,6 @@ func _on_item_buy_button_pressed(item: Item) -> void:
 		var tween := create_tween()
 		var end_money: int = game_stats.money - item.price
 		tween.tween_property(game_stats, "money", end_money, item.price / 50.0) 
-		@warning_ignore("return_value_discarded")
 		Events.emit_signal("item_bought", item)
 
 
@@ -64,7 +61,7 @@ func _on_level_end_reached() -> void:
 	tween.tween_property(label_level, "visible_ratio", 1.0, 1)
 
 
-func create_new_level() -> void:
+func _create_new_level() -> void:
 	var tween := create_tween()
 	level.level_stats = level_stats.create_instance(game_stats.current_level)
 	var shop_items: Array[Item] = level_stats.item_pool.get_two_unique_random_items()
@@ -77,7 +74,7 @@ func create_new_level() -> void:
 func _input(event: InputEvent) -> void:
 	if level_ended:
 		if event.is_action_pressed("shop"):
-			create_new_level()
+			_create_new_level()
 	if event.is_action_pressed("exit_to_menu"):
 		menu.show()
 		get_tree().paused = true

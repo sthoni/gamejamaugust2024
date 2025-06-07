@@ -5,18 +5,10 @@ class_name Level extends Node2D
 @onready var train: Train = $Train
 @onready var station: Station = $Station
 @onready var tiles: TileMapLayer = $TileMapLayer
-@onready var manual: Control = $CanvasLayer2/Control
-@onready var hints: Control = %Hints
-@onready var money_label: Label = %MoneyLabel
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	hints.visible = false
 	set_level_stats(level_stats)
-	var tween := create_tween()
-	tween.tween_property(manual, "position", Vector2(-28.0,294.0), 2)
-	Events.station_status_changed.connect(_on_station_status_changed)
-	Events.money_changed.connect(_on_money_changed)
 
 # ACHTUNG: Die Position des Trains im Level wird hier auch gesetzt
 func set_level_stats(value: LevelStats) -> void:
@@ -31,17 +23,7 @@ func set_level_stats(value: LevelStats) -> void:
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("DEBUG_train_teleport"):
 		train.position.y = 200
-
-func _on_station_status_changed(value: Station.TrainStatus) -> void:
-	if value == Station.TrainStatus.STOPPED:
-		hints.visible = true
-	else:
-		hints.visible = false
 	
 func _on_level_end_body_entered(body: Node2D) -> void:
 	if body is Train:
 		Events.emit_signal("level_end_reached")
-
-
-func _on_money_changed(money: int) -> void:
-	money_label.text = "%s $" % money
