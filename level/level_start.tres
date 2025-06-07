@@ -1,35 +1,14 @@
-[gd_resource type="Resource" script_class="LevelStats" load_steps=11 format=3 uid="uid://bbum0dx5joke6"]
+[gd_resource type="Resource" script_class="LevelStats" load_steps=6 format=3 uid="uid://bbum0dx5joke6"]
 
 [ext_resource type="TileSet" uid="uid://b82jd4xyxr0fa" path="res://level/forest_noise_tileset.tres" id="1_eyxuv"]
 [ext_resource type="Script" uid="uid://b27uvpvr0vyd" path="res://level/level_stats.gd" id="1_mv6bu"]
-[ext_resource type="Script" uid="uid://cgja65gcqrs22" path="res://items/item.gd" id="2_xobnf"]
+[ext_resource type="Resource" uid="uid://bg1b2bhwkhxun" path="res://items/item_pool_start.tres" id="2_gjr0e"]
 [ext_resource type="Resource" uid="uid://ujjiktacktrw" path="res://station/station_stats_start.tres" id="3_b4kye"]
-[ext_resource type="Script" uid="uid://bu5mn6mnapves" path="res://items/upgrade_item.gd" id="3_ep5uk"]
-[ext_resource type="Resource" uid="uid://bn6iqhla4y5t4" path="res://items/steambrake.tres" id="4_g1yue"]
 [ext_resource type="Resource" uid="uid://fdaqrpalijb6" path="res://train/train_start.tres" id="4_q3ugd"]
-[ext_resource type="Script" uid="uid://dmvsj6t0mfvhy" path="res://items/item_pool.gd" id="5_h60mb"]
-
-[sub_resource type="Resource" id="Resource_2e06y"]
-script = ExtResource("3_ep5uk")
-upgrade_power = 1
-upgrade_type = 3
-id = ""
-item_type = 5
-price = 50
-weight = 0.0
-name = "Upgrade 1"
-tooltip_text = ""
-metadata/_custom_type_script = "uid://bu5mn6mnapves"
-
-[sub_resource type="Resource" id="Resource_xvgn7"]
-script = ExtResource("5_h60mb")
-id = ""
-items = Array[ExtResource("2_xobnf")]([SubResource("Resource_2e06y"), ExtResource("4_g1yue")])
-metadata/_custom_type_script = "uid://dy1gn7387857f"
 
 [resource]
 script = ExtResource("1_mv6bu")
 station_stats = ExtResource("3_b4kye")
 train_stats = ExtResource("4_q3ugd")
-item_pool = SubResource("Resource_xvgn7")
+item_pool = ExtResource("2_gjr0e")
 background_texture = ExtResource("1_eyxuv")

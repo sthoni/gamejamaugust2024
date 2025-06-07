@@ -58,6 +58,7 @@ rotation = -1.5708
 script = ExtResource("7_0v1st")
 
 [node name="Train" parent="Path2D/PathFollow2D" instance=ExtResource("2_kmlf3")]
+unique_name_in_owner = true
 rotation = 1.5708
 
 [node name="ColorRect" type="ColorRect" parent="."]
