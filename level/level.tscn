@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://5m2ar4vwdnpd"]
+[gd_scene load_steps=11 format=4 uid="uid://5m2ar4vwdnpd"]
 
 [ext_resource type="Script" uid="uid://umg07x7rcb87" path="res://level/level.gd" id="1_pg6m5"]
 [ext_resource type="PackedScene" uid="uid://cq0dan380xs2g" path="res://level/tracks.tscn" id="2_jnvge"]
@@ -7,6 +7,13 @@
 [ext_resource type="PackedScene" uid="uid://c3csdinu5agg4" path="res://station/station.tscn" id="3_7tcqk"]
 [ext_resource type="TileSet" uid="uid://b82jd4xyxr0fa" path="res://level/forest_noise_tileset.tres" id="3_oa0xv"]
 [ext_resource type="PackedScene" uid="uid://dh71w6aefqf38" path="res://ui/debug.tscn" id="4_s0jqg"]
+[ext_resource type="Script" uid="uid://cohop5a2itmps" path="res://level/path_follow_2d.gd" id="7_0v1st"]
+
+[sub_resource type="Curve2D" id="Curve2D_ivpvi"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, -100, 0, -360, 0, 100, 0, 0, -50, -600, 0, 0, 0, -100, -50, -1000, 0, 100, 0, 0, 0, -1400, 0, 0, 0, 0, 0, -1800)
+}
+point_count = 6
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ivpvi"]
 size = Vector2(26, 20)
@@ -21,11 +28,10 @@ tile_map_data = PackedByteArray("AAAAAAAAAAACAAEAAAAAAAEAAAACAAEAAAABAAIAAAABAAE
 tile_set = ExtResource("3_oa0xv")
 
 [node name="Debug" parent="." instance=ExtResource("4_s0jqg")]
-visible = false
-offset_left = 217.0
-offset_top = 459.0
-offset_right = 373.0
-offset_bottom = 637.0
+offset_left = 203.0
+offset_top = 265.0
+offset_right = 403.0
+offset_bottom = 489.0
 
 [node name="tracks" parent="." instance=ExtResource("2_jnvge")]
 position = Vector2(176, 0)
@@ -39,8 +45,16 @@ position = Vector2(176, -1280)
 [node name="Station" parent="." instance=ExtResource("3_7tcqk")]
 position = Vector2(184, 198)
 
-[node name="Train" parent="." instance=ExtResource("2_kmlf3")]
+[node name="Path2D" type="Path2D" parent="."]
 position = Vector2(184, 313)
+curve = SubResource("Curve2D_ivpvi")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+rotation = -1.5708
+script = ExtResource("7_0v1st")
+
+[node name="Train" parent="Path2D/PathFollow2D" instance=ExtResource("2_kmlf3")]
+rotation = 1.5708
 
 [node name="ColorRect" type="ColorRect" parent="."]
 visible = false

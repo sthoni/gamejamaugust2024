@@ -11,5 +11,5 @@
 script = ExtResource("2_mbabv")
 id = "TrainStart"
 items = Array[ExtResource("1_3devu")]([ExtResource("2_4ekkb"), ExtResource("3_mw0lx"), ExtResource("4_ram8m")])
-start_velocity = -5.0
+start_velocity = 5.0
 sprite = ExtResource("6_t8rq5")

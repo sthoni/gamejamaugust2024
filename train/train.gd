@@ -22,6 +22,7 @@ var waggon = preload("res://train/waggon.tscn")
 @onready var waggon_amount: float = 0
 @onready var weight: float = 0.0
 @onready var transport_amount: float = 0.0
+@onready var path_to_follow = get_parent()
 
 func _ready() -> void:
 	$Camera2D.make_current()
@@ -82,7 +83,7 @@ func _physics_process(delta: float) -> void:
 			tut.play()
 		var root: float = pow(velocity.y, 2) + direction * 2 / weight * acc_power * delta
 		if root > 0:
-			new_velocity = - direction * sqrt(root)
+			new_velocity = direction * sqrt(root)
 		else:
 			flag_tut_played = false	
 			new_velocity = 0
@@ -99,7 +100,7 @@ func _physics_process(delta: float) -> void:
 			flag_tut_played = true
 		var root: float = pow(velocity.y, 2) - direction * 2 / weight * brake_power * delta
 		if root > 0:
-			new_velocity = - direction * sqrt(root)
+			new_velocity = direction * sqrt(root)
 		else:
 			flag_tut_played = false	
 			new_velocity = 0
@@ -113,7 +114,9 @@ func _physics_process(delta: float) -> void:
 	@warning_ignore("return_value_discarded")
 	Events.emit_signal("velocity_changed", velocity.y)
 	@warning_ignore("return_value_discarded")
-	move_and_slide()
+	if path_to_follow is PathFollow2D:
+		path_to_follow.progress += new_velocity * delta
+	#move_and_slide()
 
 func _check_speed():
 	var f = AudioServer.get_bus_index("DrivingSounds")
