@@ -1,6 +1,6 @@
 class_name Game extends Node
 
-@export var game_stats: GameStats : set = _set_game_stats
+@export var game_stats: GameStats: set = _set_game_stats
 
 @onready var level: Level = %Level
 @onready var shop: Shop = $Shop
@@ -21,11 +21,10 @@ func _ready() -> void:
 	shop.item_display2.item_displayed = shop_items[1]
 	level.level_stats = level_start_stats
 
-
+	shop.continue_button_pressed.connect(_on_shop_continue_button_pressed)
 	Events.item_buy_button_pressed.connect(_on_item_buy_button_pressed)
 	Events.station_freight_sold.connect(_on_station_freight_sold)
 	Events.level_end_reached.connect(_on_level_end_reached)
-	Events.shop_key_pressed.connect(_on_shop_key_pressed)
 	button.pressed.connect(_create_new_level)
 
 	get_tree().paused = true
@@ -48,13 +47,15 @@ func _on_station_freight_sold(count: int) -> void:
 
 func _on_level_end_reached() -> void:
 	level_ended = true
+	get_tree().paused = true
 	game_stats.current_level += 1
-	panel_container.position = Vector2(0.0, 640.0)
-	var tween := create_tween()
-	tween.tween_property(panel_container, "position", Vector2(0.0,0.0), 0.5)
-	label_level.text = "You are arriving at Station %s" % game_stats.current_level
-	label_level.visible_ratio = 0
-	tween.tween_property(label_level, "visible_ratio", 1.0, 1)
+	shop.show()
+	# panel_container.position = Vector2(0.0, 640.0)
+	# var tween := create_tween()
+	# tween.tween_property(panel_container, "position", Vector2(0.0, 0.0), 0.5)
+	# label_level.text = "You are arriving at Station %s" % game_stats.current_level
+	# label_level.visible_ratio = 0
+	# tween.tween_property(label_level, "visible_ratio", 1.0, 1)
 
 
 func _create_new_level() -> void:
@@ -63,7 +64,7 @@ func _create_new_level() -> void:
 	var shop_items: Array[Item] = level_start_stats.item_pool.get_two_unique_random_items()
 	shop.item_display1.item_displayed = shop_items[0]
 	shop.item_display2.item_displayed = shop_items[1]
-	tween.tween_property(panel_container, "position", Vector2(0.0,-640.0), 0.5)
+	tween.tween_property(panel_container, "position", Vector2(0.0, -640.0), 0.5)
 	level_ended = false
 
 
@@ -81,6 +82,7 @@ func _input(event: InputEvent) -> void:
 		if child.has_method("_input"):
 			child._input(event)
 
-func _on_shop_key_pressed() -> void:
-	shop.show()
-	get_tree().paused = true
+
+func _on_shop_continue_button_pressed() -> void:
+	shop.hide()
+	_create_new_level()

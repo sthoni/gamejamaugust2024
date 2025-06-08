@@ -5,7 +5,7 @@ class_name Station extends Area2D
 @onready var station_end: Area2D = $StationEnd
 @onready var station_label: Label = %StationName
 
-@export var station_stats: StationStats : set = set_station_stats
+@export var station_stats: StationStats: set = set_station_stats
 
 var has_money: bool = true
 
@@ -20,13 +20,13 @@ enum TrainStatus {
 }
 
 enum StationType {
-	LOADING,				#eaxmple: Coal Mine
-	UNLOADING,			#example: Coal-fired power plant
-	SHOP	
+	LOADING, # eaxmple: Coal Mine
+	UNLOADING, # example: Coal-fired power plant
+	SHOP
 }
 
 var train_at_station: Train = null
-var status: TrainStatus : set = set_status
+var status: TrainStatus: set = set_status
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -41,7 +41,7 @@ func set_station_stats(value: StationStats) -> void:
 		if platform:
 			platform.shape.size.y = station_stats.platform_length
 			station_start.position.y = station_stats.platform_length / 2
-			station_end.position.y = -station_stats.platform_length / 2
+			station_end.position.y = - station_stats.platform_length / 2
 
 func set_status(value: TrainStatus) -> void:
 	status = value
@@ -64,12 +64,6 @@ func _process(_delta: float) -> void:
 			TrainStatus.AT_END:
 				print("Too far. Ride back!")
 				status = TrainStatus.STOPPED_WRONG
-
-
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("shop"):
-		if status == TrainStatus.STOPPED:
-			Events.emit_signal("shop_key_pressed")
 
 
 func status_changed() -> void:

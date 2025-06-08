@@ -95,8 +95,9 @@ position = Vector2(192, 313)
 curve = SubResource("Curve2D_ivpvi")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
-position = Vector2(0, 300)
+position = Vector2(0, 13.6406)
 rotation = -1.5708
+progress = 286.36
 loop = false
 script = ExtResource("7_0v1st")
 
@@ -113,7 +114,11 @@ color = Color(1, 1, 1, 0.223529)
 [node name="LevelEnd" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LevelEnd"]
-position = Vector2(183, -1377)
+position = Vector2(190, 91)
 shape = SubResource("RectangleShape2D_ivpvi")
 
+[node name="MoneyTimer" type="Timer" parent="."]
+autostart = true
+
 [connection signal="body_entered" from="LevelEnd" to="." method="_on_level_end_body_entered"]
+[connection signal="timeout" from="MoneyTimer" to="." method="_on_money_timer_timeout"]

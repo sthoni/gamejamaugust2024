@@ -1,6 +1,6 @@
 class_name Level extends Node2D
 
-@export var level_stats: LevelStats : set = set_level_stats
+@export var level_stats: LevelStats: set = set_level_stats
 @export var game_stats: GameStats
 @onready var tiles: TileMapLayer = $TileMapLayer
 
@@ -16,7 +16,6 @@ func set_level_stats(value: LevelStats) -> void:
 	level_stats = value
 	if train:
 		train.train_stats = level_stats.train_stats
-		path_to_follow.progress = 0.0
 
 
 func _input(event: InputEvent) -> void:
@@ -27,10 +26,6 @@ func _on_level_end_body_entered(body: Node2D) -> void:
 	if body is Train:
 		Events.emit_signal("level_end_reached")
 
-func _on_mission_completed() -> void:
-	print("Level received mission completed signal.")
-	game_stats.money += 500
 
-func _on_mission_failed() -> void:
-	print("Level received mission failed signal.")
-	game_stats.money -= 300
+func _on_money_timer_timeout() -> void:
+	game_stats.money -= 1

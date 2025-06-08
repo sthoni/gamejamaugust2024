@@ -5,6 +5,8 @@ class_name Shop extends Control
 @onready var items_display_grid: GridContainer = %ItemsDisplayGrid
 @onready var money_label: Label = %MoneyPlayer
 
+signal continue_button_pressed()
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Events.connect("money_changed", _on_money_changed)
@@ -12,16 +14,8 @@ func _ready() -> void:
 func add_item(node: Node) -> void:
 	items_display_grid.add_child(node)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	pass
-
 func _on_continue_button_pressed() -> void:
-	self.hide()
-	get_tree().paused = false
-
-func _on_exit_button_pressed() -> void:
-	get_tree().quit()
+	continue_button_pressed.emit()
 
 func _on_money_changed(money_old: int, money: int) -> void:
 	var tween := create_tween()

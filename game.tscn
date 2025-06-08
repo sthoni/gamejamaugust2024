@@ -55,7 +55,7 @@ unique_name_in_owner = true
 [node name="Shop" parent="." instance=ExtResource("4_tp65r")]
 visible = false
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
+[node name="LevelEndedScreen" type="PanelContainer" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -67,15 +67,15 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_cr26j")
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="LevelEndedScreen"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="LevelEndedScreen/MarginContainer"]
 layout_mode = 2
 size_flags_vertical = 4
 theme = ExtResource("5_ryrav")
 
-[node name="LabelLevel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+[node name="LabelLevel" type="Label" parent="LevelEndedScreen/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
@@ -83,7 +83,7 @@ text = "LEVEL"
 visible_characters = 0
 visible_ratio = 0.0
 
-[node name="Button" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Button" type="Button" parent="LevelEndedScreen/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("5_ryrav")
