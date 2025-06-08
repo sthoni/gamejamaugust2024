@@ -44,6 +44,7 @@ func apply_items(value: TrainStats) -> void:
 	brake_power = 0.0
 	waggon_amount = 0
 	transport_amount = 0.0
+	paths = []
 	if items_label:
 		items_label.text = ""
 	if sprite:

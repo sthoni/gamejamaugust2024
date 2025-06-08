@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://5m2ar4vwdnpd"]
+[gd_scene load_steps=17 format=4 uid="uid://5m2ar4vwdnpd"]
 
 [ext_resource type="Script" uid="uid://umg07x7rcb87" path="res://level/level.gd" id="1_pg6m5"]
 [ext_resource type="PackedScene" uid="uid://cq0dan380xs2g" path="res://level/tracks.tscn" id="2_jnvge"]
@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://dh71w6aefqf38" path="res://ui/debug.tscn" id="4_s0jqg"]
 [ext_resource type="Script" uid="uid://cohop5a2itmps" path="res://level/path_follow_2d.gd" id="7_0v1st"]
 [ext_resource type="Resource" uid="uid://bbd4jch0jo6gm" path="res://station/station_stats_start_2.tres" id="8_m3nah"]
-[ext_resource type="Script" path="res://level/mission_manager.gd" id="9_6gtgk"]
+[ext_resource type="Script" uid="uid://bxsm7hr36wedi" path="res://level/mission_manager.gd" id="9_6gtgk"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cw150"]
 texture = ExtResource("4_6gtgk")
@@ -66,9 +66,9 @@ sources/0 = SubResource("TileSetAtlasSource_cw150")
 
 [sub_resource type="Curve2D" id="Curve2D_ivpvi"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, 300, 0, 0, 0, -100, 0, -360, 0, 100, 0, 0, -50, -600, 0, 0, 0, -100, -50, -1000, 0, 100, 0, 0, 0, -1400, 0, 0, 0, 0, 0, -1800)
+"points": PackedVector2Array(0, 0, 0, 0, 0, 300, 0, 10, 0, -10, 0, -360, 0, 15, 0, -15, 0, -409, 0, 10, 0, -10, -45, -436, 0, 100, 0, 0, -48, -600, -0.435258, 21.4618, 0.435258, -21.4618, -49, -1114, -13.7722, -0.145086, 13.7722, 0.145086, -25, -1146, 0.145086, 13.0577, -0.145086, -13.0577, 0, -1170, 0, 100, 0, 0, 0, -1400, 0, 0, 0, 0, 0, -1800)
 }
-point_count = 6
+point_count = 10
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ivpvi"]
 size = Vector2(126.75, 20)

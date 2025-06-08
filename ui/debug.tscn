@@ -1,11 +1,11 @@
 [gd_scene load_steps=7 format=3 uid="uid://dh71w6aefqf38"]
 
-[ext_resource type="Script" uid="uid://cutc8wr0x3ib5" path="res://ui/debug_velocity.gd" id="1_qx4c7"]
-[ext_resource type="Script" uid="uid://ycvmg4t3dkym" path="res://ui/debug_acceleration.gd" id="2_mg21e"]
-[ext_resource type="Script" uid="uid://nas1la0tpbhs" path="res://ui/debug_station.gd" id="3_5546r"]
+[ext_resource type="Script" uid="uid://n3gbhiky630y" path="res://ui/debug_velocity.gd" id="1_qx4c7"]
+[ext_resource type="Script" uid="uid://d0y5gpd42lo8r" path="res://ui/debug_acceleration.gd" id="2_mg21e"]
+[ext_resource type="Script" uid="uid://bu7feu2vtnguo" path="res://ui/debug_station.gd" id="3_5546r"]
 [ext_resource type="Script" uid="uid://n4d5ucbtwvw4" path="res://ui/debug_money.gd" id="4_4e7pr"]
-[ext_resource type="Script" uid="uid://xpooj800ytm6" path="res://ui/debug_waggons.gd" id="5_7d15n"]
-[ext_resource type="Script" uid="uid://c5qi0mg6qoqwy" path="res://ui/debug_weight.gd" id="6_aiwum"]
+[ext_resource type="Script" uid="uid://cksf4f27pmrrp" path="res://ui/debug_waggons.gd" id="5_7d15n"]
+[ext_resource type="Script" uid="uid://b57qv4y2emce8" path="res://ui/debug_weight.gd" id="6_aiwum"]
 
 [node name="Debug" type="VBoxContainer"]
 offset_right = 40.0
