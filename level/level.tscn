@@ -1,9 +1,8 @@
-[gd_scene load_steps=16 format=4 uid="uid://5m2ar4vwdnpd"]
+[gd_scene load_steps=15 format=4 uid="uid://5m2ar4vwdnpd"]
 
 [ext_resource type="Script" uid="uid://umg07x7rcb87" path="res://level/level.gd" id="1_pg6m5"]
 [ext_resource type="PackedScene" uid="uid://c3byp0uv73juy" path="res://train/train.tscn" id="2_kmlf3"]
 [ext_resource type="Resource" uid="uid://bbum0dx5joke6" path="res://level/level_start.tres" id="2_q5plq"]
-[ext_resource type="Resource" uid="uid://c8w436a63djfq" path="res://game_stats_start.tres" id="3_0v1st"]
 [ext_resource type="PackedScene" uid="uid://c3csdinu5agg4" path="res://station/station.tscn" id="3_7tcqk"]
 [ext_resource type="TileSet" uid="uid://b82jd4xyxr0fa" path="res://level/forest_noise_tileset.tres" id="3_oa0xv"]
 [ext_resource type="Texture2D" uid="uid://do10t3py2fm23" path="res://assets/rails.png" id="4_6gtgk"]
@@ -75,7 +74,6 @@ size = Vector2(126.75, 20)
 [node name="Level" type="Node2D"]
 script = ExtResource("1_pg6m5")
 level_stats = ExtResource("2_q5plq")
-game_stats = ExtResource("3_0v1st")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 position = Vector2(269, -146)
@@ -99,15 +97,14 @@ position = Vector2(461, 167)
 curve = SubResource("Curve2D_ivpvi")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
-position = Vector2(0, 13.6406)
+position = Vector2(0, 200.004)
 rotation = -1.5708
-progress = 286.36
+progress = 100.0
 loop = false
 script = ExtResource("7_0v1st")
 
 [node name="Train" parent="Path2D/PathFollow2D" instance=ExtResource("2_kmlf3")]
 unique_name_in_owner = true
-position = Vector2(-146.359, -6.39758e-06)
 rotation = 1.5708
 
 [node name="ColorRect" type="ColorRect" parent="."]

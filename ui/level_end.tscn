@@ -1,21 +1,17 @@
 [gd_scene load_steps=3 format=3 uid="uid://d3sx65rjjopui"]
 
 [ext_resource type="Theme" uid="uid://c5vctt5fcxfn" path="res://theme.tres" id="1_32sc8"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cr26j"]
-bg_color = Color(0, 0, 0, 1)
+[ext_resource type="Script" uid="uid://ba0g2o2qit68g" path="res://ui/level_end.gd" id="1_vkghd"]
 
 [node name="LevelEndedScreen" type="PanelContainer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 1.0
-offset_top = 639.0
-offset_right = 1.0
-offset_bottom = 639.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_cr26j")
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_vkghd")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
@@ -28,13 +24,21 @@ theme = ExtResource("1_32sc8")
 [node name="LabelLevel" type="Label" parent="MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 0
-text = "LEVEL"
-visible_characters = 0
-visible_ratio = 0.0
+theme = ExtResource("1_32sc8")
+text = "LAST LEVEL NUMBER"
 
-[node name="Button" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="LabelLevelTime" type="Label" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "LAST LEVEL TIME"
+
+[node name="ButtonShop" type="Button" parent="MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("1_32sc8")
-text = "Ready"
+text = "Shop"
+
+[node name="ButtonNextLevel" type="Button" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Next Level"

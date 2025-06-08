@@ -4,7 +4,8 @@ class_name GameStats extends Resource
 @export var train_stats: TrainStats
 @export var start_money: int
 
-var current_level: int = 1
+var last_level: int = 1
+var last_level_time: float = 14.09902
 var money: int:
 	get:
 		return money

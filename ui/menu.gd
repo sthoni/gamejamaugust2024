@@ -19,6 +19,4 @@ func _input(event: InputEvent) -> void:
         get_tree().quit()
     
     if event.is_action_pressed("shop"):
-        get_tree().paused = false
-        start_button.text = "Continue"
-        hide()
+        GameState.change_to_level()

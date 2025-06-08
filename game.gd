@@ -4,8 +4,7 @@ var game_stats: GameStats: set = _set_game_stats
 
 @onready var shop_scene := preload("res://ui/shop.tscn")
 @onready var level_scene := preload("res://level/level.tscn")
-
-@export var levels: Array[PackedScene]
+@onready var level_end_scene := preload("res://ui/level_end.tscn")
 
 var level_ended := false
 
@@ -22,11 +21,7 @@ func _set_game_stats(value: GameStats) -> void:
 func _on_level_end_reached() -> void:
 	level_ended = true
 	get_tree().paused = true
-	game_stats.current_level += 1
-
-
-func _on_shop_continue_button_pressed() -> void:
-	pass
+	game_stats.last_level += 1
 
 
 func change_to_shop() -> void:
@@ -35,4 +30,7 @@ func change_to_shop() -> void:
 
 func change_to_level() -> void:
 	get_tree().change_scene_to_packed(level_scene)
-	get_tree().paused = false
+
+
+func change_to_level_end() -> void:
+	get_tree().change_scene_to_packed(level_end_scene)
