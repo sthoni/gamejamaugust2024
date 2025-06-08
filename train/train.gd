@@ -129,7 +129,7 @@ func _physics_process(delta: float) -> void:
 			if timer_brake.time_left == 0:
 				timer_brake.start()
 	if Input.is_action_pressed("right"):
-		if $"../../../Path2D_2/PathFollow_2/Weiche1".get_overlapping_bodies().has(%Train):
+		if $"../../../Weiche1".get_overlapping_bodies().has(%Train):
 			switch_path(path_follow_2)
 	if Input.is_action_pressed("left"):
 		pass
@@ -142,12 +142,16 @@ func _physics_process(delta: float) -> void:
 	@warning_ignore("return_value_discarded")
 	if current_path is PathFollow2D:
 		current_path.progress += new_velocity * delta
+		if current_path.progress_ratio >= 1.0:
+			switch_path(path_follow_1)
+			current_path.progress = 1606.0
 		for i in range(paths.size()):
 			paths[i].progress = current_path.progress - (35 + 24 * i)
 	#move_and_slide()
 
 func switch_path(new_path: PathFollow2D):
-	var train = current_path.get_child(0) #Train
+	#var train = current_path.get_child(0) #Train
+	var train = current_path.get_node("Train") #Train
 	if train:
 		current_path.remove_child(train)
 		new_path.add_child(train)

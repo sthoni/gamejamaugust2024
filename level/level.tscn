@@ -64,6 +64,9 @@ texture_region_size = Vector2i(32, 32)
 [sub_resource type="TileSet" id="TileSet_xii2b"]
 sources/0 = SubResource("TileSetAtlasSource_cw150")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l5lfc"]
+size = Vector2(8.54597, 21.454)
+
 [sub_resource type="Curve2D" id="Curve2D_ivpvi"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 0, 300, 0, 10, 0, -10, 0, -360, 0, 15, 0, -15, 0, -409, 0, 10, 0, -10, -45, -436, 0, 100, 0, 0, -48, -600, -0.435258, 21.4618, 0.435258, -21.4618, -49, -1114, -13.7722, -0.145086, 13.7722, 0.145086, -25, -1146, 0.145086, 13.0577, -0.145086, -13.0577, 0, -1170, 0, 100, 0, 0, 0, -1400, 0, 0, 0, 0, 0, -1800)
@@ -75,9 +78,6 @@ _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 0, -639, 0, 0, 0, 0, 0, -1551)
 }
 point_count = 2
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_l5lfc"]
-size = Vector2(8.54597, 21.454)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ivpvi"]
 size = Vector2(126.75, 20)
@@ -126,20 +126,35 @@ position = Vector2(184, 198)
 position = Vector2(184, 8)
 station_stats = ExtResource("8_m3nah")
 
+[node name="Weiche1" type="Area2D" parent="."]
+position = Vector2(192, -56.546)
+rotation = -1.5708
+
+[node name="Weiche1" type="CollisionShape2D" parent="Weiche1"]
+position = Vector2(-11.546, 0)
+shape = SubResource("RectangleShape2D_l5lfc")
+
 [node name="Path2D" type="Path2D" parent="."]
 position = Vector2(192, 313)
 curve = SubResource("Curve2D_ivpvi")
 
 [node name="PathFollow_1" type="PathFollow2D" parent="Path2D"]
-position = Vector2(0, -375.051)
+position = Vector2(0, 256.262)
 rotation = -1.5708
-progress = 675.064
+progress = 43.7542
 loop = false
 script = ExtResource("7_0v1st")
 
 [node name="Train" parent="Path2D/PathFollow_1" instance=ExtResource("2_kmlf3")]
 unique_name_in_owner = true
 rotation = 1.5708
+
+[node name="Label2" type="Label" parent="Path2D/PathFollow_1"]
+offset_left = -5.50452
+offset_right = 116.495
+offset_bottom = 24.0
+rotation = 1.57572
+text = "-----SWITCH"
 
 [node name="Path2D_2" type="Path2D" parent="."]
 position = Vector2(192, 613)
@@ -149,18 +164,14 @@ curve = SubResource("Curve2D_rhqlf")
 position = Vector2(0, -669.546)
 rotation = -1.5708
 progress = 30.552
+rotates = false
+loop = false
 
 [node name="Label" type="Label" parent="Path2D_2/PathFollow_2"]
 offset_right = 40.0
 offset_bottom = 24.0
 rotation = 1.57572
 text = "-----SWITCH"
-
-[node name="Weiche1" type="Area2D" parent="Path2D_2/PathFollow_2"]
-
-[node name="Weiche1" type="CollisionShape2D" parent="Path2D_2/PathFollow_2/Weiche1"]
-position = Vector2(-11.546, 0)
-shape = SubResource("RectangleShape2D_l5lfc")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 visible = false
