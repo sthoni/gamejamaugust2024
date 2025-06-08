@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://djq6kvq6des23"]
+[gd_scene load_steps=12 format=3 uid="uid://djq6kvq6des23"]
 
 [ext_resource type="Script" uid="uid://dkf51wunavfc7" path="res://game.gd" id="1_4fbc6"]
 [ext_resource type="PackedScene" uid="uid://5m2ar4vwdnpd" path="res://level/level.tscn" id="2_lsa33"]
@@ -8,6 +8,7 @@
 [ext_resource type="Theme" uid="uid://c5vctt5fcxfn" path="res://theme.tres" id="5_ryrav"]
 [ext_resource type="PackedScene" uid="uid://bvvip673kkkj7" path="res://ui/gauge.tscn" id="6_vef74"]
 [ext_resource type="PackedScene" uid="uid://bq8lf8yc6y7ti" path="res://ui/menu.tscn" id="7_eow3j"]
+[ext_resource type="PackedScene" uid="uid://dcn6xli3u8mkp" path="res://ui/debug_ui.tscn" id="9_vef74"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_vef74"]
 viewport_path = NodePath("SubViewport")
@@ -93,3 +94,6 @@ stream = ExtResource("5_7jktm")
 volume_db = -20.0
 
 [node name="Menu" parent="." instance=ExtResource("7_eow3j")]
+z_index = 0
+
+[node name="DebugUI" parent="." instance=ExtResource("9_vef74")]

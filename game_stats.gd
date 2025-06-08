@@ -4,15 +4,11 @@ class_name GameStats extends Resource
 @export var train_stats: TrainStats
 @export var start_money: int
 
-var money: int : set = set_money
 var current_level: int = 1
-
-func set_money(value: int) -> void:
-	var money_old := money
-	money = value
-	Events.emit_signal("money_changed", money_old, money)
-
-func apply_money_penalty(amount: int) -> void:
-	var money_old := money
-	money -= amount
-	Events.emit_signal("money_changed", money_old, money)
+var money: int:
+	get:
+		return money
+	set(value):
+		var money_old := money
+		money = value
+		Events.emit_signal("money_changed", money_old, money)

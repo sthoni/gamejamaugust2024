@@ -1,12 +1,13 @@
 class_name Train extends CharacterBody2D
 
-var direction:int = 1
-var flag_change_dir_on_brake:bool = false
-var flag_change_dir_on_acc:bool = false
-var flag_tut_played:bool = false
-var flag_train_long_tut_played:bool = false
+var direction: int = 1
+var flag_change_dir_on_brake: bool = false
+var flag_change_dir_on_acc: bool = false
+var flag_tut_played: bool = false
+var flag_train_long_tut_played: bool = false
 var waggon = preload("res://train/waggon.tscn")
-@export var train_stats: TrainStats : set = apply_items
+
+@export var train_stats: TrainStats: set = apply_items
 @export var audiobus: AudioBusLayout
 
 @onready var sprite: Sprite2D = $Locomotive
@@ -16,7 +17,8 @@ var waggon = preload("res://train/waggon.tscn")
 @onready var longtut: AudioStreamPlayer = $LongTut
 @onready var driving_sound: AudioStreamPlayer2D = $Driving
 @onready var steam_particles: GPUParticles2D = $SteamParticles
-@onready var items_label: Label = %ItemsLabel
+
+@onready var path_to_follow = get_parent()
 
 @onready var start_velocity: float = 0.0
 @onready var acc_power: float = 0.0
@@ -24,7 +26,6 @@ var waggon = preload("res://train/waggon.tscn")
 @onready var waggon_amount: float = 0
 @onready var weight: float = 0.0
 @onready var transport_amount: float = 0.0
-@onready var path_to_follow = get_parent()
 
 var paths: Array[PathFollow2D]
 
@@ -39,23 +40,17 @@ func _ready() -> void:
 
 func apply_items(value: TrainStats) -> void:
 	train_stats = value
-	weight = 0.0
-	acc_power = 0.0
-	brake_power = 0.0
-	waggon_amount = 0
-	transport_amount = 0.0
+	weight = value.weight
+	waggon_amount = value.waggon_amount
+	acc_power = value.acc_power
+	brake_power = value.brake_power
+	transport_amount = value.transport_amount
 	paths = []
-	if items_label:
-		items_label.text = ""
-	if sprite:
-		sprite.texture = value.sprite
 	if self.is_inside_tree():
 		for member in get_tree().get_nodes_in_group("FreightWaggons"):
 			member.get_parent().free()
 	var i := 0
 	for item: Item in value.items:
-		weight += item.weight
-		item.apply_effects(self)
 		if item.item_type == Item.ItemType.WAGGON and path_to_follow:
 			var waggon_instance := waggon.instantiate()
 			waggon_instance.rotation = deg_to_rad(90)
@@ -66,17 +61,8 @@ func apply_items(value: TrainStats) -> void:
 			path_to_follow.add_child.call_deferred(waggon_instance)
 			waggon_instance.add_to_group("FreightWaggons")
 			i += 1
-			waggon_amount += 1
-		if items_label:
-			items_label.text += item.name
-			if item.get("level") != null:
-				items_label.text += " ("+ str(item.level) + ")\n"
-			else:
-				items_label.text += "\n"
-	@warning_ignore("return_value_discarded")
-	Events.emit_signal("weight_changed", weight)
-	@warning_ignore("return_value_discarded")
-	Events.emit_signal("waggons_counted", waggon_amount)
+
+	Events.emit_signal("train_stats_changed", value)
 
 func _physics_process(delta: float) -> void:
 	var new_velocity: float = velocity.y
@@ -92,7 +78,7 @@ func _physics_process(delta: float) -> void:
 		timer_brake.stop()
 		if flag_tut_played == false:
 			tut.play()
-			flag_tut_played = true			
+			flag_tut_played = true
 		flag_change_dir_on_brake = false
 		if flag_change_dir_on_acc == true:
 			direction = direction * (-1)
@@ -102,7 +88,7 @@ func _physics_process(delta: float) -> void:
 		if root > 0:
 			new_velocity = direction * sqrt(root)
 		else:
-			flag_tut_played = false	
+			flag_tut_played = false
 			new_velocity = 0
 			if timer_acc.time_left == 0:
 				timer_acc.start()
@@ -119,7 +105,7 @@ func _physics_process(delta: float) -> void:
 		if root > 0:
 			new_velocity = direction * sqrt(root)
 		else:
-			flag_tut_played = false	
+			flag_tut_played = false
 			new_velocity = 0
 			if timer_brake.time_left == 0:
 				timer_brake.start()
@@ -142,7 +128,7 @@ func _check_speed():
 	var eff = AudioServer.get_bus_effect(f, 0)
 	if abs(velocity.y) > 100:
 		driving_sound.stream = load('res://assets/music/drivingspeeds/spd-10.wav')
-		eff.pitch_scale = abs(velocity.y)/100
+		eff.pitch_scale = abs(velocity.y) / 100
 		pass
 	elif abs(velocity.y) > 90:
 		driving_sound.stream = load('res://assets/music/drivingspeeds/spd-10.wav')
@@ -182,20 +168,5 @@ func _on_train_at_start() -> void:
 func _on_train_exited() -> void:
 	flag_train_long_tut_played = false
 
-func _remove_items_by_type(item_type: int) -> void:
-	var items_to_remove: Array[Item] = train_stats.items.filter(func(item: Item) -> bool: return item.item_type == item_type)
-	for item_to_remove: Item in items_to_remove:
-		train_stats.items.erase(item_to_remove)
-
 func _on_item_bought(bought_item: Item) -> void:
-	if  bought_item.item_type == Item.ItemType.UPGRADE:
-		bought_item.apply_effects(self)
-		apply_items(train_stats)
-		return
-
-	# Remove existing items of the same type before adding the new one
-	if bought_item.item_type != Item.ItemType.WAGGON:
-		_remove_items_by_type(bought_item.item_type)
-
-	train_stats.items.push_back(bought_item)
-	apply_items(train_stats)
+	train_stats.add_item(bought_item)
