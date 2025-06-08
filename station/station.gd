@@ -4,6 +4,7 @@ class_name Station extends Area2D
 @onready var station_start: Area2D = $StationStart
 @onready var station_end: Area2D = $StationEnd
 @onready var station_label: Label = %StationName
+@onready var money_player: AudioStreamPlayer = $MoneyPlayer
 
 @export var station_stats: StationStats: set = set_station_stats
 
@@ -60,6 +61,8 @@ func _process(_delta: float) -> void:
 				status = TrainStatus.STOPPED
 				if has_money:
 					Events.emit_signal("station_freight_sold", train_at_station.transport_amount)
+					GameState.game_stats.money += train_at_station.transport_amount
+					money_player.play()
 					has_money = false
 			TrainStatus.AT_END:
 				print("Too far. Ride back!")

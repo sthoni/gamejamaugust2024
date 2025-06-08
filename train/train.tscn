@@ -37,6 +37,9 @@ script = ExtResource("1_q7ry4")
 train_stats = ExtResource("2_03127")
 audiobus = ExtResource("3_l8xh7")
 
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(-140, 0)
+
 [node name="Driving" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_654r2")
 volume_db = -20.0
@@ -71,9 +74,6 @@ amount = 20
 texture = ExtResource("8_hf3vt")
 lifetime = 2.0
 process_material = SubResource("ParticleProcessMaterial_2sxs7")
-
-[node name="Camera2D" type="Camera2D" parent="."]
-drag_vertical_enabled = true
 
 [connection signal="timeout" from="Timer_Brake" to="." method="_on_timer_brake_timeout"]
 [connection signal="timeout" from="Timer_Acc" to="." method="_on_timer_acc_timeout"]

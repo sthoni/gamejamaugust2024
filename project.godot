@@ -11,13 +11,14 @@ config_version=5
 [application]
 
 config/name="GameJamAugust2024"
-run/main_scene="res://game.tscn"
+run/main_scene="uid://bq8lf8yc6y7ti"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
 Events="*res://global/Events.gd"
+GameState="*res://game.gd"
 
 [debug]
 

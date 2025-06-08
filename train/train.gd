@@ -152,7 +152,7 @@ func _check_speed():
 		driving_sound.stream = load('res://assets/music/drivingspeeds/spd-1.wav')
 	eff.pitch_scale = 1
 
-func _on_timer_brake_timeout():
+func _on_timer_brake_timeout() -> void:
 	#just set flag, because if you change dir here, you have to wait for 1 timer period to continue driving in same dir after braking down to v = 0
 	flag_change_dir_on_brake = true
 

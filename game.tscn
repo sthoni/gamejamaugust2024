@@ -1,99 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://djq6kvq6des23"]
+[gd_scene load_steps=3 format=3 uid="uid://djq6kvq6des23"]
 
 [ext_resource type="Script" uid="uid://dkf51wunavfc7" path="res://game.gd" id="1_4fbc6"]
-[ext_resource type="PackedScene" uid="uid://5m2ar4vwdnpd" path="res://level/level.tscn" id="2_lsa33"]
-[ext_resource type="Resource" uid="uid://c8w436a63djfq" path="res://game_stats_start.tres" id="2_objxm"]
-[ext_resource type="PackedScene" uid="uid://botpyjbja42c" path="res://ui/shop.tscn" id="4_tp65r"]
-[ext_resource type="AudioStream" uid="uid://cul1ktvspbvh8" path="res://assets/music/201159__kiddpark__cash-register.mp3" id="5_7jktm"]
-[ext_resource type="Theme" uid="uid://c5vctt5fcxfn" path="res://theme.tres" id="5_ryrav"]
-[ext_resource type="PackedScene" uid="uid://bvvip673kkkj7" path="res://ui/gauge.tscn" id="6_vef74"]
 [ext_resource type="PackedScene" uid="uid://bq8lf8yc6y7ti" path="res://ui/menu.tscn" id="7_eow3j"]
-[ext_resource type="PackedScene" uid="uid://dcn6xli3u8mkp" path="res://ui/debug_ui.tscn" id="9_vef74"]
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_vef74"]
-viewport_path = NodePath("SubViewport")
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cr26j"]
-bg_color = Color(0, 0, 0, 1)
 
 [node name="Game" type="Node"]
 script = ExtResource("1_4fbc6")
-game_stats = ExtResource("2_objxm")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-custom_minimum_size = Vector2(640, 360)
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
-custom_minimum_size = Vector2(280, 360)
-layout_mode = 2
-
-[node name="Gauge" parent="HBoxContainer/VBoxContainer" instance=ExtResource("6_vef74")]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer"]
-custom_minimum_size = Vector2(360, 360)
-layout_mode = 2
-texture = SubResource("ViewportTexture_vef74")
-
-[node name="ColorRect" type="ColorRect" parent="HBoxContainer/TextureRect"]
-visible = false
-custom_minimum_size = Vector2(360, 360)
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="SubViewport" type="SubViewport" parent="."]
-disable_3d = true
-size = Vector2i(360, 360)
-render_target_update_mode = 4
-
-[node name="Level" parent="SubViewport" instance=ExtResource("2_lsa33")]
-unique_name_in_owner = true
-
-[node name="Shop" parent="." instance=ExtResource("4_tp65r")]
-visible = false
-
-[node name="LevelEndedScreen" type="PanelContainer" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 1.0
-offset_top = 639.0
-offset_right = 1.0
-offset_bottom = 639.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_cr26j")
-
-[node name="MarginContainer" type="MarginContainer" parent="LevelEndedScreen"]
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="LevelEndedScreen/MarginContainer"]
-layout_mode = 2
-size_flags_vertical = 4
-theme = ExtResource("5_ryrav")
-
-[node name="LabelLevel" type="Label" parent="LevelEndedScreen/MarginContainer/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 0
-text = "LEVEL"
-visible_characters = 0
-visible_ratio = 0.0
-
-[node name="Button" type="Button" parent="LevelEndedScreen/MarginContainer/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-theme = ExtResource("5_ryrav")
-text = "Ready"
-
-[node name="MoneyPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_7jktm")
-volume_db = -20.0
 
 [node name="Menu" parent="." instance=ExtResource("7_eow3j")]
 z_index = 0
-
-[node name="DebugUI" parent="." instance=ExtResource("9_vef74")]
