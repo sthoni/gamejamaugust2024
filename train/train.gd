@@ -24,9 +24,12 @@ var waggon = preload("res://train/waggon.tscn")
 @onready var waggon_amount: float = 0
 @onready var weight: float = 0.0
 @onready var transport_amount: float = 0.0
-@onready var path_to_follow = get_parent()
+@onready var current_path: PathFollow2D = get_parent()
+@onready var path_follow_1: PathFollow2D = get_parent()
+@onready var path_follow_2: PathFollow2D = $"../../../Path2D_2/PathFollow_2"
 
 var paths: Array[PathFollow2D]
+var on_path_2 := false
 
 func _ready() -> void:
 	$Camera2D.make_current()
@@ -36,6 +39,8 @@ func _ready() -> void:
 	Events.item_bought.connect(_on_item_bought)
 	velocity.y = train_stats.start_velocity
 	apply_items(train_stats)
+	current_path = path_follow_1
+	current_path.progress = 0.0
 
 func apply_items(value: TrainStats) -> void:
 	train_stats = value
@@ -56,14 +61,14 @@ func apply_items(value: TrainStats) -> void:
 	for item: Item in value.items:
 		weight += item.weight
 		item.apply_effects(self)
-		if item.item_type == Item.ItemType.WAGGON and path_to_follow:
+		if item.item_type == Item.ItemType.WAGGON and current_path:
 			var waggon_instance := waggon.instantiate()
 			waggon_instance.rotation = deg_to_rad(90)
-			var new_path_to_follow = PathFollow2D.new()
-			paths.append(new_path_to_follow)
-			get_parent().get_parent().add_child.call_deferred(new_path_to_follow)
-			new_path_to_follow.add_child(waggon_instance)
-			path_to_follow.add_child.call_deferred(waggon_instance)
+			var new_current_path = PathFollow2D.new()
+			paths.append(new_current_path)
+			get_parent().get_parent().add_child.call_deferred(new_current_path)
+			new_current_path.add_child(waggon_instance)
+			current_path.add_child.call_deferred(waggon_instance)
 			waggon_instance.add_to_group("FreightWaggons")
 			i += 1
 			waggon_amount += 1
@@ -123,7 +128,11 @@ func _physics_process(delta: float) -> void:
 			new_velocity = 0
 			if timer_brake.time_left == 0:
 				timer_brake.start()
-	
+	if Input.is_action_pressed("right"):
+		if $"../../../Path2D_2/PathFollow_2/Weiche1".get_overlapping_bodies().has(%Train):
+			switch_path(path_follow_2)
+	if Input.is_action_pressed("left"):
+		pass
 	var acc: float = (new_velocity - velocity.y) / delta
 	velocity.y = new_velocity
 	@warning_ignore("return_value_discarded")
@@ -131,11 +140,20 @@ func _physics_process(delta: float) -> void:
 	@warning_ignore("return_value_discarded")
 	Events.emit_signal("velocity_changed", velocity.y)
 	@warning_ignore("return_value_discarded")
-	if path_to_follow is PathFollow2D:
-		path_to_follow.progress += new_velocity * delta
+	if current_path is PathFollow2D:
+		current_path.progress += new_velocity * delta
 		for i in range(paths.size()):
-			paths[i].progress = path_to_follow.progress - (35 + 24 * i)
+			paths[i].progress = current_path.progress - (35 + 24 * i)
 	#move_and_slide()
+
+func switch_path(new_path: PathFollow2D):
+	var train = current_path.get_child(0) #Train
+	if train:
+		current_path.remove_child(train)
+		new_path.add_child(train)
+		train.position = Vector2.ZERO # Lokale Position im neuen PathFollow2D
+		current_path = new_path
+		on_path_2 = true
 
 func _check_speed():
 	var f = AudioServer.get_bus_index("DrivingSounds")
