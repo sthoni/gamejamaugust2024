@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://5m2ar4vwdnpd"]
+[gd_scene load_steps=20 format=4 uid="uid://5m2ar4vwdnpd"]
 
 [ext_resource type="Script" uid="uid://umg07x7rcb87" path="res://level/level.gd" id="1_pg6m5"]
 [ext_resource type="PackedScene" uid="uid://cq0dan380xs2g" path="res://level/tracks.tscn" id="2_jnvge"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://cohop5a2itmps" path="res://level/path_follow_2d.gd" id="7_0v1st"]
 [ext_resource type="Resource" uid="uid://bbd4jch0jo6gm" path="res://station/station_stats_start_2.tres" id="8_m3nah"]
 [ext_resource type="Script" uid="uid://bxsm7hr36wedi" path="res://level/mission_manager.gd" id="9_6gtgk"]
+[ext_resource type="Script" uid="uid://b16cdrpkhuj1a" path="res://train/train_chain_manager.gd" id="10_l5lfc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cw150"]
 texture = ExtResource("4_6gtgk")
@@ -126,48 +127,52 @@ position = Vector2(184, 198)
 position = Vector2(184, 8)
 station_stats = ExtResource("8_m3nah")
 
-[node name="Weiche1" type="Area2D" parent="."]
-position = Vector2(192, -56.546)
+[node name="TrainChainManager" type="Node" parent="."]
+script = ExtResource("10_l5lfc")
+
+[node name="Weiche1" type="Area2D" parent="TrainChainManager"]
+position = Vector2(193, -52.546)
 rotation = -1.5708
 
-[node name="Weiche1" type="CollisionShape2D" parent="Weiche1"]
+[node name="Weiche1" type="CollisionShape2D" parent="TrainChainManager/Weiche1"]
 position = Vector2(-11.546, 0)
 shape = SubResource("RectangleShape2D_l5lfc")
 
-[node name="Path2D" type="Path2D" parent="."]
-position = Vector2(192, 313)
+[node name="Path2D" type="Path2D" parent="TrainChainManager"]
+position = Vector2(193, 317)
 curve = SubResource("Curve2D_ivpvi")
 
-[node name="PathFollow_1" type="PathFollow2D" parent="Path2D"]
+[node name="PathFollow_1" type="PathFollow2D" parent="TrainChainManager/Path2D"]
 position = Vector2(0, 256.262)
 rotation = -1.5708
 progress = 43.7542
 loop = false
 script = ExtResource("7_0v1st")
 
-[node name="Train" parent="Path2D/PathFollow_1" instance=ExtResource("2_kmlf3")]
+[node name="Train" parent="TrainChainManager/Path2D/PathFollow_1" instance=ExtResource("2_kmlf3")]
 unique_name_in_owner = true
 rotation = 1.5708
 
-[node name="Label2" type="Label" parent="Path2D/PathFollow_1"]
-offset_left = -5.50452
-offset_right = 116.495
-offset_bottom = 24.0
+[node name="Label2" type="Label" parent="TrainChainManager/Path2D/PathFollow_1"]
+offset_left = -4.73846
+offset_top = 9.0
+offset_right = 117.262
+offset_bottom = 33.0
 rotation = 1.57572
 text = "-----SWITCH"
 
-[node name="Path2D_2" type="Path2D" parent="."]
-position = Vector2(192, 613)
+[node name="Path2D_2" type="Path2D" parent="TrainChainManager"]
+position = Vector2(193, 617)
 curve = SubResource("Curve2D_rhqlf")
 
-[node name="PathFollow_2" type="PathFollow2D" parent="Path2D_2"]
+[node name="PathFollow_2" type="PathFollow2D" parent="TrainChainManager/Path2D_2"]
 position = Vector2(0, -669.546)
 rotation = -1.5708
 progress = 30.552
 rotates = false
 loop = false
 
-[node name="Label" type="Label" parent="Path2D_2/PathFollow_2"]
+[node name="Label" type="Label" parent="TrainChainManager/Path2D_2/PathFollow_2"]
 offset_right = 40.0
 offset_bottom = 24.0
 rotation = 1.57572

@@ -6,7 +6,6 @@ class_name Level extends Node2D
 @onready var mission_manager: MissionManager = $MissionManager # Assuming the node is named MissionManager
 
 @onready var train: Train = %Train
-@onready var path_to_follow: PathFollow2D = $Path2D/PathFollow_1
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -28,8 +27,7 @@ func _ready() -> void:
 func set_level_stats(value: LevelStats) -> void:
 	level_stats = value
 	if train:
-		train.train_stats = level_stats.train_stats
-		path_to_follow.progress = 0
+		train.train_stats = level_stats.train_stats 
 
 
 func _input(event: InputEvent) -> void:
@@ -46,4 +44,4 @@ func _on_mission_completed() -> void:
 
 func _on_mission_failed() -> void:
 	print("Level received mission failed signal.")
-	game_stats.money -= 300
+	game_stats.money -= 300 

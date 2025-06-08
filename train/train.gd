@@ -82,7 +82,7 @@ func apply_items(value: TrainStats) -> void:
 	Events.emit_signal("weight_changed", weight)
 	@warning_ignore("return_value_discarded")
 	Events.emit_signal("waggons_counted", waggon_amount)
-
+	
 func _physics_process(delta: float) -> void:
 	var new_velocity: float = velocity.y
 	if velocity.y != 0:
@@ -111,6 +111,10 @@ func _physics_process(delta: float) -> void:
 			new_velocity = 0
 			if timer_acc.time_left == 0:
 				timer_acc.start()
+				
+	if Input.is_action_pressed("right"):
+		if $"../../../Weiche1".get_overlapping_bodies().has(%Train):
+			switch_path(path_follow_2)
 
 	if Input.is_action_pressed("brake"):
 		timer_acc.stop()
@@ -128,9 +132,7 @@ func _physics_process(delta: float) -> void:
 			new_velocity = 0
 			if timer_brake.time_left == 0:
 				timer_brake.start()
-	if Input.is_action_pressed("right"):
-		if $"../../../Weiche1".get_overlapping_bodies().has(%Train):
-			switch_path(path_follow_2)
+				
 	if Input.is_action_pressed("left"):
 		pass
 	var acc: float = (new_velocity - velocity.y) / delta
