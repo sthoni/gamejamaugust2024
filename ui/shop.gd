@@ -23,7 +23,8 @@ func _on_continue_button_pressed() -> void:
 func _on_exit_button_pressed() -> void:
 	get_tree().quit()
 
-func _on_money_changed(money: int) -> void:
-	money_label.text = "Money: %s" % money
+func _on_money_changed(money_old: int, money: int) -> void:
+	var tween := create_tween()
+	tween.tween_method(func(mon: int) -> void: money_label.text = "Money: %s" % mon, money_old, money, 2)
 	item_display1.check_for_enough_money(money)
 	item_display2.check_for_enough_money(money)

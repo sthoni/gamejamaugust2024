@@ -1,15 +1,28 @@
 class_name Level extends Node2D
 
 @export var level_stats: LevelStats : set = set_level_stats
+@export var game_stats: GameStats
+@onready var tiles: TileMapLayer = $TileMapLayer
+@onready var mission_manager: MissionManager = $MissionManager # Assuming the node is named MissionManager
 
 @onready var train: Train = %Train
-@onready var station: Station = $Station
-@onready var tiles: TileMapLayer = $TileMapLayer
 @onready var path_to_follow: PathFollow2D = $Path2D/PathFollow2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	set_level_stats(level_stats)
+	if mission_manager:
+		mission_manager.mission_completed.connect(_on_mission_completed)
+		mission_manager.mission_failed.connect(_on_mission_failed)
+		mission_manager.apply_penalty.connect(game_stats.apply_money_penalty) # Connect penalty signal
+		# Connect station signals to mission manager
+		for child in get_children():
+			if child is Station:
+				var station_child: Station = child
+				mission_manager.mission.append(station_child.station_stats)
+				station_child.train_correctly_stopped.connect(mission_manager._on_station_correctly_stopped)
+				station_child.station_missed.connect(mission_manager._on_station_missed)
+		mission_manager.start_mission() # Start the mission when the level is ready
 
 # ACHTUNG: Die Position des Trains im Level wird hier auch gesetzt
 func set_level_stats(value: LevelStats) -> void:
@@ -17,9 +30,6 @@ func set_level_stats(value: LevelStats) -> void:
 	if train:
 		train.train_stats = level_stats.train_stats
 		path_to_follow.progress = 0.0
-		#train.position.y = 670
-		station.station_stats = level_stats.station_stats
-		#tiles.tile_set = level_stats.background_texture
 
 
 func _input(event: InputEvent) -> void:
@@ -29,3 +39,11 @@ func _input(event: InputEvent) -> void:
 func _on_level_end_body_entered(body: Node2D) -> void:
 	if body is Train:
 		Events.emit_signal("level_end_reached")
+
+func _on_mission_completed() -> void:
+	print("Level received mission completed signal.")
+	game_stats.money += 500
+
+func _on_mission_failed() -> void:
+	print("Level received mission failed signal.")
+	game_stats.money -= 300

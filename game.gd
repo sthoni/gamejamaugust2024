@@ -8,7 +8,7 @@ class_name Game extends Node
 @onready var label_level: Label = %LabelLevel
 @onready var button: Button = %Button
 @onready var panel_container: PanelContainer = $PanelContainer
-@onready var level_stats: LevelStats = preload("res://level/level_start.tres")
+@onready var level_start_stats: LevelStats = preload("res://level/level_start.tres")
 @onready var money_player: AudioStreamPlayer = $MoneyPlayer
 
 var level_ended := false
@@ -16,10 +16,10 @@ var level_ended := false
 func _ready() -> void:
 	randomize()
 	game_stats.money = game_stats.start_money
-	var shop_items: Array[Item] = level_stats.item_pool.get_two_unique_random_items()
+	var shop_items: Array[Item] = level_start_stats.item_pool.get_two_unique_random_items()
 	shop.item_display1.item_displayed = shop_items[0]
 	shop.item_display2.item_displayed = shop_items[1]
-	level.level_stats = level_stats.create_instance()
+	level.level_stats = level_start_stats
 
 
 	Events.item_buy_button_pressed.connect(_on_item_buy_button_pressed)
@@ -37,17 +37,13 @@ func _set_game_stats(value: GameStats) -> void:
 
 func _on_item_buy_button_pressed(item: Item) -> void:
 	if item.price <= game_stats.money:
-		var tween := create_tween()
-		var end_money: int = game_stats.money - item.price
-		tween.tween_property(game_stats, "money", end_money, item.price / 50.0) 
+		game_stats.money -= item.price
 		Events.emit_signal("item_bought", item)
 
-
+	
 func _on_station_freight_sold(count: int) -> void:
-	var tween := create_tween()
-	var end_money: int = game_stats.money + count
-	tween.tween_property(game_stats, "money", end_money, count / 50.0)
-	tween.finished.connect(func() -> void: money_player.play())
+	game_stats.money += count
+	money_player.play()
 	
 
 func _on_level_end_reached() -> void:
@@ -63,8 +59,8 @@ func _on_level_end_reached() -> void:
 
 func _create_new_level() -> void:
 	var tween := create_tween()
-	level.level_stats = level_stats.create_instance(game_stats.current_level)
-	var shop_items: Array[Item] = level_stats.item_pool.get_two_unique_random_items()
+	level.level_stats = level_start_stats
+	var shop_items: Array[Item] = level_start_stats.item_pool.get_two_unique_random_items()
 	shop.item_display1.item_displayed = shop_items[0]
 	shop.item_display2.item_displayed = shop_items[1]
 	tween.tween_property(panel_container, "position", Vector2(0.0,-640.0), 0.5)
@@ -80,13 +76,10 @@ func _input(event: InputEvent) -> void:
 		get_tree().paused = true
 		
 	# Input-Router-Funktion, zur Event-Weiterleitung in SubViewport:
-	var world = $SubViewport/Level
+	var world := $SubViewport/Level
 	for child in world.get_children():
 		if child.has_method("_input"):
 			child._input(event)
-
-		
-
 
 func _on_shop_key_pressed() -> void:
 	shop.show()

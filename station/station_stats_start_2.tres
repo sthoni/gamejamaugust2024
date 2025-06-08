@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="StationStats" load_steps=2 format=3 uid="uid://bbd4jch0jo6gm"]
+
+[ext_resource type="Script" uid="uid://hatdf840mcsg" path="res://station/station_stats.gd" id="1_0lfi7"]
+
+[resource]
+script = ExtResource("1_0lfi7")
+name = "Stat 2"
+platform_length = 80.0
+target_time = 100.0
+time_limit = 30.0
+penalty_per_second_late = 1
+miss_penalty = 20
+metadata/_custom_type_script = "uid://hatdf840mcsg"

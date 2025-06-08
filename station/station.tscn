@@ -94,6 +94,14 @@ texture = SubResource("AtlasTexture_vx6vs")
 position = Vector2(-16, -24)
 texture = SubResource("AtlasTexture_vddu5")
 
+[node name="StationName" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = 31.0
+offset_top = -31.0
+offset_right = 87.0
+offset_bottom = -7.0
+text = "NAME"
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_entered" from="StationStart" to="." method="_on_station_start_body_entered"]
 [connection signal="body_exited" from="StationStart" to="." method="_on_station_start_body_exited"]
