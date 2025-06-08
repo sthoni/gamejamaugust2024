@@ -4,6 +4,7 @@ class_name Station extends Area2D
 @onready var station_start: Area2D = $StationStart
 @onready var station_end: Area2D = $StationEnd
 @onready var station_label: Label = %StationName
+@onready var money_earned_label: Label = %MoneyEarned
 @onready var money_player: AudioStreamPlayer = $MoneyPlayer
 
 @export var station_stats: StationStats: set = set_station_stats
@@ -60,9 +61,20 @@ func _process(_delta: float) -> void:
 				print("Perfect!")
 				status = TrainStatus.STOPPED
 				if has_money:
-					Events.emit_signal("station_freight_sold", train_at_station.transport_amount)
-					GameState.game_stats.money += train_at_station.transport_amount
-					money_player.play()
+					GameState.game_stats.money += train_at_station.train_stats.transport_amount
+					var tween := create_tween()
+					for item in train_at_station.train_stats.items:
+						if item.get("transport_amount"):
+							tween.tween_callback(func() -> void:
+								money_earned_label.text = "%s $" % item.transport_amount
+								money_earned_label.show()
+								money_player.play()
+								)
+							tween.tween_property(money_earned_label, "position", Vector2(20.0, -80.0), 1)
+							tween.tween_callback(func() -> void:
+								money_earned_label.hide()
+								money_earned_label.position = Vector2(10.0, -60.0)
+								)
 					has_money = false
 			TrainStatus.AT_END:
 				print("Too far. Ride back!")

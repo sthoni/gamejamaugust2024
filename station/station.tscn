@@ -107,6 +107,14 @@ text = "NAME"
 stream = ExtResource("4_40u6s")
 volume_db = -20.0
 
+[node name="MoneyEarned" type="Label" parent="."]
+unique_name_in_owner = true
+visible = false
+offset_left = 10.0
+offset_top = -60.0
+offset_right = 50.0
+offset_bottom = -36.0
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_entered" from="StationStart" to="." method="_on_station_start_body_entered"]
 [connection signal="body_exited" from="StationStart" to="." method="_on_station_start_body_exited"]

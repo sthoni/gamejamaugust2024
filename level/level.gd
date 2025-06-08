@@ -11,6 +11,7 @@ var level_time := 0.0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	_set_level_stats(level_stats)
+	GameState.game_stats.last_level_start_money = GameState.game_stats.money
 
 func _process(delta: float) -> void:
 	level_time += delta
@@ -24,6 +25,7 @@ func _on_level_end_body_entered(body: Node2D) -> void:
 	if body is Train:
 		Events.emit_signal("level_end_reached")
 		GameState.game_stats.last_level_time = level_time
+		GameState.game_stats.last_level_end_money = GameState.game_stats.money
 		GameState.change_to_level_end()
 
 

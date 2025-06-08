@@ -117,7 +117,7 @@ color = Color(1, 1, 1, 0.223529)
 position = Vector2(269, -146)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LevelEnd"]
-position = Vector2(190, 91)
+position = Vector2(141, -204)
 shape = SubResource("RectangleShape2D_ivpvi")
 
 [node name="MoneyTimer" type="Timer" parent="."]
