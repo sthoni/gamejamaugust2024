@@ -36,7 +36,7 @@ var acc_power := 0.0:
         var p := 0.0
         for item in items:
             if item.get("acc_power"):
-                p += item.acc_power
+                p += item.acc_power + ((item.level - 1) / 4.0) * item.acc_power
         return p
 
 var brake_power := 0.0:
@@ -44,7 +44,7 @@ var brake_power := 0.0:
         var p := 0.0
         for item in items:
             if item.get("brake_power"):
-                p += item.brake_power
+                p += item.brake_power + ((item.level - 1) / 4.0) * item.brake_power
         return p
 
 
@@ -56,6 +56,9 @@ func add_item(item: Item) -> void:
         _remove_items_by_type(item.item_type)
     if item.item_type != Item.ItemType.UPGRADE:
         items.push_back(item)
+
+    Events.train_stats_changed.emit(self)
+
 
 func _remove_items_by_type(item_type: int) -> void:
     var items_to_remove: Array[Item] = items.filter(func(item: Item) -> bool: return item.item_type == item_type)
