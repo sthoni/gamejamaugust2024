@@ -6,8 +6,4 @@
 script = ExtResource("1_0lfi7")
 name = "Stat 2"
 platform_length = 80.0
-target_time = 100.0
-time_limit = 30.0
-penalty_per_second_late = 1
-miss_penalty = 20
 metadata/_custom_type_script = "uid://hatdf840mcsg"

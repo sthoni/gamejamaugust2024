@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://5m2ar4vwdnpd"]
+[gd_scene load_steps=16 format=4 uid="uid://5m2ar4vwdnpd"]
 
 [ext_resource type="Script" uid="uid://umg07x7rcb87" path="res://level/level.gd" id="1_pg6m5"]
 [ext_resource type="PackedScene" uid="uid://cq0dan380xs2g" path="res://level/tracks.tscn" id="2_jnvge"]
@@ -11,7 +11,6 @@
 [ext_resource type="PackedScene" uid="uid://dh71w6aefqf38" path="res://ui/debug.tscn" id="4_s0jqg"]
 [ext_resource type="Script" uid="uid://cohop5a2itmps" path="res://level/path_follow_2d.gd" id="7_0v1st"]
 [ext_resource type="Resource" uid="uid://bbd4jch0jo6gm" path="res://station/station_stats_start_2.tres" id="8_m3nah"]
-[ext_resource type="Script" uid="uid://bxsm7hr36wedi" path="res://level/mission_manager.gd" id="9_6gtgk"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cw150"]
 texture = ExtResource("4_6gtgk")
@@ -142,9 +141,5 @@ color = Color(1, 1, 1, 0.223529)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LevelEnd"]
 position = Vector2(183, -1377)
 shape = SubResource("RectangleShape2D_ivpvi")
-
-[node name="MissionManager" type="Node" parent="."]
-script = ExtResource("9_6gtgk")
-metadata/_custom_type_script = "uid://bxsm7hr36wedi"
 
 [connection signal="body_entered" from="LevelEnd" to="." method="_on_level_end_body_entered"]
