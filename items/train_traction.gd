@@ -1,7 +1,6 @@
 class_name TrainTraction extends Item
 
 @export var brake_power: float = 30000.0
-@export var transport_amount: float = 10.0
 @export var level: int = 1: set = change_level
 
 

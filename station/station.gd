@@ -5,11 +5,13 @@ class_name Station extends Area2D
 @onready var station_end: Area2D = $StationEnd
 @onready var station_label: Label = %StationName
 @onready var money_earned_label: Label = %MoneyEarned
+@onready var money_earned_sum_label: Label = %MoneyEarnedSum
 @onready var money_player: AudioStreamPlayer = $MoneyPlayer
 
 @export var station_stats: StationStats: set = set_station_stats
 
 var has_money: bool = true
+var money_earned_sum: int = 0
 
 enum TrainStatus {
 	STOPPED,
@@ -61,21 +63,7 @@ func _process(_delta: float) -> void:
 				print("Perfect!")
 				status = TrainStatus.STOPPED
 				if has_money:
-					var tween := create_tween()
-					for item in train_at_station.train_stats.items:
-						if item.get("transport_amount"):
-							tween.tween_callback(func() -> void:
-								money_earned_label.text = "%s $" % item.transport_amount
-								GameState.game_stats.money += item.transport_amount
-								money_earned_label.show()
-								money_player.play()
-								)
-							tween.tween_property(money_earned_label, "position", Vector2(20.0, -80.0), 1)
-							tween.tween_callback(func() -> void:
-								money_earned_label.hide()
-								money_earned_label.position = Vector2(10.0, -60.0)
-								)
-					has_money = false
+					pay_money()
 			TrainStatus.AT_END:
 				print("Too far. Ride back!")
 				status = TrainStatus.STOPPED_WRONG
@@ -145,3 +133,39 @@ func _on_body_exited(body: Node2D) -> void:
 								money_earned_label.hide()
 								money_earned_label.position = Vector2(10.0, -60.0)
 			)
+
+
+func pay_money() -> void:
+	var tween := create_tween()
+	var mult_sum := 1.0
+	money_earned_sum_label.text = "%s $" % money_earned_sum
+	money_earned_sum_label.show()
+	var old_money_earned_sum = money_earned_sum
+	for item in train_at_station.train_stats.items:
+		if item.get("transport_amount"):
+			mult_sum *= item.transport_mult
+			money_earned_sum += item.transport_amount
+			tween.tween_callback(func() -> void:
+				money_earned_label.text = "%s $" % item.transport_amount
+				money_earned_label.show()
+				money_player.play()
+				)
+			tween.tween_method(func(mon: int) -> void: money_earned_sum_label.text = "%s $" % mon, old_money_earned_sum, money_earned_sum, 0.5)
+			tween.tween_property(money_earned_label, "position", Vector2(30.0, -100.0), 1)
+			tween.tween_callback(func() -> void:
+				money_earned_label.hide()
+				money_earned_label.position = Vector2(20.0, -80.0)
+				)
+			old_money_earned_sum = money_earned_sum
+	money_earned_sum *= mult_sum
+	tween.tween_callback(func() -> void:
+		money_earned_label.text = "x%s" % mult_sum
+		money_earned_label.show()
+		money_player.play()
+	)
+	tween.tween_method(func(mon: int) -> void: money_earned_sum_label.text = "%s $" % mon, old_money_earned_sum, money_earned_sum, 0.5)
+	tween.tween_property(money_earned_label, "position", Vector2(20.0, -100.0), 1)
+	tween.tween_callback(func() -> void: money_earned_label.hide())
+
+	has_money = false
+	GameState.game_stats.money += money_earned_sum
