@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="LevelStats" load_steps=5 format=3 uid="uid://bbum0dx5joke6"]
 
-[ext_resource type="TileSet" uid="uid://doeiu3783pphy" path="res://level/forest_tileset.tres" id="1_f4o2h"]
+[ext_resource type="TileSet" uid="uid://c5dhv8sclf8qw" path="res://level/snowforest_tileset.tres" id="1_f4o2h"]
 [ext_resource type="Script" uid="uid://cpf54jp870jd1" path="res://level/level_stats.gd" id="1_mv6bu"]
 [ext_resource type="Resource" uid="uid://bg1b2bhwkhxun" path="res://items/item_pool_start.tres" id="2_gjr0e"]
 [ext_resource type="Resource" uid="uid://fdaqrpalijb6" path="res://train/train_start.tres" id="4_q3ugd"]
@@ -9,4 +9,5 @@
 script = ExtResource("1_mv6bu")
 train_stats = ExtResource("4_q3ugd")
 item_pool = ExtResource("2_gjr0e")
+level_cost = 1
 background_texture = ExtResource("1_f4o2h")

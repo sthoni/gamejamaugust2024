@@ -5,7 +5,7 @@ var game_stats: GameStats: set = _set_game_stats
 @onready var shop_scene := preload("res://ui/shop.tscn")
 @onready var level_end_scene := preload("res://ui/level_end.tscn")
 
-@onready var levels: Array[PackedScene] = [preload("res://level/level.tscn"), preload("res://level/level_2.tscn")]
+@onready var levels: Array[PackedScene] = [preload("res://level/level.tscn"), preload("res://level/level_2.tscn"), preload("res://level/level_3.tscn")]
 
 var level_ended := false
 
