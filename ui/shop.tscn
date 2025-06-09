@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://botpyjbja42c"]
+[gd_scene load_steps=5 format=3 uid="uid://botpyjbja42c"]
 
 [ext_resource type="Theme" uid="uid://c5vctt5fcxfn" path="res://theme.tres" id="1_1gval"]
 [ext_resource type="Script" uid="uid://bqdc462rifso4" path="res://ui/shop.gd" id="2_rwf4v"]
 [ext_resource type="PackedScene" uid="uid://dpoct08kcld7d" path="res://ui/item_display.tscn" id="3_qk112"]
-[ext_resource type="Resource" uid="uid://bg1b2bhwkhxun" path="res://items/item_pool_start.tres" id="3_t603m"]
 [ext_resource type="Texture2D" uid="uid://cxtlg2st4qewp" path="res://assets/ui/UI_Wood_Frame_Standard_02.png" id="3_vlsgw"]
 
 [node name="Shop" type="Control"]
@@ -15,7 +14,6 @@ offset_right = 640.0
 offset_bottom = 360.0
 theme = ExtResource("1_1gval")
 script = ExtResource("2_rwf4v")
-item_pool = ExtResource("3_t603m")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
 layout_mode = 1

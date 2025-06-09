@@ -32,6 +32,7 @@ func _on_item_buy_pressed() -> void:
 		GameState.game_stats.train_stats.add_item(item_displayed)
 		item_buy.text = "Sold out"
 		item_buy.disabled = true
+		Events.disconnect("money_changed", check_for_enough_money)
 
 
 func check_for_enough_money(_old_money: int, money: int) -> void:
