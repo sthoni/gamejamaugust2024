@@ -17,6 +17,8 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	level_time += delta
+	GameState.game_stats.last_level_time = level_time
+	GameState.game_stats.level_time_sum += delta
 
 func _set_level_stats(value: LevelStats) -> void:
 	level_stats = value
@@ -28,8 +30,6 @@ func _set_level_stats(value: LevelStats) -> void:
 func _on_level_end_body_entered(body: Node2D) -> void:
 	if body is Train:
 		Events.emit_signal("level_end_reached")
-		GameState.game_stats.last_level_time = level_time
-		GameState.game_stats.level_time_sum += level_time
 		GameState.game_stats.last_level_end_money = GameState.game_stats.money
 		GameState.change_to_level_end()
 
