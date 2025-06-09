@@ -131,7 +131,7 @@ func _on_body_exited(body: Node2D) -> void:
 	if body is Train:
 		var train_body: Train = body
 		# Check if the train exited the main station area without stopping correctly
-		if (status == TrainStatus.NOT_ARRIVED or status == TrainStatus.AT_END) and abs(train_body.velocity.y) > 10: # Threshold velocity
+		if (status == TrainStatus.NOT_ARRIVED or status == TrainStatus.AT_END) and abs(train_body.velocity.y) > 50: # Threshold velocity
 			print("Train missed station: ", station_stats.name)
 			var tween := create_tween()
 			tween.tween_callback(func() -> void:
