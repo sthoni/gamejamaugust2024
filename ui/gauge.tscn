@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bvvip673kkkj7"]
 
-[ext_resource type="Script" uid="uid://dwuwjx61kahba" path="res://ui/gauge.gd" id="1_j0hsb"]
+[ext_resource type="Script" uid="uid://6b1drevoi3y6" path="res://ui/gauge.gd" id="1_j0hsb"]
 [ext_resource type="Texture2D" uid="uid://coewucjahkl2r" path="res://assets/gauge.png" id="1_lo78o"]
 [ext_resource type="Texture2D" uid="uid://by0mt58yfg3q3" path="res://assets/gaugeneedle.png" id="2_buy24"]
 [ext_resource type="Texture2D" uid="uid://bhn36jceufuai" path="res://assets/ui/UI_Flat_FrameSlot01a.png" id="2_s46sp"]
