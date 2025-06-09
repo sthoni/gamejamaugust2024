@@ -23,10 +23,10 @@ func _process(delta: float) -> void:
 
 func _set_level_stats(value: LevelStats) -> void:
 	level_stats = value
+
 	if tiles:
 		tiles.tile_set = value.background_texture
-	if train:
-		train.train_stats = level_stats.train_stats
+
 	
 func _on_level_end_body_entered(body: Node2D) -> void:
 	if body is Train:

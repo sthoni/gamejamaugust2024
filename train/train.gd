@@ -5,9 +5,9 @@ var flag_change_dir_on_brake: bool = false
 var flag_change_dir_on_acc: bool = false
 var flag_tut_played: bool = false
 var flag_train_long_tut_played: bool = false
-var waggon = preload("res://train/waggon.tscn")
+#var waggon = preload("res://train/waggon.tscn")
 
-@export var train_stats: TrainStats: set = apply_items
+# @export var train_stats: TrainStats: set = apply_items
 @export var audiobus: AudioBusLayout
 
 @onready var sprite: Sprite2D = $Locomotive
@@ -30,45 +30,42 @@ var waggon = preload("res://train/waggon.tscn")
 @onready var path_follow_1: PathFollow2D = get_parent()
 @onready var path_follow_2: PathFollow2D = $"../../../Path2D_2/PathFollow_2"
 
-var paths: Array[PathFollow2D]
-var on_path_2 := false
+# var paths: Array[PathFollow2D]
 
 func _ready() -> void:
 	$Camera2D.make_current()
 	Events.train_at_start.connect(_on_train_at_start)
 	Events.train_exited.connect(_on_train_exited)
 	@warning_ignore("return_value_discarded")
-	Events.item_bought.connect(_on_item_bought)
-	velocity.y = train_stats.start_velocity
-	apply_items(train_stats)
+	#velocity.y = train_stats.start_velocity
+	# apply_items(train_stats)
 	current_path = path_follow_1
 	current_path.progress = 0.0
 
-func apply_items(value: TrainStats) -> void:
-	train_stats = value
-	weight = value.weight
-	waggon_amount = value.waggon_amount
-	acc_power = value.acc_power
-	brake_power = value.brake_power
-	transport_amount = value.transport_amount
-	paths = []
-	if self.is_inside_tree():
-		for member in get_tree().get_nodes_in_group("FreightWaggons"):
-			member.get_parent().free()
-	var i := 0
-	for item: Item in value.items:
-		if item.item_type == Item.ItemType.WAGGON and path_to_follow:
-			var waggon_instance := waggon.instantiate()
-			waggon_instance.rotation = deg_to_rad(90)
-			var new_current_path = PathFollow2D.new()
-			paths.append(new_current_path)
-			get_parent().get_parent().add_child.call_deferred(new_current_path)
-			new_current_path.add_child(waggon_instance)
-			current_path.add_child.call_deferred(waggon_instance)
-			waggon_instance.add_to_group("FreightWaggons")
-			i += 1
-
-	Events.emit_signal("train_stats_changed", value)
+# func apply_items(value: TrainStats) -> void:
+# 	train_stats = value
+# 	weight = value.weight
+# 	waggon_amount = value.waggon_amount
+# 	acc_power = value.acc_power
+# 	brake_power = value.brake_power
+# 	transport_amount = value.transport_amount
+# 	paths = []
+# 	if self.is_inside_tree():
+# 		for member in get_tree().get_nodes_in_group("FreightWaggons"):
+# 			member.get_parent().free()
+# 	var i := 0
+# 	for item: Item in value.items:
+# 		if item.item_type == Item.ItemType.WAGGON and path_to_follow:
+# 			var waggon_instance := waggon.instantiate()
+# 			waggon_instance.rotation = deg_to_rad(90)
+# 			var new_current_path = PathFollow2D.new()
+# 			paths.append(new_current_path)
+# 			get_parent().get_parent().add_child.call_deferred(new_current_path)
+# 			new_current_path.add_child(waggon_instance)
+# 			current_path.add_child.call_deferred(waggon_instance)
+# 			waggon_instance.add_to_group("FreightWaggons")
+# 			i += 1
+#	Events.emit_signal("train_stats_changed", value)
 
 func _physics_process(delta: float) -> void:
 	var new_velocity: float = velocity.y
@@ -99,9 +96,7 @@ func _physics_process(delta: float) -> void:
 			if timer_acc.time_left == 0:
 				timer_acc.start()
 				
-	if Input.is_action_pressed("right"):
-		if $"../../../Weiche1".get_overlapping_bodies().has(%Train):
-			switch_path(path_follow_2)
+
 
 	if Input.is_action_pressed("brake"):
 		timer_acc.stop()
@@ -132,22 +127,24 @@ func _physics_process(delta: float) -> void:
 	if current_path is PathFollow2D:
 		current_path.progress += new_velocity * delta
 		if current_path.progress_ratio >= 1.0:
-			switch_path(path_follow_1)
-			current_path.progress = 1615.67
-		for i in range(paths.size()):
-			paths[i].progress = current_path.progress - (35 + 24 * i)
+			var end_position = current_path.global_position
+			#todo switch_path(path_follow_1)
+			current_path.progress = 1606
+		#todo:
+		#for i in range(paths.size()):
+			#paths[i].progress = current_path.progress - (35 + 24 * i)
 	#move_and_slide()
 
-func switch_path(new_path: PathFollow2D):
-	#var train = current_path.get_child(0) #Train
-	var train = current_path.get_node("Train") # Train
-	if train:
-		current_path.remove_child(train)
-		new_path.add_child(train)
-		#train.position = Vector2.ZERO # Lokale Position im neuen PathFollow2D
-		new_path.progress = current_path.progress
-		current_path = new_path
-		on_path_2 = true
+# func switch_path(new_path: PathFollow2D):
+# 	#var train = current_path.get_child(0) #Train
+# 	var train = current_path.get_node("Train") #Train
+	
+# 	if train:
+# 		current_path.remove_child(train)
+# 		new_path.add_child(train)
+# 		#train.position = Vector2.ZERO # Lokale Position im neuen PathFollow2D
+# 		new_path.progress = current_path.progress
+# 		current_path = new_path
 
 func _check_speed():
 	var f = AudioServer.get_bus_index("DrivingSounds")
@@ -193,6 +190,3 @@ func _on_train_at_start() -> void:
 	
 func _on_train_exited() -> void:
 	flag_train_long_tut_played = false
-
-func _on_item_bought(bought_item: Item) -> void:
-	train_stats.add_item(bought_item)
