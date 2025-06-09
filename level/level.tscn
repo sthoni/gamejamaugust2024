@@ -119,9 +119,9 @@ position = Vector2(461, 317)
 curve = SubResource("Curve2D_ivpvi")
 
 [node name="PathFollow_1" type="PathFollow2D" parent="TrainChainManager/Path2D"]
-position = Vector2(-0.0509703, -1260.29)
-rotation = -1.57035
-progress = 1615.67
+position = Vector2(-0.0551447, -1250.61)
+rotation = -1.57039
+progress = 1606.0
 loop = false
 script = ExtResource("7_0v1st")
 
@@ -187,6 +187,9 @@ offset_top = 5.0
 offset_right = 171.0
 offset_bottom = 29.0
 text = "Money"
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(461, -934)
 
 [connection signal="body_entered" from="LevelEnd" to="." method="_on_level_end_body_entered"]
 [connection signal="timeout" from="MoneyTimer" to="." method="_on_money_timer_timeout"]

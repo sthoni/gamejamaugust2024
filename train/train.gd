@@ -31,7 +31,6 @@ var waggon = preload("res://train/waggon.tscn")
 @onready var path_follow_2: PathFollow2D = $"../../../Path2D_2/PathFollow_2"
 
 var paths: Array[PathFollow2D]
-var on_path_2 := false
 
 func _ready() -> void:
 	$Camera2D.make_current()
@@ -132,8 +131,9 @@ func _physics_process(delta: float) -> void:
 	if current_path is PathFollow2D:
 		current_path.progress += new_velocity * delta
 		if current_path.progress_ratio >= 1.0:
+			var end_position = current_path.global_position
 			switch_path(path_follow_1)
-			current_path.progress = 1615.67
+			current_path.progress = 1606
 		for i in range(paths.size()):
 			paths[i].progress = current_path.progress - (35 + 24 * i)
 	#move_and_slide()
@@ -141,13 +141,13 @@ func _physics_process(delta: float) -> void:
 func switch_path(new_path: PathFollow2D):
 	#var train = current_path.get_child(0) #Train
 	var train = current_path.get_node("Train") #Train
+	
 	if train:
 		current_path.remove_child(train)
 		new_path.add_child(train)
 		#train.position = Vector2.ZERO # Lokale Position im neuen PathFollow2D
 		new_path.progress = current_path.progress
 		current_path = new_path
-		on_path_2 = true
 
 func _check_speed():
 	var f = AudioServer.get_bus_index("DrivingSounds")
