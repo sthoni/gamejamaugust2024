@@ -125,7 +125,7 @@ progress = 1606.0
 loop = false
 script = ExtResource("7_0v1st")
 
-[node name="Train" parent="TrainChainManager/Path2D/PathFollow_1" instance=ExtResource("2_kmlf3")]
+[node name="Train" parent="TrainChainManager/Path2D/PathFollow_1" groups=["Train"] instance=ExtResource("2_kmlf3")]
 unique_name_in_owner = true
 rotation = 1.5708
 
@@ -191,5 +191,6 @@ text = "Money"
 [node name="Node2D" type="Node2D" parent="."]
 position = Vector2(461, -934)
 
+[connection signal="area_entered" from="TrainChainManager/Weiche1" to="TrainChainManager" method="_on_weiche_1_area_entered"]
 [connection signal="body_entered" from="LevelEnd" to="." method="_on_level_end_body_entered"]
 [connection signal="timeout" from="MoneyTimer" to="." method="_on_money_timer_timeout"]

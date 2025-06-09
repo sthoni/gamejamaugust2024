@@ -9,6 +9,7 @@ class_name Station extends Area2D
 @onready var money_player: AudioStreamPlayer = $MoneyPlayer
 
 @export var station_stats: StationStats: set = set_station_stats
+@onready var train_stats: Resource = GameState.game_stats.train_stats
 
 var has_money: bool = true
 var money_earned_sum: int = 0
@@ -141,7 +142,7 @@ func pay_money() -> void:
 	money_earned_sum_label.text = "%s $" % money_earned_sum
 	money_earned_sum_label.show()
 	var old_money_earned_sum = money_earned_sum
-	for item in train_at_station.train_stats.items:
+	for item in train_stats.items:
 		if item.get("transport_amount"):
 			mult_sum *= item.transport_mult
 			money_earned_sum += item.transport_amount

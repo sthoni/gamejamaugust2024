@@ -1,7 +1,6 @@
-[gd_scene load_steps=13 format=3 uid="uid://c3byp0uv73juy"]
+[gd_scene load_steps=12 format=3 uid="uid://c3byp0uv73juy"]
 
 [ext_resource type="Script" uid="uid://18ex7wnaa4s1" path="res://train/train.gd" id="1_q7ry4"]
-[ext_resource type="Resource" uid="uid://fdaqrpalijb6" path="res://train/train_start.tres" id="2_03127"]
 [ext_resource type="Texture2D" uid="uid://cf1y5qabhp48g" path="res://assets/locomotive.png" id="2_htwba"]
 [ext_resource type="AudioStream" uid="uid://rit6qiqmsl3j" path="res://assets/music/tut1.wav" id="3_45srh"]
 [ext_resource type="AudioBusLayout" uid="uid://dnbahy0neavpn" path="res://default_bus_layout.tres" id="3_l8xh7"]
@@ -34,7 +33,6 @@ scale_curve = SubResource("CurveTexture_46i6o")
 
 [node name="Train" type="CharacterBody2D"]
 script = ExtResource("1_q7ry4")
-train_stats = ExtResource("2_03127")
 audiobus = ExtResource("3_l8xh7")
 
 [node name="Camera2D" type="Camera2D" parent="."]
