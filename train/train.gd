@@ -133,7 +133,7 @@ func _physics_process(delta: float) -> void:
 		current_path.progress += new_velocity * delta
 		if current_path.progress_ratio >= 1.0:
 			switch_path(path_follow_1)
-			current_path.progress = 1606.0
+			current_path.progress = 1615.67
 		for i in range(paths.size()):
 			paths[i].progress = current_path.progress - (35 + 24 * i)
 	#move_and_slide()
@@ -144,7 +144,8 @@ func switch_path(new_path: PathFollow2D):
 	if train:
 		current_path.remove_child(train)
 		new_path.add_child(train)
-		train.position = Vector2.ZERO # Lokale Position im neuen PathFollow2D
+		#train.position = Vector2.ZERO # Lokale Position im neuen PathFollow2D
+		new_path.progress = current_path.progress
 		current_path = new_path
 		on_path_2 = true
 

@@ -12,6 +12,7 @@ region = Rect2(96, 0, 48, 48)
 [resource]
 script = ExtResource("2_des30")
 transport_amount = 150.0
+transport_mult = 1.0
 id = "FreightHugeWaggon"
 item_type = 2
 price = 120
