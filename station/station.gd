@@ -42,8 +42,8 @@ func set_station_stats(value: StationStats) -> void:
 		has_money = true
 		if platform:
 			platform.shape.size.y = station_stats.platform_length
-			station_start.position.y = station_stats.platform_length / 2
-			station_end.position.y = - station_stats.platform_length / 2
+			station_start.position.y = station_stats.platform_length / 2 + 8
+			station_end.position.y = - station_stats.platform_length / 2 - 8
 
 func set_status(value: TrainStatus) -> void:
 	status = value
@@ -61,12 +61,12 @@ func _process(_delta: float) -> void:
 				print("Perfect!")
 				status = TrainStatus.STOPPED
 				if has_money:
-					GameState.game_stats.money += train_at_station.train_stats.transport_amount
 					var tween := create_tween()
 					for item in train_at_station.train_stats.items:
 						if item.get("transport_amount"):
 							tween.tween_callback(func() -> void:
 								money_earned_label.text = "%s $" % item.transport_amount
+								GameState.game_stats.money += item.transport_amount
 								money_earned_label.show()
 								money_player.play()
 								)
@@ -131,6 +131,17 @@ func _on_body_exited(body: Node2D) -> void:
 	if body is Train:
 		var train_body: Train = body
 		# Check if the train exited the main station area without stopping correctly
-		if (status == TrainStatus.NOT_ARRIVED or status == TrainStatus.AT_STATION) and abs(train_body.velocity.y) > 10: # Threshold velocity
+		if (status == TrainStatus.NOT_ARRIVED or status == TrainStatus.AT_END) and abs(train_body.velocity.y) > 10: # Threshold velocity
 			print("Train missed station: ", station_stats.name)
-			# TODO: Strafe fürs Vorbeifahren
+			var tween := create_tween()
+			tween.tween_callback(func() -> void:
+								money_earned_label.text = "-30 $"
+								GameState.game_stats.money -= 30
+								money_earned_label.show()
+								money_player.play()
+								)
+			tween.tween_property(money_earned_label, "position", Vector2(20.0, -80.0), 1)
+			tween.tween_callback(func() -> void:
+								money_earned_label.hide()
+								money_earned_label.position = Vector2(10.0, -60.0)
+			)

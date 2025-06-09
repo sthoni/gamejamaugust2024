@@ -25,4 +25,4 @@ func _on_continue_button_pressed() -> void:
 
 func _on_money_changed(money_old: int, money: int) -> void:
 	var tween := create_tween()
-	tween.tween_method(func(mon: int) -> void: money_label.text = "Money: %s" % mon, money_old, money, 2)
+	tween.tween_method(func(mon: int) -> void: money_label.text = "Money: %s $" % mon, money_old, money, 2)

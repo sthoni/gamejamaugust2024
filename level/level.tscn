@@ -86,10 +86,10 @@ tile_map_data = PackedByteArray("AAALAP//AAAEAAAAAAALAP3/AAAEAAAAAAALAPv/AAAEAAA
 tile_set = SubResource("TileSet_xii2b")
 
 [node name="Station" parent="." instance=ExtResource("3_7tcqk")]
-position = Vector2(453, 52)
+position = Vector2(461, 121)
 
 [node name="Station2" parent="." instance=ExtResource("3_7tcqk")]
-position = Vector2(453, -138)
+position = Vector2(461, -137)
 station_stats = ExtResource("8_m3nah")
 
 [node name="Path2D" type="Path2D" parent="."]
@@ -132,6 +132,14 @@ offset_left = 2.0
 offset_top = 102.0
 offset_right = 2.0
 offset_bottom = 102.0
+
+[node name="MoneyLabel" type="Label" parent="CanvasLayer"]
+unique_name_in_owner = true
+offset_left = 107.0
+offset_top = 5.0
+offset_right = 171.0
+offset_bottom = 29.0
+text = "Money"
 
 [connection signal="body_entered" from="LevelEnd" to="." method="_on_level_end_body_entered"]
 [connection signal="timeout" from="MoneyTimer" to="." method="_on_money_timer_timeout"]

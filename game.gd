@@ -10,6 +10,7 @@ var level_ended := false
 
 func _ready() -> void:
 	game_stats = load("res://game_stats_start.tres")
+	Events.money_changed.connect(_on_money_changed)
 	randomize()
 
 
@@ -34,3 +35,9 @@ func change_to_level() -> void:
 
 func change_to_level_end() -> void:
 	get_tree().change_scene_to_packed(level_end_scene)
+
+
+func _on_money_changed(_old_money: int, money: int) -> void:
+	if money < 0:
+		print("No money. So lost.")
+		get_tree().quit()
