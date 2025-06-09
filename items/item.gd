@@ -14,5 +14,5 @@ enum ItemType {TRAIN, STATION, WAGGON, ENGINE, BRAKES, UPGRADE}
 @export var sprite: AtlasTexture
 @export_multiline var tooltip_text: String
 
-func apply_effects(_target: Train) -> void:
+func apply_effects(_target: TrainStats) -> void:
 	pass

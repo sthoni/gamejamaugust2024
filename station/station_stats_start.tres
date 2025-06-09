@@ -5,8 +5,5 @@
 [resource]
 script = ExtResource("1_8m6bu")
 name = "Start Station"
-platform_length = 90.0
-target_time = 60.0
-time_limit = 30.0
-penalty_per_second_late = 1
-miss_penalty = 50
+reward = 0
+platform_length = 80.0

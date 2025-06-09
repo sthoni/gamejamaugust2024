@@ -9,7 +9,6 @@ atlas = ExtResource("2_udkah")
 region = Rect2(32, 32, 96, 96)
 
 [node name="Menu" type="Control"]
-process_mode = 2
 z_index = 100
 layout_mode = 3
 anchors_preset = 0
