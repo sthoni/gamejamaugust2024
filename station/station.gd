@@ -44,10 +44,6 @@ func set_station_stats(value: StationStats) -> void:
 	if station_stats and station_label:
 		station_label.text = station_stats.name
 		has_money = true
-		if platform:
-			platform.shape.size.y = station_stats.platform_length
-			station_start.position.y = station_stats.platform_length / 2 + 8
-			station_end.position.y = - station_stats.platform_length / 2 - 8
 
 func set_status(value: TrainStatus) -> void:
 	status = value
@@ -142,7 +138,7 @@ func pay_money() -> void:
 	var mult_sum := 1.0
 	money_earned_sum_label.text = "%s $" % money_earned_sum
 	money_earned_sum_label.show()
-	var old_money_earned_sum = money_earned_sum
+	var old_money_earned_sum := money_earned_sum
 	money_earned_sum += station_stats.reward
 	tween.tween_callback(func() -> void:
 				money_earned_label.text = "Reward: %s $" % station_stats.reward

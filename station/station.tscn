@@ -31,11 +31,13 @@ station_stats = ExtResource("2_6h4f5")
 shape = SubResource("RectangleShape2D_2umad")
 
 [node name="StationStart" type="Area2D" parent="."]
+position = Vector2(0, 50)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StationStart"]
 shape = SubResource("RectangleShape2D_dk45f")
 
 [node name="StationEnd" type="Area2D" parent="."]
+position = Vector2(0, -50)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StationEnd"]
 shape = SubResource("RectangleShape2D_dk45f")
