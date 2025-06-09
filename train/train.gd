@@ -140,7 +140,7 @@ func _physics_process(delta: float) -> void:
 
 func switch_path(new_path: PathFollow2D):
 	#var train = current_path.get_child(0) #Train
-	var train = current_path.get_node("Train") #Train
+	var train = current_path.get_node("Train") # Train
 	if train:
 		current_path.remove_child(train)
 		new_path.add_child(train)

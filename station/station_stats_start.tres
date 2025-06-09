@@ -5,5 +5,4 @@
 [resource]
 script = ExtResource("1_8m6bu")
 name = "Start Station"
-reward = 0
-platform_length = 80.0
+reward = 100

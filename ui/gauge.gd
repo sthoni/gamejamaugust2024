@@ -1,6 +1,6 @@
 extends Control
 
-@onready var needle := $GaugeTexture/Needle
+@onready var needle := $Needle
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

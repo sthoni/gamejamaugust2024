@@ -9,4 +9,5 @@
 script = ExtResource("1_mv6bu")
 train_stats = ExtResource("4_q3ugd")
 item_pool = ExtResource("2_gjr0e")
+level_cost = 50
 background_texture = ExtResource("1_eyxuv")
