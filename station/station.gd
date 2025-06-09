@@ -147,12 +147,16 @@ func pay_money() -> void:
 				)
 	tween.tween_property(money_earned_label, "position", Vector2(20.0, -100.0), 1)
 	tween.tween_method(func(mon: int) -> void: money_earned_sum_label.text = "%s $" % mon, old_money_earned_sum, money_earned_sum, 0.5)
+	tween.tween_callback(func() -> void:
+				money_earned_label.hide()
+				money_earned_label.position = Vector2(20.0, -80.0)
+				)
 	for item in train_at_station.train_stats.items:
 		if item.get("transport_amount"):
 			mult_sum *= item.transport_mult
 			money_earned_sum += item.transport_amount
 			tween.tween_callback(func() -> void:
-				money_earned_label.text = "%s: %s $" % [item.name, item.transport_amount]
+				money_earned_label.text = "%s: %s $" % [item.name[0], item.transport_amount]
 				money_earned_label.show()
 				money_player.play()
 				)
