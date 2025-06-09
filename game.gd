@@ -18,13 +18,18 @@ func _ready() -> void:
 
 func _set_game_stats(value: GameStats) -> void:
 	game_stats = value
-	game_stats.money = value.start_money
+	game_stats.reset_stats()
 	
 
 func _on_level_end_reached() -> void:
 	level_ended = true
 	get_tree().paused = true
 	game_stats.last_level += 1
+
+
+func game_start() -> void:
+	game_stats = load("res://game_stats_start.tres")
+	change_to_level()
 
 
 func change_to_shop() -> void:

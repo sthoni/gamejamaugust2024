@@ -18,3 +18,12 @@ var money: int:
 		var money_old := money
 		money = value
 		Events.emit_signal("money_changed", money_old, money)
+
+
+func reset_stats() -> void:
+	last_level = 0
+	last_level_time = 0.0
+	last_level_start_money = 0
+	last_level_end_money = 0
+	level_time_sum = 0
+	money = start_money

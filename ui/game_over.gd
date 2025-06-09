@@ -8,7 +8,7 @@ class_name GameEnd
 
 func _ready() -> void:
     start_button.pressed.connect(func() -> void:
-        GameState.change_to_level()
+        GameState.game_start()
     )
     quit_button.pressed.connect(func() -> void:
         get_tree().quit()
@@ -24,4 +24,4 @@ func _input(event: InputEvent) -> void:
         get_tree().quit()
     
     if event.is_action_pressed("shop"):
-        GameState.change_to_level()
+        GameState.game_start()

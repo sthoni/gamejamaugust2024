@@ -12,6 +12,7 @@ var level_time := 0.0
 func _ready() -> void:
 	_set_level_stats(level_stats)
 	GameState.game_stats.last_level_start_money = GameState.game_stats.money
+	money_label.text = "Current Money: %s $" % GameState.game_stats.money
 	level_cost_label.text = "You lose %s $ every second." % level_stats.level_cost
 	Events.money_changed.connect(func(_old_money: int, money: int) -> void: money_label.text = "Current Money: %s $" % money)
 
