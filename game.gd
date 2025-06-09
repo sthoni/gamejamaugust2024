@@ -3,8 +3,9 @@ class_name Game extends Node
 var game_stats: GameStats: set = _set_game_stats
 
 @onready var shop_scene := preload("res://ui/shop.tscn")
-@onready var level_scene := preload("res://level/level.tscn")
 @onready var level_end_scene := preload("res://ui/level_end.tscn")
+
+@onready var levels: Array[PackedScene] = [preload("res://level/level.tscn"), preload("res://level/level_2.tscn")]
 
 var level_ended := false
 
@@ -30,7 +31,11 @@ func change_to_shop() -> void:
 
 
 func change_to_level() -> void:
-	get_tree().change_scene_to_packed(level_scene)
+	if levels.size() > game_stats.last_level:
+		get_tree().change_scene_to_packed(levels[game_stats.last_level])
+	else:
+		print("No more levels.")
+		get_tree().quit()
 
 
 func change_to_level_end() -> void:

@@ -3,42 +3,34 @@
 [ext_resource type="Theme" uid="uid://dxuv76tv4aybk" path="res://debug_theme.tres" id="1_glvj2"]
 [ext_resource type="Script" uid="uid://bn4evjmnyrab4" path="res://ui/debug_ui.gd" id="1_uqk8x"]
 
-[node name="DebugUI" type="Control"]
-layout_mode = 3
-anchors_preset = 0
-size_flags_horizontal = 2
-size_flags_vertical = 2
+[node name="DebugUI" type="PanelContainer"]
+offset_right = 173.0
+offset_bottom = 82.0
 theme = ExtResource("1_glvj2")
 script = ExtResource("1_uqk8x")
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
-layout_mode = 1
-offset_right = 97.0
-offset_bottom = 19.0
-theme = ExtResource("1_glvj2")
-
-[node name="LabelContainer" type="VBoxContainer" parent="PanelContainer"]
+[node name="LabelContainer" type="VBoxContainer" parent="."]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 
-[node name="MoneyLabel" type="Label" parent="PanelContainer/LabelContainer"]
+[node name="MoneyLabel" type="Label" parent="LabelContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "No Money Status"
 
-[node name="VelocityLabel" type="Label" parent="PanelContainer/LabelContainer"]
+[node name="VelocityLabel" type="Label" parent="LabelContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "No Velocity Status"
 
-[node name="AccLabel" type="Label" parent="PanelContainer/LabelContainer"]
+[node name="AccLabel" type="Label" parent="LabelContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "No Acc Status"
 
-[node name="StationLabel" type="Label" parent="PanelContainer/LabelContainer"]
+[node name="StationLabel" type="Label" parent="LabelContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "No Station Status"
