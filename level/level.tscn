@@ -96,6 +96,7 @@ unique_name_in_owner = true
 rotation = 1.5708
 
 [node name="Label2" type="Label" parent="TrainChainManager/Path2D/PathFollow_1"]
+visible = false
 offset_left = -4.73846
 offset_top = 9.0
 offset_right = 117.262
@@ -115,6 +116,7 @@ rotates = false
 loop = false
 
 [node name="Label" type="Label" parent="TrainChainManager/Path2D_2/PathFollow_2"]
+visible = false
 offset_right = 40.0
 offset_bottom = 24.0
 rotation = 1.57572

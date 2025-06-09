@@ -5,5 +5,5 @@
 [resource]
 script = ExtResource("1_0lfi7")
 name = "Gelsen"
-reward = 80
+reward = 50
 metadata/_custom_type_script = "uid://hatdf840mcsg"

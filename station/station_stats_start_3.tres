@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="StationStats" load_steps=2 format=3 uid="uid://cbvv2wmkdkn3v"]
+
+[ext_resource type="Script" uid="uid://hatdf840mcsg" path="res://station/station_stats.gd" id="1_gh08p"]
+
+[resource]
+script = ExtResource("1_gh08p")
+name = "Ahlhorn"
+reward = 500
+metadata/_custom_type_script = "uid://hatdf840mcsg"

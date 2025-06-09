@@ -8,7 +8,7 @@
 [ext_resource type="Resource" uid="uid://fdaqrpalijb6" path="res://train/train_start.tres" id="5_w5o0a"]
 [ext_resource type="Texture2D" uid="uid://do10t3py2fm23" path="res://assets/rails.png" id="6_hrebq"]
 [ext_resource type="Resource" uid="uid://bbd4jch0jo6gm" path="res://station/station_stats_start_2.tres" id="6_w5o0a"]
-[ext_resource type="Script" path="res://train/train_chain_manager.gd" id="7_b3knk"]
+[ext_resource type="Script" uid="uid://b16cdrpkhuj1a" path="res://train/train_chain_manager.gd" id="7_b3knk"]
 [ext_resource type="Script" uid="uid://cohop5a2itmps" path="res://level/path_follow_2d.gd" id="8_e2u7k"]
 [ext_resource type="PackedScene" uid="uid://c3byp0uv73juy" path="res://train/train.tscn" id="9_dhw2c"]
 [ext_resource type="Texture2D" uid="uid://bhn36jceufuai" path="res://assets/ui/UI_Flat_FrameSlot01a.png" id="10_510pp"]
@@ -105,6 +105,7 @@ unique_name_in_owner = true
 rotation = 1.5708
 
 [node name="Label2" type="Label" parent="TrainChainManager/Path2D/PathFollow_1"]
+visible = false
 offset_left = -4.73846
 offset_top = 9.0
 offset_right = 117.262
@@ -124,6 +125,7 @@ rotates = false
 loop = false
 
 [node name="Label" type="Label" parent="TrainChainManager/Path2D_2/PathFollow_2"]
+visible = false
 offset_right = 40.0
 offset_bottom = 24.0
 rotation = 1.57572
