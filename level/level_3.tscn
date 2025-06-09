@@ -1,10 +1,12 @@
-[gd_scene load_steps=19 format=4 uid="uid://dkains2nl8kws"]
+[gd_scene load_steps=22 format=4 uid="uid://dkains2nl8kws"]
 
 [ext_resource type="Script" uid="uid://umg07x7rcb87" path="res://level/level.gd" id="1_f1jq1"]
-[ext_resource type="Resource" uid="uid://bbum0dx5joke6" path="res://level/level_start.tres" id="2_5mhvx"]
 [ext_resource type="TileSet" uid="uid://c5dhv8sclf8qw" path="res://level/snowforest_tileset.tres" id="3_f1jq1"]
+[ext_resource type="Resource" uid="uid://bg1b2bhwkhxun" path="res://items/item_pool_start.tres" id="3_hrebq"]
+[ext_resource type="Script" uid="uid://cpf54jp870jd1" path="res://level/level_stats.gd" id="4_3lca4"]
 [ext_resource type="Texture2D" uid="uid://do10t3py2fm23" path="res://assets/rails.png" id="4_wcq0y"]
 [ext_resource type="PackedScene" uid="uid://c3csdinu5agg4" path="res://station/station.tscn" id="5_3lca4"]
+[ext_resource type="Resource" uid="uid://fdaqrpalijb6" path="res://train/train_start.tres" id="5_w5o0a"]
 [ext_resource type="Resource" uid="uid://bbd4jch0jo6gm" path="res://station/station_stats_start_2.tres" id="6_w5o0a"]
 [ext_resource type="Script" path="res://train/train_chain_manager.gd" id="7_b3knk"]
 [ext_resource type="Script" uid="uid://cohop5a2itmps" path="res://level/path_follow_2d.gd" id="8_e2u7k"]
@@ -12,6 +14,14 @@
 [ext_resource type="Texture2D" uid="uid://bhn36jceufuai" path="res://assets/ui/UI_Flat_FrameSlot01a.png" id="10_510pp"]
 [ext_resource type="PackedScene" uid="uid://bvvip673kkkj7" path="res://ui/gauge.tscn" id="11_krmuh"]
 [ext_resource type="PackedScene" uid="uid://dcn6xli3u8mkp" path="res://ui/debug_ui.tscn" id="12_b30fa"]
+
+[sub_resource type="Resource" id="Resource_b3knk"]
+script = ExtResource("4_3lca4")
+train_stats = ExtResource("5_w5o0a")
+item_pool = ExtResource("3_hrebq")
+level_cost = 2
+background_texture = ExtResource("3_f1jq1")
+metadata/_custom_type_script = "uid://cpf54jp870jd1"
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cw150"]
 texture = ExtResource("4_wcq0y")
@@ -83,8 +93,9 @@ point_count = 2
 size = Vector2(131.375, 20)
 
 [node name="Level" type="Node2D"]
+position = Vector2(13, 2)
 script = ExtResource("1_f1jq1")
-level_stats = ExtResource("2_5mhvx")
+level_stats = SubResource("Resource_b3knk")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 position = Vector2(269, -146)

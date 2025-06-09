@@ -36,6 +36,8 @@ var status: TrainStatus: set = set_status
 func _ready() -> void:
 	status = TrainStatus.NOT_ARRIVED
 	set_station_stats(station_stats)
+	money_earned_label.hide()
+	money_earned_sum_label.hide()
 
 func set_station_stats(value: StationStats) -> void:
 	station_stats = value
@@ -141,17 +143,25 @@ func pay_money() -> void:
 	money_earned_sum_label.text = "%s $" % money_earned_sum
 	money_earned_sum_label.show()
 	var old_money_earned_sum = money_earned_sum
+	money_earned_sum += station_stats.reward
+	tween.tween_callback(func() -> void:
+				money_earned_label.text = "Reward: %s $" % station_stats.reward
+				money_earned_label.show()
+				money_player.play()
+				)
+	tween.tween_property(money_earned_label, "position", Vector2(20.0, -100.0), 1)
+	tween.tween_method(func(mon: int) -> void: money_earned_sum_label.text = "%s $" % mon, old_money_earned_sum, money_earned_sum, 0.5)
 	for item in train_at_station.train_stats.items:
 		if item.get("transport_amount"):
 			mult_sum *= item.transport_mult
 			money_earned_sum += item.transport_amount
 			tween.tween_callback(func() -> void:
-				money_earned_label.text = "%s $" % item.transport_amount
+				money_earned_label.text = "%s: %s $" % [item.name, item.transport_amount]
 				money_earned_label.show()
 				money_player.play()
 				)
 			tween.tween_method(func(mon: int) -> void: money_earned_sum_label.text = "%s $" % mon, old_money_earned_sum, money_earned_sum, 0.5)
-			tween.tween_property(money_earned_label, "position", Vector2(30.0, -100.0), 1)
+			tween.tween_property(money_earned_label, "position", Vector2(20.0, -100.0), 1)
 			tween.tween_callback(func() -> void:
 				money_earned_label.hide()
 				money_earned_label.position = Vector2(20.0, -80.0)
@@ -159,7 +169,7 @@ func pay_money() -> void:
 			old_money_earned_sum = money_earned_sum
 	money_earned_sum *= mult_sum
 	tween.tween_callback(func() -> void:
-		money_earned_label.text = "x%s" % mult_sum
+		money_earned_label.text = "Multi: x%s" % mult_sum
 		money_earned_label.show()
 		money_player.play()
 	)
