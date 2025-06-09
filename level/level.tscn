@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://do10t3py2fm23" path="res://assets/rails.png" id="4_6gtgk"]
 [ext_resource type="Script" uid="uid://cohop5a2itmps" path="res://level/path_follow_2d.gd" id="7_0v1st"]
 [ext_resource type="Resource" uid="uid://bbd4jch0jo6gm" path="res://station/station_stats_start_2.tres" id="8_m3nah"]
-[ext_resource type="Script" path="res://train/train_chain_manager.gd" id="10_l5lfc"]
+[ext_resource type="Script" uid="uid://b16cdrpkhuj1a" path="res://train/train_chain_manager.gd" id="10_l5lfc"]
 [ext_resource type="Texture2D" uid="uid://bhn36jceufuai" path="res://assets/ui/UI_Flat_FrameSlot01a.png" id="10_rhqlf"]
 [ext_resource type="PackedScene" uid="uid://bvvip673kkkj7" path="res://ui/gauge.tscn" id="11_xii2b"]
 [ext_resource type="PackedScene" uid="uid://dcn6xli3u8mkp" path="res://ui/debug_ui.tscn" id="12_rhqlf"]

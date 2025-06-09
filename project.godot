@@ -33,6 +33,10 @@ gdscript/warnings/unsafe_call_argument=1
 window/stretch/mode="viewport"
 window/stretch/scale=1.66
 
+[global_group]
+
+Train=""
+
 [gui]
 
 theme/custom="res://theme.tres"

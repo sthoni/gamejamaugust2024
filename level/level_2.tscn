@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=4 uid="uid://bmd2uo1tmbq5x"]
+[gd_scene load_steps=22 format=4 uid="uid://ci20cfkbn3ems"]
 
 [ext_resource type="Script" uid="uid://umg07x7rcb87" path="res://level/level.gd" id="1_ejyio"]
 [ext_resource type="Resource" uid="uid://bg1b2bhwkhxun" path="res://items/item_pool_start.tres" id="3_35kkn"]
@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://c3csdinu5agg4" path="res://station/station.tscn" id="5_qhnra"]
 [ext_resource type="Texture2D" uid="uid://do10t3py2fm23" path="res://assets/rails.png" id="6_35kkn"]
 [ext_resource type="Resource" uid="uid://bbd4jch0jo6gm" path="res://station/station_stats_start_2.tres" id="6_mdx7b"]
-[ext_resource type="Script" path="res://train/train_chain_manager.gd" id="7_drhu7"]
+[ext_resource type="Script" uid="uid://b16cdrpkhuj1a" path="res://train/train_chain_manager.gd" id="7_drhu7"]
 [ext_resource type="Script" uid="uid://cohop5a2itmps" path="res://level/path_follow_2d.gd" id="8_qg0ee"]
 [ext_resource type="PackedScene" uid="uid://c3byp0uv73juy" path="res://train/train.tscn" id="9_vpspb"]
 [ext_resource type="PackedScene" uid="uid://bvvip673kkkj7" path="res://ui/gauge.tscn" id="10_algu2"]

@@ -33,6 +33,7 @@ var flag_train_long_tut_played: bool = false
 # var paths: Array[PathFollow2D]
 
 func _ready() -> void:
+	self.add_to_group("Train")
 	$Camera2D.make_current()
 	Events.train_at_start.connect(_on_train_at_start)
 	Events.train_exited.connect(_on_train_exited)
