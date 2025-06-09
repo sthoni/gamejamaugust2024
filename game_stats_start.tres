@@ -6,4 +6,4 @@
 [resource]
 script = ExtResource("1_58pdo")
 train_stats = ExtResource("2_8p06v")
-start_money = 500
+start_money = 50

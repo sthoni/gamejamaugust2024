@@ -1,0 +1,15 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://dxuv76tv4aybk"]
+
+[sub_resource type="SystemFont" id="SystemFont_5ul50"]
+font_names = PackedStringArray("Monospace")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5ul50"]
+bg_color = Color(0.427451, 0.427451, 0.427451, 0.305882)
+
+[resource]
+Label/colors/font_color = Color(1, 0, 0, 1)
+Label/constants/outline_size = 0
+Label/font_sizes/font_size = 16
+Label/fonts/font = SubResource("SystemFont_5ul50")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_5ul50")
+VBoxContainer/constants/separation = 2

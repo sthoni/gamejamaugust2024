@@ -7,9 +7,7 @@ class_name Menu
 
 func _ready() -> void:
     start_button.pressed.connect(func() -> void:
-        get_tree().paused = false
-        start_button.text = "Continue"
-        hide()
+        GameState.change_to_level()
     )
 
     quit_button.pressed.connect(func() -> void:
@@ -21,6 +19,4 @@ func _input(event: InputEvent) -> void:
         get_tree().quit()
     
     if event.is_action_pressed("shop"):
-        get_tree().paused = false
-        start_button.text = "Continue"
-        hide()
+        GameState.change_to_level()

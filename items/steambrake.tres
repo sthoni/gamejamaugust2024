@@ -10,7 +10,6 @@ region = Rect2(240, 0, 48, 48)
 [resource]
 script = ExtResource("1_wm7q6")
 brake_power = 100000.0
-transport_amount = 10.0
 level = 1
 id = "SteamBrake"
 item_type = 4

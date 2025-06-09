@@ -6,6 +6,8 @@ signal money_changed(old_money: int, new_money: int)
 
 # Train Events
 @warning_ignore("unused_signal")
+signal train_stats_changed(stats: TrainStats)
+@warning_ignore("unused_signal")
 signal velocity_changed(velocity: float)
 @warning_ignore("unused_signal")
 signal accelaration_changed(acc: float)
@@ -13,6 +15,12 @@ signal accelaration_changed(acc: float)
 signal waggons_counted(waggons: int)
 @warning_ignore("unused_signal")
 signal weight_changed(weight: float)
+@warning_ignore("unused_signal")
+signal acc_power_changed(acc_power: float)
+@warning_ignore("unused_signal")
+signal brake_power_changed(brake_power: float)
+@warning_ignore("unused_signal")
+signal transport_amount_changed(transport_amount: float)
 
 # Level Events
 @warning_ignore("unused_signal")
