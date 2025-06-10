@@ -95,8 +95,9 @@ position = Vector2(461, 317)
 curve = SubResource("Curve2D_ivpvi")
 
 [node name="PathFollow_1" type="PathFollow2D" parent="TrainChainManager/Path2D"]
-position = Vector2(0, 300)
-rotation = -1.5708
+position = Vector2(-0.0532538, -1255.11)
+rotation = -1.57037
+progress = 1610.5
 loop = false
 script = ExtResource("8_qg0ee")
 
@@ -105,7 +106,6 @@ unique_name_in_owner = true
 rotation = 1.5708
 
 [node name="Label2" type="Label" parent="TrainChainManager/Path2D/PathFollow_1"]
-visible = false
 offset_left = -4.73846
 offset_top = 9.0
 offset_right = 117.262
@@ -118,14 +118,13 @@ position = Vector2(461, 317)
 curve = SubResource("Curve2D_rhqlf")
 
 [node name="PathFollow_2" type="PathFollow2D" parent="TrainChainManager/Path2D_2"]
-position = Vector2(0, 269.461)
+position = Vector2(0, -1251)
 rotation = -1.5708
-progress = 30.552
+progress = 1551.0
 rotates = false
 loop = false
 
 [node name="Label" type="Label" parent="TrainChainManager/Path2D_2/PathFollow_2"]
-visible = false
 offset_right = 40.0
 offset_bottom = 24.0
 rotation = 1.57572
@@ -194,5 +193,6 @@ offset_bottom = 0.0
 grow_horizontal = 2
 grow_vertical = 0
 
+[connection signal="area_entered" from="TrainChainManager/Weiche1" to="TrainChainManager" method="_on_weiche_1_area_entered"]
 [connection signal="body_entered" from="LevelEnd" to="." method="_on_level_end_body_entered"]
 [connection signal="timeout" from="MoneyTimer" to="." method="_on_money_timer_timeout"]

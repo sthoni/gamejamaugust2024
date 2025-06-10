@@ -191,3 +191,7 @@ func _on_train_at_start() -> void:
 	
 func _on_train_exited() -> void:
 	flag_train_long_tut_played = false
+
+
+func _on_weiche_1_area_entered(area):
+	pass # Replace with function body.
