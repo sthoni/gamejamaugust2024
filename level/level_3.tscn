@@ -58,7 +58,7 @@ point_count = 2
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ivpvi"]
 size = Vector2(131.375, 20)
 
-[node name="Level" type="Node2D"]
+[node name="Level2" type="Node2D"]
 script = ExtResource("1_f1jq1")
 level_stats = SubResource("Resource_b3knk")
 
